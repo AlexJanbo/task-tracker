@@ -1,8 +1,11 @@
-import express from 'express'
-const router = express.Router()
-import { readTasks, createTask, updateTask, deleteTask } from '../controllers/taskController.js'
+const express = require('express')
+const { readTasks, createTask, updateTask, deleteTask } = require('../controllers/taskController')
 
-router.Route('/').post(createTask).get(readTasks)
-router.Route('/:id').put(updateTask).delete(deleteTask)
+const router = express.Router()
+
+const { protect } = require('../middleware/authenticationMiddleware')
+
+router.route('/').post(protect, createTask).get(protect, readTasks)
+router.route('/:id').put(protect, updateTask).delete(protect, deleteTask)
 
 module.exports = router

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const taskSchema = mongoose.Schema(
     {
@@ -7,14 +7,15 @@ const taskSchema = mongoose.Schema(
             required: true,
             ref: 'User'
         },
-        Title: {
+        text: {
             type: String,
-            required: [true, "Please add a text title"]
-        },
-        Description: {
-            type: String,
-
-        },
+            required: [true, 'Please add a text']
+        }
         
+    },
+    {
+        timestamps: true,
     }
 )
+
+module.exports = mongoose.model('Task', taskSchema)
