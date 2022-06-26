@@ -2,6 +2,7 @@ import React from 'react'
 import { AppBar, Button, Toolbar, Typography } from '@mui/material'
 import taskTrackerLogo from '../images/track.svg'
 import { Box } from '@mui/system'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   return (
@@ -11,31 +12,44 @@ export default function Navbar() {
       p: 0,
       height: "4rem",
     }}>
-        <Box 
-        sx={{
-           display: "flex",
-           direction: "row",
-           justifyContent: "space-between",
-           position: "inherit",
-           }}>
+        <Box
+          sx={{
+            display: "flex",
+            direction: "row",
+            justifyContent: "space-between",
+            position: "inherit",
+          }}>
           <Toolbar>
-            <img 
-              src={taskTrackerLogo} 
-              alt="sup" 
-              height="30px" 
-              width="30px" 
-              color="white"
-            />
+            <Link to='/'>
+              <img 
+                src={taskTrackerLogo} 
+                alt="sup" 
+                height="30px" 
+                width="30px" 
+                color="white"
+                />
+            </Link>
             <Typography 
               variant="span" 
               fontSize="2rem"
             >
-              Task Tracker
+              <Link to='/'>
+                Task Tracker
+              </Link>
+              
             </Typography>
           </Toolbar>
           <Toolbar>
-            <Button variant="text" color="error" size="large">Log In</Button>
-            <Button variant="contained">Try For Free</Button>
+            <Button variant="text" color="error" size="large">
+              <Link to='/login'>
+                Log In
+              </Link>
+            </Button>
+            <Button variant="contained">
+              <Link to='/signup'>
+                Try for free
+              </Link>
+            </Button>
           </Toolbar>
         </Box>
     </AppBar>
