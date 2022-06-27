@@ -14,11 +14,10 @@ function Signup() {
   const { name, email, password, confirmPassword } = formValues
   
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    })
+    setFormValues((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
   }
 
   const handleSubmit = (e) => {
@@ -71,7 +70,7 @@ function Signup() {
             />
           </Grid>
           <Button  type='submit' onClick={handleSubmit}>
-            Submit
+            Sign Up
           </Button>
         </Grid>
 
