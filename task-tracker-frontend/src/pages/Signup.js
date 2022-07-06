@@ -1,7 +1,11 @@
-import { Button, Grid, TextField } from '@mui/material'
+import { Button, CircularProgress, Grid, TextField } from '@mui/material'
 import React from 'react'
 import { useState, useEffect } from 'react'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { register, reset } from '../features/auth/authSlice'
+ 
 function Signup() {
 
   const [formValues, setFormValues] = useState({
@@ -11,7 +15,23 @@ function Signup() {
     confirmpassword: ''
   }) 
 
-  const { name, email, password, confirmPassword } = formValues
+  const { name, email, password, confirmPassword }   = formValues
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const {user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)  
+  
+  useEffect(() => {
+    if(isError) {
+      toast.error(message)
+    }
+    if(isSuccess || user) {
+      navigate('/')
+    }
+    dispatch(reset())
+
+  }, [user, isError, isSuccess, message, navigate, dispatch])
   
   const handleInputChange = (e) => {
     setFormValues((prevState) => ({
@@ -23,8 +43,23 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(formValues)
+
+    if(password !== confirmPassword) {
+      toast.error('Passwords do not match')
+    } else {
+      const userData = {
+        name, 
+        email, 
+        password,
+      }
+      dispatch(register(userData))
+    }
   }
   
+  if(isLoading) {
+    <CircularProgress />
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit}>
