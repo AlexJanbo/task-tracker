@@ -2,9 +2,22 @@ import React from 'react'
 import { AppBar, Button, Toolbar, Typography } from '@mui/material'
 import taskTrackerLogo from '../images/track.svg'
 import { Box } from '@mui/system'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout, reset } from '../features/auth/authSlice'
 
 export default function Navbar() {
+  
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.auth)
+
+  const onLogout = () => {
+    dispatch(logout())
+    dispatch(reset)
+    navigate('/')
+  }
+  
   return (
     <AppBar sx={{
       position: "sticky",
@@ -39,18 +52,26 @@ export default function Navbar() {
               
             </Typography>
           </Toolbar>
-          <Toolbar>
-            <Button variant="text" color="error" size="large">
-              <Link to='/login'>
-                Log In
-              </Link>
-            </Button>
-            <Button variant="contained">
-              <Link to='/signup'>
-                Try for free
-              </Link>
-            </Button>
-          </Toolbar>
+          {user ?
+            <Toolbar>
+              <Button variant="text" color="error" size="large" onClick={onLogout}>
+                Logout
+              </Button>
+            </Toolbar>
+            :
+            <Toolbar>
+              <Button variant="text" color="error" size="large">
+                <Link to='/login'>
+                  Log In
+                </Link>
+              </Button>            
+              <Button variant="contained">
+                <Link to='/signup'>
+                  Try for free
+                </Link>
+              </Button>
+            </Toolbar>
+          }
         </Box>
     </AppBar>
   )

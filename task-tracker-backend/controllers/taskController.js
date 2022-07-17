@@ -40,10 +40,8 @@ const updateTask = asyncHandler(async (req, res) => {
         throw new Error("Task not found")
     }
 
-    const user = User.findById(req.user.id)
-
     // Check for user
-    if(!req.ser) {
+    if(!req.user) {
         res.status(401)
         throw new Error('User not found')
     }
@@ -70,7 +68,6 @@ const deleteTask = asyncHandler(async (req, res) => {
         throw new Error("Task not found")
     }
 
-    const user = User.findById(req.user.id)
 
     // Check for user
     if(!req.user) {

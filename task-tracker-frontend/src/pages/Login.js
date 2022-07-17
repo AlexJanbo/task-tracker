@@ -1,6 +1,10 @@
-import { Button, Grid, TextField } from '@mui/material'
+import { Button, CircularProgress, Grid, TextField } from '@mui/material'
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { login, reset } from '../features/auth/authSlice'
 
 function Login() {
 
@@ -11,7 +15,26 @@ function Login() {
   }) 
 
   const { email, password } = formValues
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const {user, isLoading, isError, isSuccess, message } 
+    = useSelector(
+        (state) => state.auth
+      )  
   
+      useEffect(() => {
+        if(isError) {
+          toast.error(message)
+        }
+        if(isSuccess || user) {
+          navigate('/')
+        }
+        dispatch(reset())
+    
+      }, [user, isError, isSuccess, message, navigate, dispatch])
+
   const handleInputChange = (e) => {
     setFormValues((prevState) => ({
       ...prevState,
@@ -21,9 +44,22 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(formValues)
+    
+    const userData = {
+      email,
+      password
+    }
+
+    dispatch(login(userData))
+    navigate('/dashboard')
+
   }
   
+  if(isLoading) {
+    <CircularProgress />
+  }
+
+
   return (
     <>
       <form onSubmit={handleSubmit}>
