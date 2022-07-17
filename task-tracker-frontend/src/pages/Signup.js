@@ -29,6 +29,8 @@ function Signup() {
     if(isError) {
       toast.error(message)
     }
+
+
     if(isSuccess || user) {
       navigate('/')
     }
@@ -41,6 +43,10 @@ function Signup() {
       ...prevState,
       [e.target.name]: e.target.value
     }))
+  }
+
+  if(isLoading) {
+    return <CircularProgress />
   }
 
   const handleSubmit = (e) => {

@@ -56,7 +56,7 @@ function Login() {
   }
   
   if(isLoading) {
-    <CircularProgress />
+    return <CircularProgress />
   }
 
 

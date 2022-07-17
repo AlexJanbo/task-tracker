@@ -1,22 +1,41 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { Typography } from '@mui/material'
+import { useSelector, useDispatch } from 'react-redux'
+import { CircularProgress, Typography } from '@mui/material'
 import TaskForm from '../components/TaskForm'
+import { getTasks, reset } from '../features/tasks/taskSlice'
+import TaskItem from '../components/TaskItem'
 
 
 function Dashboard() {
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
+  const { tasks, isLoading, isError, message } = useSelector((state) => state.tasks) 
 
   useEffect(() => {
+    if(isError) {
+      console.log(message)
+    }
+
     if(!user) {
       navigate('/')
     }
-  }, [user, navigate])
+
+    dispatch(getTasks())
+
+
+    return () => {
+      dispatch(reset())
+    }
+  }, [user, navigate, isError, message, dispatch])
+
+  if(isLoading) {
+    return <CircularProgress />
+  }
 
   return (
     <>
@@ -25,6 +44,16 @@ function Dashboard() {
         <p>Task Dashboard</p>
       </section>
       <TaskForm />
+
+      <section>
+        {tasks.length > 0 ?
+         (<div>
+          {tasks.map((task) => (
+            <TaskItem key={task._id} task={task} />
+          ))}
+         </div>) : 
+         (<h3>You have no Tasks.</h3>)}
+      </section>
     </>
   )
 }
