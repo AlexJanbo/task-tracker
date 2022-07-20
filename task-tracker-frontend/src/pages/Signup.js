@@ -113,7 +113,7 @@ function Signup() {
               onChange={handleInputChange}
             />
           </Grid>
-          <Button  type='submit' onClick={handleSubmit}>
+          <Button  variant='contained' type='submit' onClick={handleSubmit}>
             Sign Up
           </Button>
         </Grid>

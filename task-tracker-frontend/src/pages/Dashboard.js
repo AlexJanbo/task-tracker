@@ -6,6 +6,8 @@ import { CircularProgress, Typography } from '@mui/material'
 import TaskForm from '../components/TaskForm'
 import { getTasks, reset } from '../features/tasks/taskSlice'
 import TaskItem from '../components/TaskItem'
+import TaskTable from '../components/TaskTable'
+
 
 
 function Dashboard() {
@@ -43,17 +45,20 @@ function Dashboard() {
         <h1>Welcome { user && user.name }</h1>
         <p>Task Dashboard</p>
       </section>
-      <TaskForm />
+      <div style={{ height: '25rem', width: '75%', alignItems: 'center', marginTop: '2rem'}}>
+      <TaskTable />
 
+      </div>
       <section>
         {tasks.length > 0 ?
          (<div>
           {tasks.map((task) => (
             <TaskItem key={task._id} task={task} />
-          ))}
+            ))}
          </div>) : 
          (<h3>You have no Tasks.</h3>)}
       </section>
+         <TaskForm />
     </>
   )
 }

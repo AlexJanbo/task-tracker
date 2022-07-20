@@ -54,7 +54,7 @@ export default function Navbar() {
           </Toolbar>
           {user ?
             <Toolbar>
-              <Button variant="text" color="error" size="large" onClick={onLogout}>
+              <Button variant="contained" color="error" size="large" onClick={onLogout}>
                 Logout
               </Button>
             </Toolbar>
