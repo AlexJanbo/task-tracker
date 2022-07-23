@@ -47,7 +47,7 @@ function Login() {
     }
 
     dispatch(login(userData))
-
+    navigate('/dashboard')
 
   }
   
