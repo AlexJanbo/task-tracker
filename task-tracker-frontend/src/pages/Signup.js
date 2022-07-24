@@ -32,7 +32,7 @@ function Signup() {
 
 
     if(isSuccess || user) {
-      navigate('/')
+      navigate('/dashboard')
     }
     dispatch(reset())
 
@@ -62,6 +62,7 @@ function Signup() {
         password,
       }
       dispatch(register(userData))
+
     }
   }
   

@@ -25,7 +25,7 @@ function Login() {
       toast.error(message)
     }
     if(isSuccess || user) {
-      navigate('/')
+      navigate('/dashboard')
     }
     dispatch(reset())
 
@@ -47,7 +47,7 @@ function Login() {
     }
 
     dispatch(login(userData))
-    navigate('/dashboard')
+
 
   }
   
@@ -81,7 +81,7 @@ function Login() {
             />
           </Grid>
         </Grid>
-          <Button variant='contained' type='submit' onClick={handleSubmit}>
+          <Button variant='contained' type='submit'>
             Login
           </Button>
       </form>
