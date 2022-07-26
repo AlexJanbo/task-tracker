@@ -54,6 +54,9 @@ export default function Navbar() {
           </Toolbar>
           {user ?
             <Toolbar>
+              <Button variant="contained" size="large" onClick={() => navigate('/dashboard')}>
+                Dashboard
+              </Button>
               <Button variant="contained" color="error" size="large" onClick={onLogout}>
                 Logout
               </Button>

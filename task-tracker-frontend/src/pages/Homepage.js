@@ -4,34 +4,33 @@ import React from 'react'
 function Homepage() {
   return (
     <>
-    <div>This is the Homepage</div>
+
       <Stack direction="column" spacing={2}>
         <Box
-            height="400px"
-            bgcolor="green"
+            height="37.5rem"
+            bgcolor="white"
         >
             <Card>
-
             </Card>
         </Box>
         <Box
-            height="100px"
-            bgcolor="darkgreen"
+            height="6.25rem"
+            bgcolor="white"
         >
         </Box>
         <Box
             height="400px"
-            bgcolor="blue"
+            bgcolor="#f8f9fa"
         >
         </Box>
         <Box
             height="400px"
-            bgcolor="red"
+            bgcolor="white"
         >
         </Box>
         <Box
             height="400px"
-            bgcolor="purple"
+            bgcolor="#f8f9fa"
         >
         </Box>
     </Stack>

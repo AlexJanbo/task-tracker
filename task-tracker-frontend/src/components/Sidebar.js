@@ -12,6 +12,9 @@ export default function Sidebar() {
           <ListItemText inset>Dashboard Home</ListItemText>
         </MenuItem>
         <MenuItem>
+          <ListItemText inset>My Group Projects</ListItemText>
+        </MenuItem>
+        <MenuItem>
           <ListItemText inset>My Projects</ListItemText>
         </MenuItem>
         <MenuItem>
