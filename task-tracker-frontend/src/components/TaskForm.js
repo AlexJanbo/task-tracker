@@ -6,15 +6,19 @@ import { createTask } from '../features/tasks/taskSlice'
 
 function TaskForm() {
   
-    const [ text, setText ] = useState('')
+    const [ formData, setFormData ] = useState({
+        title: "",
+        description: "",
+        priority: ""
+    })
 
     const dispatch = useDispatch()
 
     const onSubmit = e => {
         e.preventDefault()
 
-        dispatch(createTask({ text }))
-        setText('')
+        dispatch(createTask({ formData }))
+        setFormData()
     }
 
 
@@ -22,14 +26,25 @@ function TaskForm() {
     <Grid>
         <Grid item>
             <TextField
-              id="task"
-              name="task"
-              label="task"
+              id="title"
+              name="title"
+              label="Title"
               type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
+              value={formData.title}
+              onChange={(e) => setFormData({...formData, title: e.target.value})}
             />
         </Grid>
+        <Grid item>
+            <TextField
+              id="description"
+              name="description"
+              label="Description"
+              type="text"
+              value={formData.description}
+              onChange={(e) => setFormData({...formData, description: e.target.value})}
+            />
+        </Grid>
+        
         <Button  type='submit' onClick={onSubmit}>
             Create Task
         </Button>
