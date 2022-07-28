@@ -12,6 +12,7 @@ function TaskItem({task}) {
                 {new Date(task.createdAt).toLocaleDateString('en-US')}
             </div>
             <h2>{task.text}</h2>
+            {/* <h2>{task.description}</h2> */}
             <button onClick={() => dispatch(deleteTask(task._id))}>X</button>
         </div>
     )

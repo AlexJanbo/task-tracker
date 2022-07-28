@@ -4,21 +4,29 @@ import { useDispatch } from 'react-redux'
 import { Button, Grid, TextField } from '@mui/material'
 import { createTask } from '../features/tasks/taskSlice'
 
+
 function TaskForm() {
-  
-    const [ formData, setFormData ] = useState({
-        title: "",
-        description: "",
-        priority: ""
-    })
+
+    const [ text, setText ] = useState('')
+
+    // const [ formData, setFormData ] = useState({ text: '', description: ''})
+
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target
+    //     setFormData((prevState) => {
+    //         return {
+    //         ...prevState,
+    //         [name]: value,
+    //     }})
+    // }
 
     const dispatch = useDispatch()
 
-    const onSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(createTask({ formData }))
-        setFormData()
+        dispatch(createTask(text))
+        setText('')
     }
 
 
@@ -26,26 +34,26 @@ function TaskForm() {
     <Grid>
         <Grid item>
             <TextField
-              id="title"
-              name="title"
-              label="Title"
+              id="text"
+              name="text"
+              label="Text"
               type="text"
-              value={formData.title}
-              onChange={(e) => setFormData({...formData, title: e.target.value})}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
             />
         </Grid>
-        <Grid item>
+        {/* <Grid item>
             <TextField
               id="description"
               name="description"
               label="Description"
               type="text"
               value={formData.description}
-              onChange={(e) => setFormData({...formData, description: e.target.value})}
+              onChange={handleChange}
             />
-        </Grid>
+        </Grid> */}
         
-        <Button  type='submit' onClick={onSubmit}>
+        <Button  type='submit' onClick={handleSubmit}>
             Create Task
         </Button>
     </Grid>

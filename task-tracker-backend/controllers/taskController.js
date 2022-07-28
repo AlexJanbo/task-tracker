@@ -17,13 +17,14 @@ const readTasks = asyncHandler(async (req, res) => {
 // @route       POST /api/tasks
 // @access      Private
 const createTask = asyncHandler(async (req, res) => {
-    if(!req.body.title || !req.body.description) {
+    if(!req.body.text) {
+        console.log('no body text')
         res.status(400)
         throw new Error('Please fill out all fields!')
     }
+
     const task = await Task.create({
-        title: req.body.title,
-        description: req.body.description,
+        text: req.body.text,
         user: req.user.id
     })
 
