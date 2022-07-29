@@ -1,58 +1,69 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Button, Grid, TextField } from '@mui/material'
+import { Button, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material'
 import { createTask } from '../features/tasks/taskSlice'
 
 
 function TaskForm() {
 
-    const [ text, setText ] = useState('')
+    const [ title, setTitle ] = useState('')
+    const [ description, setDescription ] = useState('')
+    const [ priority, setPriority ] = useState('Low')
+    const status = "Created"
 
-    // const [ formData, setFormData ] = useState({ text: '', description: ''})
-
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target
-    //     setFormData((prevState) => {
-    //         return {
-    //         ...prevState,
-    //         [name]: value,
-    //     }})
-    // }
 
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(createTask(text))
-        setText('')
+        dispatch(createTask({title, description, priority, status}))
+        setTitle('')
+        setDescription('')
+        setPriority('Low')
     }
 
 
     return (
     <Grid>
+        <Typography>Create a New Task!</Typography>
         <Grid item>
             <TextField
-              id="text"
-              name="text"
-              label="Text"
+              id="title"
+              name="title"
+              label="Title"
               type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
         </Grid>
-        {/* <Grid item>
+        <Grid item>
             <TextField
               id="description"
               name="description"
               label="Description"
               type="text"
-              value={formData.description}
-              onChange={handleChange}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
-        </Grid> */}
-        
+        </Grid>
+
+        <FormControl>
+          <FormLabel id="demo-row-radio-buttons-group-label">Priority</FormLabel>
+          <RadioGroup
+          row
+          aria-labelledby="demo-row-radio-buttons-group-label"
+          name="row-radio-buttons-group"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+          >
+            <FormControlLabel value="Low" control={<Radio />} label="Low" />
+            <FormControlLabel value="Medium" control={<Radio />} label="Medium" />
+            <FormControlLabel value="High" control={<Radio />} label="High" />
+          </RadioGroup>
+        </FormControl>
+
         <Button  type='submit' onClick={handleSubmit}>
             Create Task
         </Button>
