@@ -1,11 +1,10 @@
 import React from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material/'
-import { useDispatch, useSelector } from 'react-redux'
-import { deleteTask } from '../features/tasks/taskSlice'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material/'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function TaskTable() {
 
-  const dispatch = useDispatch()
   
   const { tasks } = useSelector((state) => state.tasks) 
 
@@ -19,7 +18,7 @@ function TaskTable() {
             <TableCell sx={{ minWidth: '5rem'}}>Priority</TableCell>
             <TableCell sx={{ minWidth: '5rem'}}>Status</TableCell>
             <TableCell sx={{ minWidth: '5rem'}}>Created At</TableCell>
-            <TableCell sx={{ minWidth: '5rem'}}>Edit/delete</TableCell>
+            <TableCell sx={{ minWidth: '5rem'}}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -33,7 +32,17 @@ function TaskTable() {
               <TableCell>{task.priority}</TableCell>
               <TableCell>{task.status}</TableCell>
               <TableCell>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
-              <TableCell><button onClick={() => dispatch(deleteTask(task._id))}>X</button></TableCell>
+              <TableCell>
+                <Button>
+                  Edit
+                </Button>
+                <Link to={`/tasks/${task._id}/`}>
+                  View
+                </Link>
+                {/* <Button onClick={() => dispatch(deleteTask(task._id))}>
+                  Delete
+                </Button> */}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
