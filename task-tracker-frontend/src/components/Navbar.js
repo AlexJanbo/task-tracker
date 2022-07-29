@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Button, Toolbar, Typography } from '@mui/material'
+import { AppBar, Button, createTheme, Grid, ThemeProvider, Toolbar, Typography } from '@mui/material'
 import taskTrackerLogo from '../images/track.svg'
 import { Box } from '@mui/system'
 import { Link, useNavigate } from 'react-router-dom'
@@ -17,66 +17,59 @@ export default function Navbar() {
     dispatch(reset)
     navigate('/')
   }
+
+  const customTheme = createTheme({
+    palette: {
+      secondary: {
+        main: "#292f4c"
+      },
+      containedButton: {
+        main: "#0d6efd"
+      }
+    }
+  })
   
   return (
-    <AppBar sx={{
-      position: "sticky",
-      m: 0,
-      p: 0,
-      height: "4rem",
-    }}>
-        <Box
-          sx={{
-            display: "flex",
-            direction: "row",
-            justifyContent: "space-between",
-            position: "inherit",
-          }}>
-          <Toolbar>
-            <Link to='/'>
-              <img 
-                src={taskTrackerLogo} 
-                alt="sup" 
-                height="30px" 
-                width="30px" 
-                color="white"
-                />
-            </Link>
-            <Typography 
-              variant="span" 
-              fontSize="2rem"
-            >
-              <Link to='/'>
+    <ThemeProvider theme={customTheme}>
+      <Box sx={{ flexGrow: 1}}>
+        <AppBar position="static" color={"secondary"} >
+          <Toolbar width="100%" style={{ paddingLeft: "0", paddingRight: "0" }}  variant="dense">
+            <Typography marginLeft="15%" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Link style={{ textDecoration: 'none' }} to='/' >
                 Task Tracker
               </Link>
-              
             </Typography>
+            <Grid marginRight="15%">
+              {user ?
+                <>
+                  <Button variant="text" color="inherit" onClick={onLogout}>
+                    Logout
+                  </Button>
+                  <Button variant="contained" color="containedButton" onClick={() => navigate('/dashboard')}>
+                    Dashboard
+                  </Button>
+                </>
+              :
+                <>
+                <Button variant="text" color="inherit">
+                  <Link sx={{textDecoration:'none'}} to='/login'>
+                    Login
+                  </Link>
+                </Button>
+
+                <Button variant="contained" color="containedButton">
+                  <Link to='/login'>
+                    Sign Up
+                  </Link>
+                </Button>
+                </>
+              }
+            </Grid>
+            
           </Toolbar>
-          {user ?
-            <Toolbar>
-              <Button variant="contained" size="large" onClick={() => navigate('/dashboard')}>
-                Dashboard
-              </Button>
-              <Button variant="contained" color="error" size="large" onClick={onLogout}>
-                Logout
-              </Button>
-            </Toolbar>
-            :
-            <Toolbar>
-              <Button variant="text" color="error" size="large">
-                <Link to='/login'>
-                  Log In
-                </Link>
-              </Button>            
-              <Button variant="contained">
-                <Link to='/signup'>
-                  Try for free
-                </Link>
-              </Button>
-            </Toolbar>
-          }
-        </Box>
-    </AppBar>
+        </AppBar>
+      </Box>
+    </ThemeProvider>
   )
 }
 

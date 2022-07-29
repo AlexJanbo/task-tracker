@@ -7,14 +7,22 @@ const taskSchema = mongoose.Schema(
             required: true,
             ref: 'User'
         },
-        text: {
+        title: {
             type: String,
             required: [true, 'Please add text']
         },   
-        // description: {
-        //     type: String,
-        //     required: [true, 'Please add a description']
-        // }
+        description: {
+            type: String,
+            required: [true, 'Please add a description']
+        },
+        priority: {
+            type: String,
+            required: [true, 'Please add a priority']
+        },
+        status: {
+            type: String,
+            required: [true, 'Please add a status']
+        }
     },
     {
         timestamps: true,

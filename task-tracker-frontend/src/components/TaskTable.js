@@ -1,43 +1,39 @@
 import React from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material/'
-
-const tableData = [{
-    "id": 1,
-    "name": "Carly",
-    "email": "ctantum0@ebay.co.uk",
-    "description": "Female"
-  }, {
-    "id": 2,
-    "name": "Karim",
-    "email": "kkennedy1@ovh.net",
-    "description": "Male"
-  }, {
-    "id": 3,
-    "name": "Caryl",
-    "email": "cgerleit2@amazon.com",
-    "description": "Male"
-  }]
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteTask } from '../features/tasks/taskSlice'
 
 function TaskTable() {
+
+  const dispatch = useDispatch()
+  
+  const { tasks } = useSelector((state) => state.tasks) 
+
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Description</TableCell>
+            <TableCell sx={{ minWidth: '5rem'}}>Title</TableCell>
+            <TableCell sx={{ maxWidth: '5rem'}}>Description</TableCell>
+            <TableCell sx={{ minWidth: '5rem'}}>Priority</TableCell>
+            <TableCell sx={{ minWidth: '5rem'}}>Status</TableCell>
+            <TableCell sx={{ minWidth: '5rem'}}>Created At</TableCell>
+            <TableCell sx={{ minWidth: '5rem'}}>Edit/delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {tableData.map((row) => (
+          {tasks.map((task) => (
             <TableRow
-              key={row.id}
+              key={task._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.email}</TableCell>
-              <TableCell>{row.description}</TableCell>
+              <TableCell>{task.title}</TableCell>
+              <TableCell>{task.description}</TableCell>
+              <TableCell>{task.priority}</TableCell>
+              <TableCell>{task.status}</TableCell>
+              <TableCell>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
+              <TableCell><button onClick={() => dispatch(deleteTask(task._id))}>X</button></TableCell>
             </TableRow>
           ))}
         </TableBody>
