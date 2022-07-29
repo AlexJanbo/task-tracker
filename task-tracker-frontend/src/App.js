@@ -5,6 +5,8 @@ import Homepage from './pages/Homepage'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import { SingleTaskPage } from './pages/SingleTaskPage'
+
 
 
 export default function App() {
@@ -17,6 +19,7 @@ export default function App() {
                     <Route path='/login' element={<Login />}/>
                     <Route path='/signup' element={<Signup />}/>
                     <Route path='/dashboard' element={<Dashboard />}/>
+                    <Route exact path='/tasks/:taskId' element={<SingleTaskPage />}/>
                 </Routes>    
             </Router>
         </>

@@ -58,7 +58,7 @@ export default function Navbar() {
                 </Button>
 
                 <Button variant="contained" color="containedButton">
-                  <Link to='/login'>
+                  <Link to='/signup'>
                     Sign Up
                   </Link>
                 </Button>
