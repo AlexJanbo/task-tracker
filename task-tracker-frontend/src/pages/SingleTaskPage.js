@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import ClippedDrawer from '../components/ClippedDrawer'
+import SingleTaskCard from '../components/SingleTaskCard'
 import { getTasks, reset } from '../features/tasks/taskSlice'
 
 export const SingleTaskPage = ({ match }) => {
@@ -56,7 +57,7 @@ export const SingleTaskPage = ({ match }) => {
 
     return (
         <>  
-            <Box sx={{ 
+            {/* <Box sx={{ 
                 border: '.25rem solid #292f4c',
                 borderRadius: '1.5rem',
                 display: 'flex',
@@ -70,9 +71,10 @@ export const SingleTaskPage = ({ match }) => {
                 marginTop: '5%',
                 marginLeft: '40%'
                 }}
-            >
+            > */}
                 <ClippedDrawer />
-                <Grid marginTop="4rem" display="flex" flexDirection="column" alignItems="center">
+                <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
+                {/* <Grid marginTop="4rem" display="flex" flexDirection="column" alignItems="center">
                     <Typography>Title: {Task.title}</Typography>
                     <Typography>Id: {Task._id}</Typography>
                     <Typography>Description: {Task.description}</Typography>
@@ -80,8 +82,8 @@ export const SingleTaskPage = ({ match }) => {
                     <Typography>Status: {Task.status}</Typography>
                     <Typography>Title: {Task.title}</Typography>
                     <Typography>Created At: {new Date(Task.createdAt).toLocaleDateString('en-US')}</Typography>
-                </Grid>
-            </Box>
+                </Grid> */}
+            {/* </Box> */}
         </>
     )
 }

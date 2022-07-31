@@ -19,7 +19,6 @@ function Footer() {
             alignItems: 'center'
             }}
         >
-            <Typography>alexjanbo/tasktracker</Typography>
             <Typography>Copyright © TaskTracker 2022. All rights reserved.</Typography>
         </Grid>
     </Grid>

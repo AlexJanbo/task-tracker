@@ -53,15 +53,11 @@ function Dashboard() {
     <>
       <Box container sx={{ display: 'flex', flexDirection:'row', justifyContent:"flex-start"}} >
         <ClippedDrawer />
-        {/* <Sidebar /> */}
-        {/* <Grid sx={{ width: '10rem', height: '20rem'}}>
-          <TestDrawerComponent />
-        </Grid> */}
         <Box item sx={{ display: 'flex', flexDirection: 'column'}} justifyContent="center" marginTop="4rem">
           <Container style={{ height: '25rem', width: '100%', marginTop: '0' }}>
-            {/* <section>
+            <section>
               <h1>Welcome {user && capitalizeName(user.name)}</h1>
-            </section> */}
+            </section>
             <section style={{ marginTop: '1rem', marginBottom:'4rem'}}>
               <TaskTable style={{ justifyContent: 'center' }} />
 
