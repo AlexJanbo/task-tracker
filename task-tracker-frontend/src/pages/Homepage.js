@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Grid, Stack, Typography } from '@mui/material'
+import { Button, Divider, Grid, Stack, Typography } from '@mui/material'
 import ReviewCard from '../components/ReviewCard'
 import Footer from '../components/Footer'
 
@@ -148,6 +148,7 @@ function Homepage() {
                 <ReviewCard />
             </Grid>
         </Grid>
+        <Divider />
         <Footer />
     </Stack>
   </>

@@ -4,10 +4,12 @@ import React from 'react'
 function Footer() {
   return (
     <Grid sx={{
+        height: '5rem',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
-        borderTop: '1px dashed black'
+        bgcolor: '#f8f9fa'
+        // borderTop: '1px dashed black'
         }}
     >
         <Grid sx={{
