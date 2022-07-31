@@ -37,7 +37,9 @@ function TaskTable() {
                   Edit
                 </Button>
                 <Link to={`/tasks/${task._id}/`}>
-                  View
+                  <Button>
+                    View
+                  </Button>
                 </Link>
                 {/* <Button onClick={() => dispatch(deleteTask(task._id))}>
                   Delete

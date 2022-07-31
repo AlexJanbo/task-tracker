@@ -1,29 +1,31 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
+import { Grid, ListItemText, MenuItem, MenuList, Typography } from '@mui/material'
+import React from 'react'
 
-export default function Sidebar() {
+function Sidebar() {
   return (
-    <Paper sx={{ width: '10' }}>
-      <MenuList>
-        <MenuItem>
-          <ListItemText inset>Dashboard Home</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>My Group Projects</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>My Projects</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>My Tasks</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>User Profile</ListItemText>
-        </MenuItem>
-      </MenuList>
-    </Paper>
-  );
+    <Grid p={2} width='250px' textAlign='center' role='presentation'>
+        <Typography variant='h6' component='div'>
+            Side Panel
+        </Typography>
+        <MenuList>
+            <MenuItem>
+            <ListItemText inset>Dashboard Home</ListItemText>
+            </MenuItem>
+            <MenuItem>
+            <ListItemText inset>My Group Projects</ListItemText>
+            </MenuItem>
+            <MenuItem>
+            <ListItemText inset>My Projects</ListItemText>
+            </MenuItem>
+            <MenuItem>
+            <ListItemText inset>My Tasks</ListItemText>
+            </MenuItem>
+            <MenuItem>
+            <ListItemText inset>User Profile</ListItemText>
+            </MenuItem>
+        </MenuList>
+    </Grid>
+  )
 }
+
+export default Sidebar

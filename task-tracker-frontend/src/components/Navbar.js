@@ -1,6 +1,5 @@
 import React from 'react'
 import { AppBar, Button, createTheme, Grid, ThemeProvider, Toolbar, Typography } from '@mui/material'
-import taskTrackerLogo from '../images/track.svg'
 import { Box } from '@mui/system'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'

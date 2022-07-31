@@ -2,11 +2,12 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { Box, CircularProgress, Container } from '@mui/material'
+import { Box, CircularProgress, Container, Grid } from '@mui/material'
 import TaskForm from '../components/TaskForm'
 import { getTasks, reset } from '../features/tasks/taskSlice'
 import TaskTable from '../components/TaskTable'
 import Sidebar from '../components/Sidebar'
+import ClippedDrawer from '../components/ClippedDrawer'
 
 const capitalizeName = (string) => {
   const nameArray = string.split(" ")
@@ -51,17 +52,17 @@ function Dashboard() {
   return (
     <>
       <Box container sx={{ display: 'flex', flexDirection:'row', justifyContent:"flex-start"}} >
-        <Box item>
-          <Container>
-            <Sidebar />
-          </Container>
-        </Box>
+        <ClippedDrawer />
+        {/* <Sidebar /> */}
+        {/* <Grid sx={{ width: '10rem', height: '20rem'}}>
+          <TestDrawerComponent />
+        </Grid> */}
         <Box item sx={{ display: 'flex', flexDirection: 'column'}} justifyContent="center" marginTop="4rem">
           <Container style={{ height: '25rem', width: '100%', marginTop: '0' }}>
-            <section>
+            {/* <section>
               <h1>Welcome {user && capitalizeName(user.name)}</h1>
-            </section>
-            <section style={{ marginTop: '2rem', marginBottom:'4rem'}}>
+            </section> */}
+            <section style={{ marginTop: '1rem', marginBottom:'4rem'}}>
               <TaskTable style={{ justifyContent: 'center' }} />
 
             </section>

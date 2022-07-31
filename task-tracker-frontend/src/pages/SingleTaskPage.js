@@ -1,9 +1,9 @@
-import { Box, CircularProgress, Container, Grid, Typography } from '@mui/material'
+import { Box, CircularProgress, Grid, Typography } from '@mui/material'
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import Sidebar from '../components/Sidebar'
+import ClippedDrawer from '../components/ClippedDrawer'
 import { getTasks, reset } from '../features/tasks/taskSlice'
 
 export const SingleTaskPage = ({ match }) => {
@@ -41,8 +41,9 @@ export const SingleTaskPage = ({ match }) => {
         if(task._id === taskId) {
             Task = task
         }
+        return Task
     })
-    console.log(Task)
+    // console.log(Task)
 
 
     if(!tasks) {
@@ -55,15 +56,32 @@ export const SingleTaskPage = ({ match }) => {
 
     return (
         <>  
-            <Grid marginTop="4rem" display="flex" flexDirection="column" alignItems="center">
-                <Typography>Title: {Task.title}</Typography>
-                <Typography>Id: {Task._id}</Typography>
-                <Typography>Description: {Task.description}</Typography>
-                <Typography>Priority: {Task.priority}</Typography>
-                <Typography>Status: {Task.status}</Typography>
-                <Typography>Title: {Task.title}</Typography>
-                <Typography>Created At: {new Date(Task.createdAt).toLocaleDateString('en-US')}</Typography>
-            </Grid>
+            <Box sx={{ 
+                border: '.25rem solid #292f4c',
+                borderRadius: '1.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                justifyItems: 'center',
+                alignItems: 'center',
+                alignContent: 'flex-start',
+                width: '20%',
+                height: '30rem',
+                marginTop: '5%',
+                marginLeft: '40%'
+                }}
+            >
+                <ClippedDrawer />
+                <Grid marginTop="4rem" display="flex" flexDirection="column" alignItems="center">
+                    <Typography>Title: {Task.title}</Typography>
+                    <Typography>Id: {Task._id}</Typography>
+                    <Typography>Description: {Task.description}</Typography>
+                    <Typography>Priority: {Task.priority}</Typography>
+                    <Typography>Status: {Task.status}</Typography>
+                    <Typography>Title: {Task.title}</Typography>
+                    <Typography>Created At: {new Date(Task.createdAt).toLocaleDateString('en-US')}</Typography>
+                </Grid>
+            </Box>
         </>
     )
 }
