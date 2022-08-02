@@ -17,9 +17,31 @@ import { Link } from 'react-router-dom';
 
 const drawerWidth = 200;
 
+const list = {
+  dashboard: {
+    text: 'dashboard',
+    icon: 'link'
+  },
+  groupProject: {
+    text: 'Group Project',
+    icon: 'link'
+  },
+  projects: {
+    text: 'Projects',
+    icon: 'link'
+  },
+  tasks: {
+    text: "Tasks",
+    icon: 'link'
+  }
+}
+
 
 
 export default function ClippedDrawer() {
+
+  
+  
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

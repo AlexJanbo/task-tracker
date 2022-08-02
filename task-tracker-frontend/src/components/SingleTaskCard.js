@@ -4,7 +4,7 @@ import React from 'react'
 function SingleTaskCard({ id, title, description, priority, status }) {
   return (
     <Grid sx={{ display: 'flex', flexDirection: 'column', width: '35%', height: "60%", marginLeft: '15%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
-        <Grid sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '4rem', color: 'white', bgcolor: "orange", borderBottom: '.2rem solid black'}}>
+        <Grid sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '4rem', color: 'black', bgcolor: "orange", borderBottom: '.2rem solid black'}}>
             <Typography textAlign='center' variant='h5'>Details for ticket: {title}</Typography>
         </Grid>
         <Grid sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: 'flex-end', height: '3rem', alignContent:"center"}}>
