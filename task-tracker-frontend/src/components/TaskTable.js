@@ -33,9 +33,11 @@ function TaskTable() {
               <TableCell>{task.status}</TableCell>
               <TableCell>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
               <TableCell>
-                <Button>
-                  Edit
-                </Button>
+                <Link to={`/editTask/${task._id}/`}>
+                  <Button>
+                    Edit
+                  </Button>
+                </Link>
                 <Link to={`/tasks/${task._id}/`}>
                   <Button>
                     View
