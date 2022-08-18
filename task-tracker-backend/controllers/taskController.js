@@ -57,7 +57,19 @@ const updateTask = asyncHandler(async (req, res) => {
         throw new Error('User not authorized')
     }
 
-    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    if(!req.body.title || !req.body.description || !req.body.priority || !req.body.status) {
+        console.log('no body text')
+        res.status(400)
+        throw new Error('Please fill out all fields!')
+    }
+
+    const updatedTask = await Task.findByIdAndUpdate(req.params.id, {
+        title: req.body.title,
+        description: req.body.description,
+        priority: req.body.priority,
+        status: req.body.status,
+        user: req.user.id
+    }, {new: true})
 
     res.status(200).json(updatedTask)
 })
