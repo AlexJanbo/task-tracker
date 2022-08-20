@@ -1,10 +1,11 @@
 import { Box, Button, CircularProgress, Grid, TextField, Typography } from '@mui/material'
 import React from 'react'
+import Navbar from '../../components/Navbar'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { register, reset } from '../features/auth/authSlice'
+import { register, reset } from '../../features/auth/authSlice'
  
 function Signup() {
 
@@ -72,6 +73,7 @@ function Signup() {
 
   return (
     <>
+      <Navbar />
       <Box sx={{ 
         border: '.25rem solid #292f4c',
         borderRadius: '1.5rem',

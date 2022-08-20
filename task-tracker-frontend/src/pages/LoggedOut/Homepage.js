@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from '../../components/Navbar'
 import { Button, Divider, Grid, Stack, Typography } from '@mui/material'
-import ReviewCard from '../components/ReviewCard'
-import Footer from '../components/Footer'
+import ReviewCard from '../../components/ReviewCard'
+import Footer from '../../components/Footer'
 
 function Homepage() {
   return (
     <>
-      <Stack direction="column">
+        <Navbar />
+        <Stack direction="column">
 
 
         {/* First Box */}
