@@ -8,15 +8,6 @@ import { getTasks, reset } from '../../features/tasks/taskSlice'
 import TaskTable from '../../components/TaskTable'
 import ClippedDrawer from '../../components/ClippedDrawer'
 
-const capitalizeName = (string) => {
-  const nameArray = string.split(" ")
-
-  nameArray[0] = nameArray[0][0].toUpperCase() + nameArray[0].substr(1)
-  nameArray[1] = nameArray[1][0].toUpperCase() + nameArray[1].substr(1)
-  
-  return nameArray[0] + ' ' + nameArray[1]
-
-}
 
 function Tasks() {
 
@@ -44,7 +35,7 @@ function Tasks() {
   }, [user, navigate, isError, message, dispatch])
 
   if(isLoading) {
-    return <CircularProgress />
+    return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
   }
 
   return (
