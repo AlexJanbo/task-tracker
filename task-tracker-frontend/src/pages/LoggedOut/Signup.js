@@ -10,13 +10,15 @@ import { register, reset } from '../../features/auth/authSlice'
 function Signup() {
 
   const [formValues, setFormValues] = useState({
-    name: '',
+    username: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
-    confirmpassword: ''
+    confirmPassword: ''
   }) 
 
-  const { name, email, password, confirmPassword }   = formValues
+  const { username, firstName, lastName, email, password, confirmPassword }   = formValues
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -58,7 +60,9 @@ function Signup() {
       toast.error('Passwords do not match')
     } else {
       const userData = {
-        name, 
+        username,
+        firstName,
+        lastName,
         email, 
         password,
       }
@@ -97,11 +101,31 @@ function Signup() {
             <Grid>
               <Grid item>
                 <TextField
-                  id="name"
-                  name="name"
-                  label="Name"
+                  id="username"
+                  name="username"
+                  label="Username"
                   type="text"
-                  value={name}
+                  value={username}
+                  onChange={handleInputChange}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  id="firstName"
+                  name="firstName"
+                  label="First Name"
+                  type="text"
+                  value={firstName}
+                  onChange={handleInputChange}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  id="lastName"
+                  name="lastName"
+                  label="Last Name"
+                  type="text"
+                  value={lastName}
                   onChange={handleInputChange}
                 />
               </Grid>

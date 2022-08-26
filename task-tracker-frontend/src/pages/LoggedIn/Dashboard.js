@@ -3,15 +3,15 @@ import { Divider, Grid, Typography} from '@mui/material'
 import ClippedDrawer from '../../components/ClippedDrawer'
 import { useSelector } from 'react-redux'
 
-const capitalizeName = (string) => {
-  const nameArray = string.split(" ")
+// const capitalizeName = (string) => {
+//   const nameArray = string.split(" ")
 
-  nameArray[0] = nameArray[0][0].toUpperCase() + nameArray[0].substr(1)
-  nameArray[1] = nameArray[1][0].toUpperCase() + nameArray[1].substr(1)
+//   nameArray[0] = nameArray[0][0].toUpperCase() + nameArray[0].substr(1)
+//   nameArray[1] = nameArray[1][0].toUpperCase() + nameArray[1].substr(1)
   
-  return nameArray[0] + ' ' + nameArray[1]
+//   return nameArray[0] + ' ' + nameArray[1]
 
-}
+// }
 
 
 function Dashboard() {
@@ -24,7 +24,7 @@ function Dashboard() {
       <Grid sx={{ display: 'flex', flexDirection: 'column', width: '35%', height: "60%", marginLeft: '25%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
       <Grid sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '4rem', color: 'black', bgcolor: "orange", borderBottom: '.2rem solid black'}}>
           <section sx={{ marginLeft: '40rem'}}>
-                  <h1>Welcome {user && capitalizeName(user.name)}</h1>
+                  <h1>Welcome {user && user.username}</h1>
           </section>
           <Typography textAlign='center' variant='h5'>Dashboard</Typography>
       </Grid>

@@ -7,19 +7,27 @@ const User = require('../models/userModel')
 // @route       POST /api/users
 // @access      Public
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body
+    const { username, firstName, lastName, email, password } = req.body
 
-    if(!name || !email || !password) {
+    if( !username || !firstName || !lastName || !email || !password) {
         res.status(400)
         throw new Error('Please add all fields')
     }
 
-    //Check if user exists
-    const userExists = await User.findOne({email})
+    //Check if user email exists
+    const userEmailExists = await User.findOne({email})
 
-    if(userExists) {
+    if(userEmailExists) {
         res.status(400)
         throw new Error('Email already in use')
+    }
+
+    //Check if username exists
+    const usernameExists = await User.findOne({username})
+
+    if(usernameExists) {
+        res.status(400)
+        throw new Error('Username already in use')
     }
 
     //Hash password
@@ -28,7 +36,9 @@ const registerUser = asyncHandler(async (req, res) => {
 
     //Create user
     const user = await User.create({
-        name,
+        username,
+        firstName,
+        lastName,
         email,
         password: hashedPassword
     })
@@ -37,6 +47,9 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: user.id,
             name: user.name,
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
             email: user.email,
             token: generateToken(user._id)
         })
