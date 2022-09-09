@@ -26,7 +26,7 @@ function TaskForm() {
 
 
     return (
-    <Grid>
+    <Grid sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <Typography>Create a New Task!</Typography>
         <Grid item>
             <TextField

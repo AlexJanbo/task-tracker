@@ -12,7 +12,7 @@ function GroupProjects() {
   const dispatch = useDispatch()
 
   const { groupProjects } = useSelector((state) => state.groupProjects) 
-  console.log(groupProjects)
+  // console.log(groupProjects)
 
   const { user } = useSelector((state) => state.auth)
   // console.log(user)

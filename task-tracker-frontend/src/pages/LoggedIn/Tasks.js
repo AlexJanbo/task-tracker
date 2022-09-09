@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { Box, CircularProgress, Container} from '@mui/material'
+import { CircularProgress, Container, Grid} from '@mui/material'
 import TaskForm from '../../components/TaskForm'
 import { getTasks, reset } from '../../features/tasks/taskSlice'
 import TaskTable from '../../components/TaskTable'
@@ -40,20 +40,21 @@ function Tasks() {
 
   return (
     <>
-        <Box container sx={{ display: 'flex', flexDirection:'row', justifyContent:"flex-start"}} >
-        <ClippedDrawer />
-        <Box item sx={{ display: 'flex', flexDirection: 'column'}} justifyContent="center" marginTop="4rem">
-          <Container style={{ height: '25rem', width: '100%', marginTop: '0' }}>
+      <Grid container spacing={1} display="flex" direction="row">
+        <Grid item xs={2}>
+          <ClippedDrawer />
+        </Grid>
+        <Grid item marginTop="4rem" height="52.5rem" xs={7}>
+          <Container style={{ height: '52.5rem', width: '100%', marginTop: '0' }}>
             <section style={{ marginTop: '1rem', marginBottom:'4rem'}}>
               <TaskTable style={{ justifyContent: 'center' }} />
             </section>
-            <section>
-
-              <TaskForm/>
-            </section>
           </Container>
-        </Box>
-      </Box>
+        </Grid>
+        <Grid item xs={3} style={{ marginTop: "15%"}}>
+          <TaskForm/>
+        </Grid>
+      </ Grid>
     </>
   )
 }

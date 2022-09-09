@@ -28,13 +28,13 @@ function ProjectTable() {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, projects.length - page * rowsPerPage)
 
   return (
-    <TableContainer component={Paper}>
-      <Table  aria-label="simple table">
+    <TableContainer  component={Paper}>
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{ minWidth: '5rem'}}>Title</TableCell>
-            <TableCell sx={{ maxWidth: '5rem'}}>Description</TableCell>
-            <TableCell sx={{ minWidth: '5rem'}}></TableCell>
+            <TableCell sx={{ minWidth: '25rem'}}>Title</TableCell>
+            <TableCell sx={{ maxWidth: '25rem'}}>Description</TableCell>
+            <TableCell sx={{ minWidth: '25rem'}}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

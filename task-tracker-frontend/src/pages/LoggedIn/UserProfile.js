@@ -1,8 +1,24 @@
-import { Divider, Grid, Typography } from '@mui/material'
+import { Button, Divider, Grid, Typography } from '@mui/material'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import ClippedDrawer from '../../components/ClippedDrawer'
+import { logout, reset } from '../../features/auth/authSlice'
 
 function UserProfile() {
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { user } = useSelector((state) => state.auth)
+  // console.log(user)
+
+  const onLogout = () => {
+    dispatch(logout())
+    dispatch(reset)
+    navigate('/')
+  }
+
   return (
     <>
       <ClippedDrawer />
@@ -15,26 +31,21 @@ function UserProfile() {
             <Typography variant='h8' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Last Name</Typography>
         </Grid>
         <Grid sx={{ display: 'flex', flexDirection: 'row', flexGrow: 2, justifyContent: 'space-between', height: '5rem', alignItems:"center", flexWrap: 'wrap'}}>
-            <Typography variant='h7' width="50%" textAlign="center"></Typography>
-            <Typography variant='h7' width="50%" textAlign="center"></Typography>
+            <Typography variant='h7' width="50%" textAlign="center">{user.firstName}</Typography>
+            <Typography variant='h7' width="50%" textAlign="center">{user.lastName}</Typography>
         </Grid>
         <Divider />
         <Grid sx={{ display: 'flex', height: '4rem', justifyContent: 'flex-start', alignItems:"center"}}>
-            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Phone Number</Typography>
+            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Username</Typography>
             <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Email Address</Typography>
         </Grid>
         <Grid sx={{ display: 'flex', height: '4rem', alignItems:"center"}}>
-            <Typography variant='h7' width="50%" textAlign="center"></Typography>
-            <Typography variant='h7' width="50%" textAlign="center"></Typography>
+            <Typography variant='h7' width="50%" textAlign="center">{user.username}</Typography>
+            <Typography variant='h7' width="50%" textAlign="center">{user.email}</Typography>
         </Grid>
-        <Grid sx={{ display: 'flex', height: '4rem', justifyContent: 'flex-start', alignItems:"center"}}>
-            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Country</Typography>
-            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>State</Typography>
-        </Grid>
-        <Grid sx={{ display: 'flex', height: '4rem', alignItems:"center"}}>
-            <Typography variant='h7' width="50%" textAlign="center"></Typography>
-            <Typography variant='h7' width="50%" textAlign="center"></Typography>
-        </Grid>
+        <Button variant="text" color="error" onClick={onLogout}>
+                    Logout
+        </Button>
       </Grid>
     </>
   )

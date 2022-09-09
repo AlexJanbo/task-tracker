@@ -28,55 +28,57 @@ function TaskTable() {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, tasks.length - page * rowsPerPage)
 
   return (
-    <TableContainer component={Paper}>
-      <Table  aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell sx={{ minWidth: '5rem'}}>Title</TableCell>
-            <TableCell sx={{ maxWidth: '5rem'}}>Description</TableCell>
-            <TableCell sx={{ minWidth: '5rem'}}>Priority</TableCell>
-            <TableCell sx={{ minWidth: '5rem'}}>Status</TableCell>
-            <TableCell sx={{ minWidth: '5rem'}}>Created At</TableCell>
-            <TableCell sx={{ minWidth: '5rem'}}></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {taskArray
-            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((task, index) => (
-            <TableRow
-              key={task._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell>{task.title}</TableCell>
-              <TableCell>{task.description}</TableCell>
-              <TableCell>{task.priority}</TableCell>
-              <TableCell>{task.status}</TableCell>
-              <TableCell>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
-              <TableCell>
-                <Link to={`/editTask/${task._id}/`}>
-                  <Button>
-                    Edit
-                  </Button>
-                </Link>
-                <Link to={`/tasks/${task._id}/`}>
-                  <Button>
-                    View
-                  </Button>
-                </Link>
-                {/* <Button onClick={() => dispatch(deleteTask(task._id))}>
-                  Delete
-                </Button> */}
-              </TableCell>
+    <>
+      <TableContainer component={Paper}>
+        <Table  aria-label="simple table">
+          <TableHead>
+            <TableRow sx={{height: "2.5rem"}}>
+              <TableCell sx={{ width: "20%"}}>Title</TableCell>
+              <TableCell sx={{ width: "60%"}}>Description</TableCell>
+              <TableCell sx={{ width: "5%"}}>Priority</TableCell>
+              <TableCell sx={{ width: "5%"}}>Status</TableCell>
+              <TableCell sx={{ width: "5%"}}>Created At</TableCell>
+              <TableCell sx={{ width: "5%"}}></TableCell>
             </TableRow>
-          ))}
-          {emptyRows > 0 && (
-            <TableRow>
-              <TableCell />
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {taskArray
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((task, index) => (
+              <TableRow
+                key={task._id}
+                sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{task.title}</TableCell>
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "50%", paddingBottom: '0', paddingTop: "0"}}>{task.description}</TableCell>
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{task.priority}</TableCell>
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{task.status}</TableCell>
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>
+                  {/* <Link to={`/editTask/${task._id}/`}>
+                    <Button>
+                      Edit
+                    </Button>
+                  </Link> */}
+                  <Link to={`/tasks/${task._id}/`}>
+                    <Button>
+                      View
+                    </Button>
+                  </Link>
+                  {/* <Button onClick={() => dispatch(deleteTask(task._id))}>
+                    Delete
+                  </Button> */}
+                </TableCell>
+              </TableRow>
+            ))}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 72 * emptyRows}}>
+                <TableCell colSpan={6}></TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <TablePagination 
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
@@ -86,8 +88,7 @@ function TaskTable() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    </TableContainer>
-
+    </>
   )
 }
 
