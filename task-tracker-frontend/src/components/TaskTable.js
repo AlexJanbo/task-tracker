@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material/'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TableSortLabel } from '@mui/material/'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import TablePagination from '@mui/material/TablePagination';
@@ -35,9 +35,31 @@ function TaskTable() {
             <TableRow sx={{height: "2.5rem"}}>
               <TableCell sx={{ width: "20%"}}>Title</TableCell>
               <TableCell sx={{ width: "60%"}}>Description</TableCell>
-              <TableCell sx={{ width: "5%"}}>Priority</TableCell>
-              <TableCell sx={{ width: "5%"}}>Status</TableCell>
-              <TableCell sx={{ width: "5%"}}>Created At</TableCell>
+              <TableCell sx={{ width: "5%"}} key="priority">
+                Priority
+                <TableSortLabel
+                  active={"priority" === "priority"}
+                  direction="asc"
+                  // onClick={createSortHandler("priority")}
+                >
+                </TableSortLabel>
+              </TableCell>
+              <TableCell sx={{ width: "5%"}} key="status">
+                Status
+                <TableSortLabel
+                  active={"status" === "status"}
+                  direction="desc"
+                  // onClick={createSortHandler("status")}
+                >
+                </TableSortLabel>
+              </TableCell>
+              <TableCell sx={{ width: "5%"}} key="created">
+                Created At
+                <TableSortLabel
+                  active={true}
+                >
+                </TableSortLabel>
+              </TableCell>
               <TableCell sx={{ width: "5%"}}></TableCell>
             </TableRow>
           </TableHead>
