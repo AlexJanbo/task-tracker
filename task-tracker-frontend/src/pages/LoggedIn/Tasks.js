@@ -40,7 +40,7 @@ function Tasks() {
 
   return (
     <>
-      <Grid container spacing={1} display="flex" direction="row">
+      <Grid container spacing={1} display="flex" direction="row" style={{backgroundColor: "#f9f9f9"}}>
         <Grid item xs={2}>
           <ClippedDrawer />
         </Grid>

@@ -74,7 +74,7 @@ function EditTaskForm( {match} ) {
 
         dispatch(updateTask({taskId, title, description, priority, status}))
         dispatch(reset())
-        window.history.back()
+        navigate('/tasks')
         
 
     }

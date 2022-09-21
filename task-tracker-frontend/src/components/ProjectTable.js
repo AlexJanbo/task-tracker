@@ -31,7 +31,7 @@ function ProjectTable() {
     <TableContainer  component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow sx={{height: "2.5rem"}}>
             <TableCell sx={{ minWidth: '25rem'}}>Title</TableCell>
             <TableCell sx={{ maxWidth: '25rem'}}>Description</TableCell>
             <TableCell sx={{ minWidth: '25rem'}}></TableCell>
@@ -47,26 +47,18 @@ function ProjectTable() {
             >
               <TableCell>{project.title}</TableCell>
               <TableCell>{project.description}</TableCell>
-              <TableCell>
-                <Link to={`/editProject/${project._id}/`}>
-                  <Button>
-                    Edit
-                  </Button>
-                </Link>
-                <Link to={`/viewProject/${project._id}/`}>
+              <TableCell sx={{paddingLeft: "25"}}>
+                <Link to={`/projects/${project._id}/`}>
                   <Button>
                     View
                   </Button>
                 </Link>
-                {/* <Button onClick={() => dispatch(deleteTask(task._id))}>
-                  Delete
-                </Button> */}
               </TableCell>
             </TableRow>
           ))}
           {emptyRows > 0 && (
-            <TableRow>
-              <TableCell />
+            <TableRow style={{ height: 72 * emptyRows}}>
+              <TableCell colSpan={6}></TableCell>
             </TableRow>
           )}
         </TableBody>

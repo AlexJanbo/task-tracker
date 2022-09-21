@@ -37,7 +37,7 @@ const updateProject = async (projectData, token) => {
         },
     }
 
-    const response = await axios.put(API_URL + projectData.taskId, projectData , config)
+    const response = await axios.put(API_URL + projectData.projectId, projectData , config)
     console.log(response)
 
     return response.data

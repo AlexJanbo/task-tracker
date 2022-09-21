@@ -33,32 +33,32 @@ function TaskTable() {
         <Table  aria-label="simple table">
           <TableHead>
             <TableRow sx={{height: "2.5rem"}}>
-              <TableCell sx={{ width: "20%"}}>Title</TableCell>
-              <TableCell sx={{ width: "60%"}}>Description</TableCell>
-              <TableCell sx={{ width: "5%"}} key="priority">
+              <TableCell sx={{ width: "20%", fontWeight: "bold", fontSize: "20px"}}>Title</TableCell>
+              <TableCell sx={{ width: "60%", fontWeight: "bold", fontSize: "20px"}}>Description</TableCell>
+              <TableCell sx={{ width: "5%", fontWeight: "bold", fontSize: "20px"}} key="priority">
                 Priority
-                <TableSortLabel
+                {/* <TableSortLabel
                   active={"priority" === "priority"}
                   direction="asc"
                   // onClick={createSortHandler("priority")}
                 >
-                </TableSortLabel>
+                </TableSortLabel> */}
               </TableCell>
-              <TableCell sx={{ width: "5%"}} key="status">
+              <TableCell sx={{ width: "5%", fontWeight: "bold", fontSize: "20px"}} key="status">
                 Status
-                <TableSortLabel
+                {/* <TableSortLabel
                   active={"status" === "status"}
                   direction="desc"
                   // onClick={createSortHandler("status")}
                 >
-                </TableSortLabel>
+                </TableSortLabel> */}
               </TableCell>
-              <TableCell sx={{ width: "5%"}} key="created">
-                Created At
-                <TableSortLabel
+              <TableCell sx={{ width: "5%", fontWeight: "bold", fontSize: "20px"}} key="created">
+                Created
+                {/* <TableSortLabel
                   active={true}
                 >
-                </TableSortLabel>
+                </TableSortLabel> */}
               </TableCell>
               <TableCell sx={{ width: "5%"}}></TableCell>
             </TableRow>

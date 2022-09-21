@@ -35,11 +35,6 @@ const list = {
     link: '/dashboard'
     
   },
-  groupProject: {
-    text: 'Group Project',
-    icon: <GroupIcon />,
-    link: '/group-projects'
-  },
   projects: {
     text: 'Projects',
     icon: <WorkIcon />,
@@ -179,16 +174,6 @@ export default function ClippedDrawer() {
                     {list.dashboard.icon}
                   </ListItemIcon>
                   <ListItemText primary={list.dashboard.text} />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-            <Link to={list.groupProject.link}>
-              <ListItem key={list.groupProject.text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {<GroupIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={list.groupProject.text} />
                 </ListItemButton>
               </ListItem>
             </Link>
