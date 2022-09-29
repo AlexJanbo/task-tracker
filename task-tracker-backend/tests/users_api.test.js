@@ -1,8 +1,13 @@
+const { JsonWebTokenError } = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const supertest = require('supertest')
 const app = require('../index')
 
-const api = supertest(app)
+app.use(express.json())
+
+app.use('/api/users', require('./routes/userRoutes'))
+
+jest.mock('../')
 
 describe("POST /users", () => {
 
