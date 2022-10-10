@@ -1,22 +1,19 @@
 import React from 'react'
-import { Divider, Grid, Typography} from '@mui/material'
+import { Button, Divider, Grid, Typography} from '@mui/material'
 import ClippedDrawer from '../../components/ClippedDrawer'
 import { useSelector } from 'react-redux'
-
-// const capitalizeName = (string) => {
-//   const nameArray = string.split(" ")
-
-//   nameArray[0] = nameArray[0][0].toUpperCase() + nameArray[0].substr(1)
-//   nameArray[1] = nameArray[1][0].toUpperCase() + nameArray[1].substr(1)
-  
-//   return nameArray[0] + ' ' + nameArray[1]
-
-// }
+import { Link } from 'react-router-dom'
 
 
 function Dashboard() {
 
   const { user } = useSelector((state) => state.auth)
+  const { tasks } = useSelector((state) => state.tasks)
+
+  const highTask = tasks.filter((task) => {
+    return task.priority === "High"
+  })
+  console.log(highTask)
 
   return(
     <>
@@ -33,7 +30,14 @@ function Dashboard() {
           <Typography variant='h8' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>New Tasks Assigned to Me</Typography>
       </Grid>
       <Grid sx={{ display: 'flex', flexDirection: 'row', flexGrow: 2, justifyContent: 'space-between', height: '5rem', alignItems:"center", flexWrap: 'wrap'}}>
-          <Typography variant='h7' width="50%" textAlign="center"></Typography>
+            <Typography variant='h7' width="50%" textAlign="center">
+                {highTask[0] && highTask[0]}
+                    {/* // <Link to={`/tasks/${highTask[0]?._id}/`}>
+                    //     <Button>
+                    //     View
+                    //     </Button>
+                    // </Link>: */}
+            </Typography>
           <Typography variant='h7' width="50%" textAlign="center"></Typography>
       </Grid>
       <Divider />
