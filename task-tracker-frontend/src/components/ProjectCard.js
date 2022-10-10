@@ -10,7 +10,7 @@ import lizard from '../images/lizard.jpg'
 
 export default function ProjectCard(id, title, description) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 300 }}>
       <CardMedia
         component="img"
         height="140"

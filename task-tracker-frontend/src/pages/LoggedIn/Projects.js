@@ -1,11 +1,10 @@
-import { Box, CircularProgress, Container, Grid } from '@mui/material'
+import { CircularProgress, Grid } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import ClippedDrawer from '../../components/ClippedDrawer'
 import ProjectCard from '../../components/ProjectCard'
 import ProjectForm from '../../components/ProjectForm'
-import ProjectTable from '../../components/ProjectTable'
 import { getProjects, reset } from '../../features/projects/projectSlice'
 
 function Projects() {

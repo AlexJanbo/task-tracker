@@ -7,6 +7,7 @@ import TaskForm from '../../components/TaskForm'
 import { getTasks, reset } from '../../features/tasks/taskSlice'
 import TaskTable from '../../components/TaskTable'
 import ClippedDrawer from '../../components/ClippedDrawer'
+import TaskHeader from '../../components/TaskHeader'
 
 
 function Tasks() {
@@ -41,11 +42,12 @@ function Tasks() {
   return (
     <>
       <Grid container spacing={1} display="flex" direction="row" style={{backgroundColor: "#f9f9f9"}}>
-        <Grid item xs={2}>
+        <Grid item xs={1}>
           <ClippedDrawer />
         </Grid>
-        <Grid item marginTop="4rem" height="52.5rem" xs={7}>
+        <Grid item marginTop="4rem" height="52.5rem" xs={8}>
           <Container style={{ height: '52.5rem', width: '100%', marginTop: '0' }}>
+            <TaskHeader />
             <section style={{ marginTop: '1rem', marginBottom:'4rem'}}>
               <TaskTable style={{ justifyContent: 'center' }} />
             </section>

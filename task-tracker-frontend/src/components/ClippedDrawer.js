@@ -24,6 +24,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Badge, Grid, IconButton } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { useSelector } from 'react-redux';
 
 
 const drawerWidth = 200;
@@ -106,6 +107,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function ClippedDrawer() {
 
+  // Get user state in order display a personalized welcome
+  const { user } = useSelector((state) => state.auth)
+  // console.log(user.firstName)
+  
+
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   const handleProfileMenuOpen = (event) => {
@@ -119,7 +125,7 @@ export default function ClippedDrawer() {
       <CssBaseline />
       <AppBar position="fixed" sx={{ bgcolor: '#292f4c', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar style={{ paddingLeft: "0", paddingRight: "0" }}  variant="dense">
-          <Typography marginLeft="15%" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography marginLeft="2.5%" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link style={{ textDecoration: 'none' }} to='/dashboard' >
               Task Tracker
             </Link>
@@ -165,6 +171,7 @@ export default function ClippedDrawer() {
         }}
       >
         <Toolbar />
+        <Typography variant="h6">Welcome {user.firstName}!</Typography>
         <Box sx={{ overflow: 'auto' }}>
           <List>
             <Link to={list.dashboard.link}>

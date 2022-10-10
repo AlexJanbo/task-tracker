@@ -4,6 +4,8 @@ const express = require('express')
 const dotenv = require('dotenv').config()
 const connectDB = require('./config/db')
 const { errorHandler } = require('./middleware/errorMiddleware')
+
+
 const PORT = process.env.PORT || 4000
 
 connectDB()
@@ -17,10 +19,13 @@ app.use(express.urlencoded({ extended: false}))
 app.use('/api/tasks', require('./routes/taskRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/projects', require('./routes/projectRoutes'))
-app.use('/api/group-projects', require('./routes/groupProjectRoutes'))
 
 app.use(errorHandler)
 
-app.listen(PORT, () => {
-    console.log(`Server started on port: ${PORT}`)
-})
+// if(process.env.NODE_ENV !== 'test') {
+//     app.listen(PORT, () => {
+//         console.log(`Server started on port: ${PORT}`)
+//     })
+// }
+
+module.exports = app

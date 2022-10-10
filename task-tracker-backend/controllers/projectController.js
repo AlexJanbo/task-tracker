@@ -49,7 +49,7 @@ const updateProject = asyncHandler(async (req, res) => {
         throw new Error('User not found')
     }
 
-    // Check if task belongs to user
+    // Check if project belongs to user
     if(project.user.toString() !== req.user.id){
         res.status(401)
         throw new Error('User not authorized')
@@ -88,7 +88,7 @@ const deleteProject = asyncHandler(async (req, res) => {
         throw new Error('User not found')
     }
 
-    // Check if task belongs to user
+    // Check if project belongs to user
     if(project.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('User not authorized')

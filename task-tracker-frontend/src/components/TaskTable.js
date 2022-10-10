@@ -102,7 +102,7 @@ function TaskTable() {
         </Table>
       </TableContainer>
       <TablePagination 
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[5, 10]}
         component="div"
         count={tasks.length}
         rowsPerPage={rowsPerPage}

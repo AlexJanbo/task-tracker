@@ -26,47 +26,52 @@ function TaskForm() {
 
 
     return (
-    <Grid sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <Typography>Create a New Task!</Typography>
-        <Grid item>
-            <TextField
-              id="title"
-              name="title"
-              label="Title"
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
+    <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center'}}>
+        <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: "orange", border: "2px solid black", borderRadius: "1rem"}}>
+          <Typography variant="h4" style={{ textAlign: "center", marginBottom: "4%"}}>Create a New Task!</Typography>
         </Grid>
-        <Grid item>
-            <TextField
-              id="description"
-              name="description"
-              label="Description"
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+        <Grid container spacing={3} sx={{ zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
+          <Grid item>
+              <TextField
+                id="title"
+                name="title"
+                label="Title"
+                type="text"
+                multiline 
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+          </Grid>
+          <Grid item>
+              <TextField
+                id="description"
+                name="description"
+                label="Description"
+                type="text"
+                multiline
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+          </Grid>
+          <Grid item>
+            <FormControl>
+              <FormLabel style={{textAlign:"center"}}>Priority</FormLabel>
+              <RadioGroup
+              row
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
+              >
+                <FormControlLabel value="Low" control={<Radio />} label="Low" />
+                <FormControlLabel value="Medium" control={<Radio />} label="Medium" />
+                <FormControlLabel value="High" control={<Radio />} label="High" />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+
+          <Button  type='submit' onClick={handleSubmit}>
+              Create Task
+          </Button>
         </Grid>
-
-        <FormControl>
-          <FormLabel id="demo-row-radio-buttons-group-label">Priority</FormLabel>
-          <RadioGroup
-          row
-          aria-labelledby="demo-row-radio-buttons-group-label"
-          name="row-radio-buttons-group"
-          value={priority}
-          onChange={(e) => setPriority(e.target.value)}
-          >
-            <FormControlLabel value="Low" control={<Radio />} label="Low" />
-            <FormControlLabel value="Medium" control={<Radio />} label="Medium" />
-            <FormControlLabel value="High" control={<Radio />} label="High" />
-          </RadioGroup>
-        </FormControl>
-
-        <Button  type='submit' onClick={handleSubmit}>
-            Create Task
-        </Button>
     </Grid>
   )
 }
