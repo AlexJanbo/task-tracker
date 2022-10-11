@@ -130,6 +130,9 @@ export default function ClippedDrawer() {
               Task Tracker
             </Link>
           </Typography>
+          <Typography>
+            Logged in as: {user.username}
+          </Typography>
           <Grid marginRight="15%" sx={{display: "flex"}}>
             <Search>
                 <SearchIconWrapper>
@@ -171,7 +174,6 @@ export default function ClippedDrawer() {
         }}
       >
         <Toolbar />
-        <Typography variant="h6">Welcome {user.firstName}!</Typography>
         <Box sx={{ overflow: 'auto' }}>
           <List>
             <Link to={list.dashboard.link}>

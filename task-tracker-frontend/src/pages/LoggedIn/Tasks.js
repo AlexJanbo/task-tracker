@@ -48,7 +48,7 @@ function Tasks() {
         <Grid item marginTop="4rem" height="52.5rem" xs={8}>
           <Container style={{ height: '52.5rem', width: '100%', marginTop: '0' }}>
             <TaskHeader />
-            <section style={{ marginTop: '1rem', marginBottom:'4rem'}}>
+            <section style={{ marginBottom:'4rem'}}>
               <TaskTable style={{ justifyContent: 'center' }} />
             </section>
           </Container>

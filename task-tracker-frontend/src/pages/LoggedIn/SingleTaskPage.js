@@ -26,13 +26,14 @@ export const SingleTaskPage = ({ match }) => {
           }
         dispatch(getTasks())
 
+
         return () => {
             dispatch(reset())
           }
-    }, [user, navigate, isError, message, dispatch])
+    }, [])
 
     if(isLoading) {
-        return <CircularProgress />
+        return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
       }
 
 
@@ -41,13 +42,13 @@ export const SingleTaskPage = ({ match }) => {
     tasks?.map(task => {
         if(task._id === taskId) {
             Task = task
-        }
+        }   
         return Task
     })
-    // console.log(Task)
+    console.log(Task)
 
 
-    if(!tasks) {
+    if(!Task) {
         return (
             <Grid>
                 <h2>Task not found!</h2>

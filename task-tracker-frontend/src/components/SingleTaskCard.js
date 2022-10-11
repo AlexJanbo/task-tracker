@@ -37,7 +37,7 @@ function SingleTaskCard({ id, title, description, priority, status }) {
             <Typography variant='h7' width="50%" textAlign="center">{status}</Typography>
         </Grid>
         <Grid item sx={{ display: 'flex', height: '4rem', justifyContent: 'center', justifyItems:"center"}}>
-            <Link to={`/editTask/${id}/`} textAlign="center">
+            <Link to={`/editTask/${id}/`}>
                 <Button color="primary">
                     Edit Task
                 </Button>
