@@ -12,8 +12,8 @@ function UserProfile() {
 
   return (
     <>
-          <ClippedDrawer />
-          <UserProfileCard />
+      <ClippedDrawer />
+      <UserProfileCard />
     </>
   )
 }
