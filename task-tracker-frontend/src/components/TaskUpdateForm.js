@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, CircularProgress, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material'
+import { Button, CircularProgress, Divider, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material'
 import { getTasks, reset, updateTask } from '../features/tasks/taskSlice'
 import { useNavigate } from 'react-router-dom'
 
 
-function TaskUpdateForm({ id, titleProp, descriptionProp, priorityProp, statusProp }) {
+function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, statusProp }) {
 
-    
+    const { user } = useSelector((state) => state.auth)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -22,7 +23,8 @@ function TaskUpdateForm({ id, titleProp, descriptionProp, priorityProp, statusPr
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(updateTask({title, description, priority, status}))
+        dispatch(updateTask({taskId, title, description, priority, status}))
+        dispatch(reset())
         navigate('/tasks/')
     }
 
@@ -38,7 +40,8 @@ function TaskUpdateForm({ id, titleProp, descriptionProp, priorityProp, statusPr
                 name="title"
                 label="Title"
                 type="text"
-                multiline 
+                multiline={true}
+                rows={2}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -49,7 +52,8 @@ function TaskUpdateForm({ id, titleProp, descriptionProp, priorityProp, statusPr
                 name="description"
                 label="Description"
                 type="text"
-                multiline
+                multiline={true}
+                maxRows={3}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />

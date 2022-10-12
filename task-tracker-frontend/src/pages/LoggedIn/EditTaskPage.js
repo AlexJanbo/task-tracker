@@ -48,11 +48,11 @@ function EditTaskForm( {match} ) {
 
 
     if(!Task) {
-        return <CircularProgress />
+        return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
     }
 
     if(isLoading) {
-        return <CircularProgress />
+        return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
       }
 
     return (
@@ -62,7 +62,7 @@ function EditTaskForm( {match} ) {
                     <ClippedDrawer />
                 </Grid>
                 <Grid item style={{ marginLeft: "15%", marginTop: "5%"}}>
-                    <TaskUpdateForm id={Task._id} titleProp={Task.title} descriptionProp={Task.description} priorityProp={Task.priority} statusProp={Task.status} />
+                    <TaskUpdateForm taskId={Task._id} titleProp={Task.title} descriptionProp={Task.description} priorityProp={Task.priority} statusProp={Task.status} />
                 </Grid>
             </Grid>
         </>

@@ -1,31 +1,37 @@
 import { Button, Divider, Grid, Typography } from '@mui/material'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { logout, reset } from '../features/auth/authSlice'
 import { deleteTask } from '../features/tasks/taskSlice'
 
-function SingleTaskCard({ id, title, description, priority, status }) {
+function UserProfileCard() {
 
-    const dispatch = useDispatch()
+
     const navigate = useNavigate()
-
-    const handleDeleteClick = () => {
-        dispatch(deleteTask(id))
-        navigate('/tasks')
+    const dispatch = useDispatch()
+  
+    const { user } = useSelector((state) => state.auth)
+    // console.log(user)
+  
+    const onLogout = () => {
+      dispatch(logout())
+      dispatch(reset)
+      navigate('/')
     }
 
   return (
-    <Grid container sx={{ display: 'flex', flexDirection: 'column', width: '22.5%', height: "60%", marginLeft: '15%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
+    <Grid container sx={{ display: 'flex', flexDirection: 'column', width: '20%', height: "60%", marginLeft: '15%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
         <Grid item sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '4rem', color: 'black', bgcolor: "orange", borderBottom: '.2rem solid black'}}>
-            <Typography textAlign='center' variant='h5'>Task Details</Typography>
+            <Typography textAlign='center' variant='h5'>Profile Information</Typography>
         </Grid>
         <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: 'flex-end', height: '3rem', alignContent:"center"}}>
             <Typography variant='h8' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Title</Typography>
             <Typography variant='h8' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Description</Typography>
         </Grid>
         <Grid item sx={{ display: 'flex', flexDirection: 'row', flexGrow: 2, justifyContent: 'space-between', height: '5rem', alignItems:"center", flexWrap: 'wrap'}}>
-            <Typography variant='h7' width="50%" textAlign="center">{title}</Typography>
-            <Typography variant='h7' width="50%" textAlign="center">{description}</Typography>
+            <Typography variant='h7' width="50%" textAlign="center">{user.username}</Typography>
+            <Typography variant='h7' width="50%" textAlign="center">{user.email}</Typography>
         </Grid>
         <Divider />
         <Grid item sx={{ display: 'flex', height: '4rem', justifyContent: 'flex-start', alignItems:"center"}}>
@@ -33,25 +39,25 @@ function SingleTaskCard({ id, title, description, priority, status }) {
             <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Status</Typography>
         </Grid>
         <Grid item sx={{ display: 'flex', height: '4rem', alignItems:"center"}}>
-            <Typography variant='h7' width="50%" textAlign="center">{priority}</Typography>
-            <Typography variant='h7' width="50%" textAlign="center">{status}</Typography>
+            <Typography variant='h7' width="50%" textAlign="center">{user.firstName}</Typography>
+            <Typography variant='h7' width="50%" textAlign="center">{user.lastName}</Typography>
         </Grid>
-        <Grid item sx={{ display: 'flex', height: '4rem', justifyContent: 'center', justifyItems:"center"}}>
-            <Grid item>
-                <Link to={`/editTask/${id}/`}>
+        <Grid item>
+                <Link to={`/editUser/`}>
                     <Button color="primary">
-                        Edit Task
+                        Edit Profile Information
                     </Button>
                 </Link>
             </Grid>
             <Grid item>
-                <Button variant="contained" color="error" onClick={handleDeleteClick}>
-                    Delete Task
+                <Button color="error" onClick={onLogout}>
+                    Logout
                 </Button> 
             </Grid>
-        </Grid>
     </Grid>
+
+    
   )
 }
 
-export default SingleTaskCard
+export default UserProfileCard
