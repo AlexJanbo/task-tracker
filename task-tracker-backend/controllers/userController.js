@@ -83,6 +83,35 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc        Update User
+// @route       PUT /api/user/id
+// @access      Private
+const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user.id)
+    // console.log(req.body)
+
+    if(!user) {
+        res.status(400)
+        throw new Error("User not found")
+    }
+
+    if(!req.body.username || !req.body.firstName || !req.body.lastName || !req.body.email) {
+        console.log('no body text')
+        res.status(400)
+        throw new Error('Please fill out all fields!')
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, {
+        username: req.body.username,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        user: req.user.id
+    }, {new: true})
+
+    res.status(200).json(updatedUser)
+})
+
 // @desc        Get user data
 // @route       GET /api/users/me
 // @access      Private
@@ -103,4 +132,5 @@ module.exports = {
     registerUser,
     loginUser,
     getUser,
+    updateUser,
 }

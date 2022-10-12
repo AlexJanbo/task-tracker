@@ -26,8 +26,8 @@ function UserProfileCard() {
             <Typography textAlign='center' variant='h5'>Profile Information</Typography>
         </Grid>
         <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: 'flex-end', height: '3rem', alignContent:"center"}}>
-            <Typography variant='h8' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Title</Typography>
-            <Typography variant='h8' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Description</Typography>
+            <Typography variant='h8' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Username</Typography>
+            <Typography variant='h8' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Email Address</Typography>
         </Grid>
         <Grid item sx={{ display: 'flex', flexDirection: 'row', flexGrow: 2, justifyContent: 'space-between', height: '5rem', alignItems:"center", flexWrap: 'wrap'}}>
             <Typography variant='h7' width="50%" textAlign="center">{user.username}</Typography>
@@ -35,15 +35,15 @@ function UserProfileCard() {
         </Grid>
         <Divider />
         <Grid item sx={{ display: 'flex', height: '4rem', justifyContent: 'flex-start', alignItems:"center"}}>
-            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Priority</Typography>
-            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Status</Typography>
+            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>First Name</Typography>
+            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Last Name</Typography>
         </Grid>
         <Grid item sx={{ display: 'flex', height: '4rem', alignItems:"center"}}>
             <Typography variant='h7' width="50%" textAlign="center">{user.firstName}</Typography>
             <Typography variant='h7' width="50%" textAlign="center">{user.lastName}</Typography>
         </Grid>
         <Grid item>
-                <Link to={`/editUser/`}>
+                <Link to={`/edit-user/`}>
                     <Button color="primary">
                         Edit Profile Information
                     </Button>
