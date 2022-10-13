@@ -4,15 +4,16 @@ import Homepage from './pages/LoggedOut/Homepage'
 import Dashboard from './pages/LoggedIn/Dashboard'
 import Login from './pages/LoggedOut/Login'
 import Signup from './pages/LoggedOut/Signup'
-import { SingleTaskPage } from './pages/LoggedIn/SingleTaskPage'
-import EditTaskPage from './pages/LoggedIn/EditTaskPage'
+import { SingleTask } from './pages/LoggedIn/SingleTask'
+import EditTask from './pages/LoggedIn/EditTask'
 import Tasks from './pages/LoggedIn/Tasks'
 import Projects from './pages/LoggedIn/Projects'
 import UserProfile from './pages/LoggedIn/UserProfile'
 import UserSettings from './pages/LoggedIn/UserSettings'
-import SingleProjectPage from './pages/LoggedIn/SingleProjectPage'
-import EditProjectPage from './pages/LoggedIn/EditProjectPage'
-import EditUserPage from './pages/LoggedIn/EditUserPage'
+import SingleProject from './pages/LoggedIn/SingleProject'
+import EditProject from './pages/LoggedIn/EditProject'
+import EditUser from './pages/LoggedIn/EditUser'
+import ChangePassword from './pages/LoggedIn/ChangePassword'
 
 
 
@@ -29,11 +30,12 @@ export default function App() {
                     <Route path='/tasks' element={<Tasks />} />
                     <Route path='/user-profile' element={<UserProfile />} />
                     <Route path='/user-settings' element={<UserSettings />} />
-                    <Route exact path='/tasks/:taskId' element={<SingleTaskPage />}/>
-                    <Route exact path='/projects/:projectId' element={<SingleProjectPage />}/>
-                    <Route exact path='/edit-task/:taskId' element={<EditTaskPage />} />
-                    <Route exact path='/editProject/:projectId' element={<EditProjectPage />} />
-                    <Route path='/edit-user' element={<EditUserPage />} />
+                    <Route exact path='/tasks/:taskId' element={<SingleTask />}/>
+                    <Route exact path='/projects/:projectId' element={<SingleProject />}/>
+                    <Route exact path='/edit-task/:taskId' element={<EditTask />} />
+                    <Route exact path='/editProject/:projectId' element={<EditProject />} />
+                    <Route path='/edit-user' element={<EditUser />} />
+                    <Route path='change-password' element={<ChangePassword />} />
                 </Routes>    
             </Router>
         </>

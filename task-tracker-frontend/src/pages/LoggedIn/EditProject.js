@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ClippedDrawer from '../../components/ClippedDrawer'
 import { reset, updateProject } from '../../features/projects/projectSlice'
 
-function EditProjectPage( {match} ) {
+function EditProject( {match} ) {
   
     const { projectId } = useParams()
 
@@ -104,4 +104,4 @@ function EditProjectPage( {match} ) {
 )
 }
 
-export default EditProjectPage
+export default EditProject

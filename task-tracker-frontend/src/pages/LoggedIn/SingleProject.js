@@ -6,7 +6,7 @@ import ClippedDrawer from '../../components/ClippedDrawer'
 import SingleProjectCard from '../../components/SingleProjectCard'
 import { getProjects, reset } from '../../features/projects/projectSlice'
 
-function SingleProjectPage({ match }) {
+function SingleProject({ match }) {
 
     const { projectId } = useParams()
     const { projects, isLoading, isError, message } = useSelector((state) => state.projects)
@@ -62,4 +62,4 @@ function SingleProjectPage({ match }) {
     )
 }
 
-export default SingleProjectPage
+export default SingleProject

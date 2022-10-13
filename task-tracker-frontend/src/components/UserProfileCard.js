@@ -43,17 +43,24 @@ function UserProfileCard() {
             <Typography variant='h7' width="50%" textAlign="center">{user.lastName}</Typography>
         </Grid>
         <Grid item>
-                <Link to={`/edit-user/`}>
-                    <Button color="primary">
-                        Edit Profile Information
-                    </Button>
-                </Link>
-            </Grid>
-            <Grid item>
-                <Button color="error" onClick={onLogout}>
-                    Logout
-                </Button> 
-            </Grid>
+            <Link to={`/edit-user/`}>
+                <Button color="primary">
+                    Edit Profile Information
+                </Button>
+            </Link>
+        </Grid>
+        <Grid item>
+            <Link to={`/change-password/`}>
+                <Button color="primary">
+                    Change Password
+                </Button>
+            </Link>
+        </Grid>
+        <Grid item>
+            <Button color="error" onClick={onLogout}>
+                Logout
+            </Button> 
+        </Grid>
     </Grid>
 
     

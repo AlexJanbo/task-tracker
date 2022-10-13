@@ -7,7 +7,7 @@ import ClippedDrawer from '../../components/ClippedDrawer'
 import SingleTaskCard from '../../components/SingleTaskCard'
 import { getTasks, reset } from '../../features/tasks/taskSlice'
 
-export const SingleTaskPage = ({ match }) => {
+export const SingleTask = ({ match }) => {
 
     const { taskId } = useParams()
     const { tasks, isLoading, isError, message } = useSelector((state) => state.tasks) 

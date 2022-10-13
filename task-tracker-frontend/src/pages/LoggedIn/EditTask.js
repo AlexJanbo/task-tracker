@@ -8,7 +8,7 @@ import ClippedDrawer from '../../components/ClippedDrawer'
 import TaskUpdateForm from '../../components/TaskUpdateForm'
 
 
-function EditTaskForm( {match} ) {
+function EditTask( {match} ) {
 
     const { taskId } = useParams()
     const { tasks, isLoading, isError, message } = useSelector((state) => state.tasks) 
@@ -69,4 +69,4 @@ function EditTaskForm( {match} ) {
   )
 }
 
-export default EditTaskForm
+export default EditTask
