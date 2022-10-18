@@ -3,7 +3,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout, reset } from '../features/auth/authSlice'
-import { deleteTask } from '../features/tasks/taskSlice'
 
 function UserProfileCard() {
 

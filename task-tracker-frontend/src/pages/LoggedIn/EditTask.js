@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Button, CircularProgress, Divider, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material'
+import { CircularProgress, Grid } from '@mui/material'
 
-import { updateTask, reset, getTasks } from '../../features/tasks/taskSlice'
+import { reset, getTasks } from '../../features/tasks/taskSlice'
 import ClippedDrawer from '../../components/ClippedDrawer'
 import TaskUpdateForm from '../../components/TaskUpdateForm'
 
