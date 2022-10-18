@@ -112,6 +112,40 @@ const updateUser = asyncHandler(async (req, res) => {
     res.status(200).json(updatedUser)
 })
 
+// @desc        Change Password
+// @route       PUT /api/user/change-password
+// @access      Private
+const changePassword = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user.id)
+    const { currentPassword, newPassword, confirmNewPassword } = req.body
+    // console.log(currentPassword)
+
+
+    if(!user) {
+        res.status(400)
+        throw new Error("User not found")
+    }
+
+    if(!currentPassword || !newPassword || !confirmNewPassword) {
+        console.log('no body text')
+        res.status(400)
+        throw new Error('Please fill out all fields!')
+    }
+
+    //Hash new password
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(newPassword, salt)
+    
+    if(user && (await bcrypt.compare(currentPassword, user.password))) {
+
+        const updatedUser = await User.findByIdAndUpdate(req.user.id, {
+            password: hashedPassword,
+        }, {new: true})
+        res.status(200).json(updatedUser)
+    }
+
+})
+
 // @desc        Get user data
 // @route       GET /api/users/me
 // @access      Private
@@ -133,4 +167,5 @@ module.exports = {
     loginUser,
     getUser,
     updateUser,
+    changePassword,
 }

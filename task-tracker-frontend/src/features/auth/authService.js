@@ -38,6 +38,20 @@ const updateUser = async (userData, token) => {
     return response.data
 }
 
+// Change user password
+const changePassword = async (userData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + "change-password", userData , config)
+    console.log(response)
+
+    return response.data
+}
+
 const logout = () => {
     localStorage.removeItem('user')
 }
@@ -47,6 +61,7 @@ const authService = {
     logout,
     login,
     updateUser,
+    changePassword,
 }
 
 export default authService
