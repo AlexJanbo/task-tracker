@@ -52,6 +52,18 @@ export const deleteTask = createAsyncThunk('tasks/delete', async (id, thunkAPI) 
         return thunkAPI.rejectWithValue(message)
     }
 })
+
+// Add comment on task
+export const addTaskComment = createAsyncThunk('tasks/comment', async (id, commentData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.addTaskComment(id, commentData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
  
 export const taskSlice = createSlice({
     name: 'task',
@@ -113,7 +125,20 @@ export const taskSlice = createSlice({
                 state.isError = true
                 state.message = action.payload
             })
-    }
+            .addCase(addTaskComment.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(addTaskComment.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(addTaskComment.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+        }
 
 })
 

@@ -103,9 +103,46 @@ const deleteTask = asyncHandler(async (req, res) => {
     res.status(200).json({ id: req.params.id })
 })
 
+// @desc        Add Task Comment
+// @route       PUT /api/tasks/comment/:id
+// @access      Private
+const addTaskComment = asyncHandler(async (req, res) => {
+    const task = await Task.findById(req.params.id)
+    console.log(task)
+
+    const comment = {
+        text: req.body.comment,
+        postedBy: req.user.id
+    }
+
+    if(!task) {
+        res.status(400)
+        throw new Error("Task not found")
+    }
+
+    // Check for user
+    if(!req.user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    if(!req.body.comment) {
+        console.log('no body text')
+        res.status(400)
+        throw new Error('Please fill out all fields!')
+    }
+
+    const updatedTask = await Task.findByIdAndUpdate(req.params.id, {
+        $push: {comments: comment}
+    }, {new: true})
+
+    res.status(200).json(updatedTask)
+})
+
 module.exports = {
     readTasks,
     createTask,
     updateTask,
     deleteTask,
+    addTaskComment,
 }

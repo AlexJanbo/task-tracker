@@ -56,11 +56,26 @@ const deleteTask = async (taskId, token) => {
     return response.data
 }
 
+// Add a task Comment
+const addTaskComment = async (id, commentData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + "comment/" + id, commentData , config)
+    console.log(response)
+
+    return response.data
+}
+
 const taskService = {
     createTask,
     getTasks,
     updateTask,
     deleteTask,
+    addTaskComment,
 }
 
 export default taskService

@@ -88,7 +88,7 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
                 </Grid>
 
                 <Button type='submit' onClick={handleSubmit}>
-                    Create Task
+                    Update
                 </Button>
             </Grid>
         </Grid>

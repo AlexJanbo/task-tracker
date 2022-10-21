@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import ClippedDrawer from '../../components/ClippedDrawer'
+import ProjectMembers from '../../components/ProjectMembers'
+import ProjectTasks from '../../components/ProjectTasks'
 import SingleProjectCard from '../../components/SingleProjectCard'
 import { getProjects, reset } from '../../features/projects/projectSlice'
 
@@ -58,6 +60,8 @@ function SingleProject({ match }) {
         <>
             <ClippedDrawer />
             <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
+            <ProjectMembers />
+            <ProjectTasks />
         </>
     )
 }

@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
+const { ObjectId } = mongoose.Schema.Types
 
 const taskSchema = mongoose.Schema(
     {
         user: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: ObjectId,
             required: true,
             ref: 'User'
         },
@@ -22,6 +23,11 @@ const taskSchema = mongoose.Schema(
         status: {
             type: String,
             required: [true, 'Please add a status']
+        },
+        comments: {
+            type: String,
+            postedBy: {type: ObjectId, ref: "User"}
+            
         }
     },
     {

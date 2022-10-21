@@ -6,6 +6,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ClippedDrawer from '../../components/ClippedDrawer'
 import SingleTaskCard from '../../components/SingleTaskCard'
 import { getTasks, reset } from '../../features/tasks/taskSlice'
+import TaskComments from '../../components/TaskComments'
+import TaskHistory from '../../components/TaskHistory'
+import TaskAttachments from '../../components/TaskAttachments'
+import TaskCommentForm from '../../components/TaskCommentForm'
 
 export const SingleTask = ({ match }) => {
 
@@ -45,7 +49,7 @@ export const SingleTask = ({ match }) => {
         }   
         return Task
     })
-    console.log(Task)
+    // console.log(Task)
 
 
     if(!Task) {
@@ -60,6 +64,10 @@ export const SingleTask = ({ match }) => {
         <>  
                 <ClippedDrawer />
                 <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
+                <TaskCommentForm id={Task._id} />
+                <TaskComments />
+                <TaskHistory />
+                <TaskAttachments />
         </>
     )
 }
