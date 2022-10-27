@@ -1,35 +1,16 @@
+import { Grid, Paper, Table, TableContainer, Typography } from '@mui/material'
 import React from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material/'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import TablePagination from '@mui/material/TablePagination';
 
-function TaskTable() {
+function TaskCommentTable({ task }) {
 
-  
-  const { tasks } = useSelector((state) => state.tasks) 
-  // console.log(tasks)
-
-  const taskArray = Array.from(tasks)
-  // console.log(taskArray)
-  
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, tasks.length - page * rowsPerPage)
+  console.log(task)
 
   return (
-    <>
-      <TableContainer component={Paper}>
+    <>  
+        <Grid style={{ marginLeft: "5%", marginRight: "5%", marginTop: "2%", backgroundColor: "orange", height: "4rem", border: "1px solid black", borderRadius: "1rem" }}>
+            <Typography variant="h3" style={{paddingTop: ".2rem", color: "black", textAlign: "center"}}>Task Comments:</Typography>
+        </Grid>
+        <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow sx={{height: "2.5rem"}}>
@@ -114,6 +95,4 @@ function TaskTable() {
   )
 }
 
-
-
-export default TaskTable
+export default TaskCommentTable
