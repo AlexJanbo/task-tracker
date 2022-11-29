@@ -57,14 +57,13 @@ const deleteTask = async (taskId, token) => {
 }
 
 // Add a task Comment
-const addTaskComment = async (id, commentData, token) => {
+const addTaskComment = async (commentData, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         },
     }
-
-    const response = await axios.put(API_URL + "comment/" + id, commentData , config)
+    const response = await axios.put(API_URL + "comment/" + commentData.id, commentData , config)
     console.log(response)
 
     return response.data
