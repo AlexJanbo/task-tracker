@@ -145,9 +145,9 @@ function Homepage() {
                 flexDirection: 'row',
                 justifyContent: 'center'
             }}>
-                {/* <ReviewCard />
                 <ReviewCard />
-                <ReviewCard /> */}
+                <ReviewCard />
+                <ReviewCard />
             </Grid>
         </Grid>
         <Divider />
