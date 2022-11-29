@@ -24,11 +24,11 @@ const taskSchema = mongoose.Schema(
             type: String,
             required: [true, 'Please add a status']
         },
-        comments: {
-            type: String,
-            postedBy: {type: ObjectId, ref: "User"}
-            
-        }
+        comments: [{
+            text: String,
+            createdAt: {type: Date, default: Date.now("<YYYY-mm-ddTHH:MM:ss>")},
+            postedBy: {type: ObjectId, ref:"User"}
+        }]
     },
     {
         timestamps: true,

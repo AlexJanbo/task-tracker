@@ -6,10 +6,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ClippedDrawer from '../../components/ClippedDrawer'
 import SingleTaskCard from '../../components/SingleTaskCard'
 import { getTasks, reset } from '../../features/tasks/taskSlice'
-import TaskComments from '../../components/TaskComments'
 import TaskHistory from '../../components/TaskHistory'
 import TaskAttachments from '../../components/TaskAttachments'
 import TaskCommentForm from '../../components/TaskCommentForm'
+import TaskCommentTable from '../../components/TaskCommentTable'
 
 export const SingleTask = ({ match }) => {
 
@@ -55,7 +55,7 @@ export const SingleTask = ({ match }) => {
     if(!Task) {
         return (
             <Grid>
-                <h2>Task not found!</h2>
+                <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
             </Grid>
         )
     }
@@ -65,7 +65,7 @@ export const SingleTask = ({ match }) => {
                 <ClippedDrawer />
                 <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
                 <TaskCommentForm id={Task._id} />
-                <TaskComments />
+                <TaskCommentTable task={Task}/>
                 <TaskHistory />
                 <TaskAttachments />
         </>

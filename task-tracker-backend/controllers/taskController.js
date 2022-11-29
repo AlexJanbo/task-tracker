@@ -108,13 +108,15 @@ const deleteTask = asyncHandler(async (req, res) => {
 // @access      Private
 const addTaskComment = asyncHandler(async (req, res) => {
     const task = await Task.findById(req.params.id)
-    console.log(task)
+    // console.log(req)
 
     const comment = {
-        text: req.body.comment,
-        postedBy: req.user.id
+        text: req.body.comments,
+        postedBy: req.user._id
     }
 
+    // console.log(comment)
+    
     if(!task) {
         res.status(400)
         throw new Error("Task not found")
@@ -126,7 +128,7 @@ const addTaskComment = asyncHandler(async (req, res) => {
         throw new Error('User not found')
     }
 
-    if(!req.body.comment) {
+    if(!req.body.comments) {
         console.log('no body text')
         res.status(400)
         throw new Error('Please fill out all fields!')

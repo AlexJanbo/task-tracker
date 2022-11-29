@@ -54,10 +54,10 @@ export const deleteTask = createAsyncThunk('tasks/delete', async (id, thunkAPI) 
 })
 
 // Add comment on task
-export const addTaskComment = createAsyncThunk('tasks/comment', async (id, commentData, thunkAPI) => {
+export const addTaskComment = createAsyncThunk('tasks/addComment', async (commentData, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await taskService.addTaskComment(id, commentData, token)
+        return await taskService.addTaskComment(commentData, token)
     } catch (error) {
         const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
