@@ -86,7 +86,7 @@ function Homepage() {
                 alignItems: 'flex-Start',
                 marginLeft: "15%"
             }}>
-                <Typography variant="h1"> It Me</Typography>
+                <Typography variant="h1">Sup Yall It Me</Typography>
             </Grid>
             
             {/* Right Side of Second Box */}
