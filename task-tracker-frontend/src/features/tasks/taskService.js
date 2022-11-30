@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = '/api/tasks/'
+const API_URL = 'https://task-tracker-api-rehs.onrender.com/api/tasks/'
 
 // Create a new task
 const createTask = async (taskData, token) => {
