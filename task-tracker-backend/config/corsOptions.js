@@ -1,9 +1,9 @@
 const allowedOrigins = require('./allowedOrigins')
 
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true)
+    origin: (req, callback) => {
+        if (allowedOrigins.indexOf(req.header("Origin")) !== -1 || !origin) {
+            corsOptions = { origin: true }
         } else {
             callback(new Error('Not allowed by CORS'))
         }
