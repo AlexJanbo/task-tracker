@@ -1,7 +1,7 @@
 {
   "name": "progression-tracker-frontend",
   "version": "0.1.0",
-  "proxy": "httpstask-tracker-production.up.railway.app",
+  "proxy": "https://task-tracker-api-rehs.onrender.com/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
