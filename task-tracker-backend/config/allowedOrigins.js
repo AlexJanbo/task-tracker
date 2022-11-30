@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    'https://task-tracker-api-rehs.onrender.com/'
+    'https://task-tracker-project-alex.netlify.app/'
 ]
 
 module.exports = allowedOrigins
