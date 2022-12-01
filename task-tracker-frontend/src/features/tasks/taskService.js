@@ -1,10 +1,10 @@
 import axios from 'axios'
 
+// const hostedServer = 'https://task-tracker-api-rehs.onrender.com/api/tasks/'
+const API_URL = "/api/tasks/"
 
-// const API_URL = "/api/tasks/"
 
-
-const API_URL = 'https://task-tracker-api-rehs.onrender.com/api/users/'
+// const API_URL = 'https://task-tracker-api-rehs.onrender.com/api/users/'
 // For Deployment
 
 // Create a new task

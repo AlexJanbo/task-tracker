@@ -69,7 +69,7 @@ function Dashboard() {
         <Divider />
         <Grid sx={{ display: 'flex', height: '4rem', justifyContent: 'flex-start', alignItems:"center"}}>
             <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Recent Changes to Tasks</Typography>
-            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Tasks Completed This Week by Priority</Typography>
+            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Select today's task from list?</Typography>
         </Grid>
         <Grid sx={{ display: 'flex', height: '4rem', alignItems:"center"}}>
             <Typography variant='h7' width="50%" textAlign="center"></Typography>
