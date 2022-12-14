@@ -141,10 +141,44 @@ const addTaskComment = asyncHandler(async (req, res) => {
     res.status(200).json(updatedTask)
 })
 
+// @desc        Delete Task
+// @route       DELETE /api/tasks
+// @access      Private
+const deleteTaskComment = asyncHandler(async (req, res) => {
+    const task = await Task.findById(req.params.id)
+    console.log(req.params)
+
+    if(!task) {
+        res.status(400)
+        throw new Error("Task not found")
+    }
+
+
+    // Check for user
+    if(!req.user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    // Check if task belongs to user
+    if(task.user.toString() !== req.user.id) {
+        res.status(401)
+        throw new Error('User not authorized')
+    }
+
+    // await task.remove()
+
+    res.status(200).json({ id: req.params.id })
+
+})
+
+
+
 module.exports = {
     readTasks,
     createTask,
     updateTask,
     deleteTask,
     addTaskComment,
+    deleteTaskComment,
 }

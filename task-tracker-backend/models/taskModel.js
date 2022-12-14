@@ -27,6 +27,7 @@ const taskSchema = mongoose.Schema(
         comments: [{
             text: String,
             createdAt: {type: Date, default: Date.now("<YYYY-mm-ddTHH:MM:ss>")},
+            commentImage: {type: String},
             postedBy: {type: ObjectId, ref:"User"}
         }]
     },

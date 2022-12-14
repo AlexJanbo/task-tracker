@@ -1,10 +1,17 @@
-import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
+import { Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteTaskComment, reset } from '../features/tasks/taskSlice'
 
 function TaskCommentTable({ task }) {
 
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.auth)
+  const id = task._id
+
+
   const commentArray = task.comments
-  console.log(task)
+  // console.log(task)
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -19,6 +26,7 @@ function TaskCommentTable({ task }) {
   };
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, commentArray.length - page * rowsPerPage)
+
 
   return (
     <>  
@@ -47,9 +55,11 @@ function TaskCommentTable({ task }) {
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{comment.createdAt}</TableCell>
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}></TableCell>
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>
-                  {/* <Button onClick={() => dispatch(deleteTask(task._id))}>
-                    Delete
-                  </Button> */}
+                  <Button onClick={(e) => {
+                    dispatch(deleteTaskComment({id, comment }))
+                  }}>
+                    delete
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

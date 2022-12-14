@@ -4,6 +4,7 @@ import ClippedDrawer from '../../components/ClippedDrawer'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { getTasks, reset } from '../../features/tasks/taskSlice'
+import Navbar from '../../components/Navbar'
 
 
 function Dashboard() {

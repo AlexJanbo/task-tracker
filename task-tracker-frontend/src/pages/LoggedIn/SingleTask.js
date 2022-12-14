@@ -65,7 +65,7 @@ export const SingleTask = ({ match }) => {
                 <ClippedDrawer />
                 <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
                 <TaskCommentForm id={Task._id} />
-                <TaskCommentTable task={Task}/>
+                <TaskCommentTable task={Task} id={Task._id}/>
                 <TaskHistory />
                 <TaskAttachments />
         </>

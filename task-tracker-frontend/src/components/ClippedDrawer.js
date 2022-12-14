@@ -127,11 +127,11 @@ export default function ClippedDrawer() {
               Task Tracker
             </Link>
           </Typography>
-          <Typography>
+          <Typography sx={{ display: { xs: "none", sm: "block"} }}>
             Logged in as: {user.username}
           </Typography>
           <Grid marginRight="15%" sx={{display: "flex"}}>
-            <Search>
+            <Search sx ={{ display: { xs: "none", sm: "block"}}}>
                 <SearchIconWrapper>
                   <SearchIcon />
                 </SearchIconWrapper>
@@ -165,7 +165,9 @@ export default function ClippedDrawer() {
       </AppBar>
       <Drawer
         variant="permanent"
+
         sx={{
+          display: { xs: "none", sm: "block"},
           flexShrink: 1,
           [`& .MuiDrawer-paper`]: { boxSizing: 'border-box' },
         }}
