@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../../components/Navbar'
 import { Button, Divider, Grid, Stack, Typography } from '@mui/material'
 import ReviewCard from '../../components/ReviewCard'
 import Footer from '../../components/Footer'
+import LoggedOutNavbar from '../../components/LoggedOutNavbar'
 
 function Homepage() {
   return (
     <>
-        <Navbar />
+        <LoggedOutNavbar />
         <Stack direction="column">
 
 
