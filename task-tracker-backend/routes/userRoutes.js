@@ -4,9 +4,10 @@ const { getUser, loginUser, registerUser, updateUser, changePassword } = require
 const router = express.Router()
 
 const { protect } = require('../middleware/authenticationMiddleware')
+const loginAttemptLimiter = require('../middleware/loginAttemptLimiter')
  
 router.post('/', registerUser)
-router.post('/login', loginUser)
+router.post('/login', loginAttemptLimiter, loginUser)
 router.post('/me', protect, getUser)
 router.route('/update').put(protect, updateUser)
 router.route('/change-password').put(protect, changePassword)
