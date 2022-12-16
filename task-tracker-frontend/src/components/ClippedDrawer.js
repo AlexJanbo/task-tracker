@@ -45,8 +45,6 @@ const list = {
   }
 }
 
-console.log(list)
-
 const list2 = {
   userProfile: {
     text: 'User Profile',

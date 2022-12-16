@@ -2,7 +2,8 @@ import { Button, CircularProgress, Grid, TextField, Typography } from '@mui/mate
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import ClippedDrawer from '../../components/ClippedDrawer'
+import LoggedInNavbar from '../../components/LoggedInNavbar'
+import SideDrawer from '../../components/SideDrawer'
 import { reset, updateProject } from '../../features/projects/projectSlice'
 
 function EditProject( {match} ) {
@@ -71,8 +72,9 @@ function EditProject( {match} ) {
   
     return (
     <>
+        <LoggedInNavbar />
+        <SideDrawer />
         <Grid container sx={{ display: 'flex', flexDirection: 'column', width: '35%', height: "60%", marginLeft: '25%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
-            <ClippedDrawer />
             <Typography>Edit Project!</Typography>
             <Grid item>
                 <TextField
