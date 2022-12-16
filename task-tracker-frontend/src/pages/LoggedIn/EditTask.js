@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { CircularProgress, Grid } from '@mui/material'
-
+import { Box, CircularProgress, Grid } from '@mui/material'
 import { reset, getTasks } from '../../features/tasks/taskSlice'
-import ClippedDrawer from '../../components/ClippedDrawer'
 import TaskUpdateForm from '../../components/TaskUpdateForm'
+import LoggedInNavbar from '../../components/LoggedInNavbar'
+import SideDrawer from '../../components/SideDrawer'
 
 
 function EditTask( {match} ) {
@@ -57,14 +57,15 @@ function EditTask( {match} ) {
 
     return (
         <>  
-            <Grid container>
-                <Grid item>
-                    <ClippedDrawer />
+            <Box bgcolor={"#fafafa"}>
+                <LoggedInNavbar />
+                <SideDrawer />    
+                <Grid container>
+                    <Grid item style={{ marginLeft: "15%", marginTop: "5%"}}>
+                        <TaskUpdateForm taskId={Task._id} titleProp={Task.title} descriptionProp={Task.description} priorityProp={Task.priority} statusProp={Task.status} />
+                    </Grid>
                 </Grid>
-                <Grid item style={{ marginLeft: "15%", marginTop: "5%"}}>
-                    <TaskUpdateForm taskId={Task._id} titleProp={Task.title} descriptionProp={Task.description} priorityProp={Task.priority} statusProp={Task.status} />
-                </Grid>
-            </Grid>
+            </Box>
         </>
   )
 }

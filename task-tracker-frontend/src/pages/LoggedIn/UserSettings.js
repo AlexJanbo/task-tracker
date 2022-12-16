@@ -1,11 +1,13 @@
 import { Divider, Grid, Typography } from '@mui/material'
 import React from 'react'
-import ClippedDrawer from '../../components/ClippedDrawer'
+import LoggedInNavbar from '../../components/LoggedInNavbar'
+import SideDrawer from '../../components/SideDrawer'
 
 function UserSettings() {
   return (
     <>
-      <ClippedDrawer />
+        <LoggedInNavbar />
+        <SideDrawer />
         <Grid sx={{ display: 'flex', flexDirection: 'column', width: '35%', height: "60%", marginLeft: '25%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
         <Grid sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '4rem', color: 'black', bgcolor: "orange", borderBottom: '.2rem solid black'}}>
             <Typography textAlign='center' variant='h5'>User Settings</Typography>

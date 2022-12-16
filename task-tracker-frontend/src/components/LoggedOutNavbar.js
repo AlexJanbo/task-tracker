@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
 
-export default function Navbar() {
+export default function LoggedOutNavbar() {
   
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -71,4 +71,3 @@ export default function Navbar() {
     </ThemeProvider>
   )
 }
-

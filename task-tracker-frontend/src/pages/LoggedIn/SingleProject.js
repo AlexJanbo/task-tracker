@@ -2,9 +2,10 @@ import { CircularProgress, Grid } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import ClippedDrawer from '../../components/ClippedDrawer'
+import LoggedInNavbar from '../../components/LoggedInNavbar'
 import ProjectMembers from '../../components/ProjectMembers'
 import ProjectTasks from '../../components/ProjectTasks'
+import SideDrawer from '../../components/SideDrawer'
 import SingleProjectCard from '../../components/SingleProjectCard'
 import { getProjects, reset } from '../../features/projects/projectSlice'
 
@@ -58,10 +59,11 @@ function SingleProject({ match }) {
 
     return (
         <>
-            <ClippedDrawer />
-            <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
-            <ProjectMembers />
-            <ProjectTasks />
+          <LoggedInNavbar />
+          <SideDrawer />
+          <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
+          <ProjectMembers />
+          <ProjectTasks />
         </>
     )
 }

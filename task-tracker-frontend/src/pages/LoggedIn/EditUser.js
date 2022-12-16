@@ -1,12 +1,14 @@
 import React from 'react'
-import ClippedDrawer from '../../components/ClippedDrawer'
+import LoggedInNavbar from '../../components/LoggedInNavbar'
+import SideDrawer from '../../components/SideDrawer'
 import UserUpdateForm from '../../components/UserUpdateForm'
 
 function EditUser() {
   return (
     <>
-        <ClippedDrawer />
-        <UserUpdateForm />
+      <LoggedInNavbar />
+      <SideDrawer /> 
+      <UserUpdateForm />
     </>
     
   )

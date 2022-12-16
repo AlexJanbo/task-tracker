@@ -15,28 +15,31 @@ function SingleTaskCard({ id, title, description, priority, status }) {
     }
 
   return (
-    <Grid container sx={{ display: 'flex', flexDirection: 'column', width: '22.5%', height: "60%", marginLeft: '15%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
+    <Grid flex={1} container sx={{ display: 'flex', flexDirection: 'column', marginTop: '15%', border: '2px solid black', borderRadius: '.5rem'}}>
         <Grid item sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '4rem', color: 'black', bgcolor: "orange", borderBottom: '.2rem solid black'}}>
-            <Typography textAlign='center' variant='h5'>Task Details</Typography>
+            <Typography textAlign='center' variant='h3'>Task Details</Typography>
         </Grid>
-        <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: 'flex-end', height: '3rem', alignContent:"center"}}>
-            <Typography variant='h8' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Title</Typography>
-            <Typography variant='h8' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Description</Typography>
-        </Grid>
-        <Grid item sx={{ display: 'flex', flexDirection: 'row', flexGrow: 2, justifyContent: 'space-between', height: '5rem', alignItems:"center", flexWrap: 'wrap'}}>
+        <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: 'center', height: '3rem', alignContent:"center"}}>
+            <Typography variant='h6' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold">Title:</Typography>
             <Typography variant='h7' width="50%" textAlign="center">{title}</Typography>
+        </Grid>
+        <Divider />
+        <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: "center", height: '3rem', alignContent:"center"}}>
+            <Typography variant='h6' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" >Description:</Typography>
             <Typography variant='h7' width="50%" textAlign="center">{description}</Typography>
         </Grid>
         <Divider />
-        <Grid item sx={{ display: 'flex', height: '4rem', justifyContent: 'flex-start', alignItems:"center"}}>
-            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Priority</Typography>
-            <Typography variant='h7' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" sx={{textDecoration:'underline'}}>Ticket Status</Typography>
-        </Grid>
-        <Grid item sx={{ display: 'flex', height: '4rem', alignItems:"center"}}>
+        <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: "center", height: '3rem', alignContent:"center"}}>
+            <Typography variant='h6' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" >Priority:</Typography>
             <Typography variant='h7' width="50%" textAlign="center">{priority}</Typography>
+        </Grid>
+        <Divider />
+        <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: "center", height: '3rem', alignContent:"center"}}>
+            <Typography variant='h6' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" >Status:</Typography>
             <Typography variant='h7' width="50%" textAlign="center">{status}</Typography>
         </Grid>
-        <Grid item sx={{ display: 'flex', height: '4rem', justifyContent: 'center', justifyItems:"center"}}>
+        <Divider />
+        <Grid item sx={{ display: 'flex', height: '4rem', justifyContent: 'center', alignItems: "center"}}>
             <Grid item>
                 <Link to={`/edit-task/${id}`}>
                     <Button color="primary">

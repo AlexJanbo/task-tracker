@@ -1,13 +1,14 @@
-import { CircularProgress, Grid } from '@mui/material'
+import { Box, CircularProgress, Grid, Stack } from '@mui/material'
 import { Container } from '@mui/system'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import ClippedDrawer from '../../components/ClippedDrawer'
+import LoggedInNavbar from '../../components/LoggedInNavbar'
 import ProjectCard from '../../components/ProjectCard'
 import ProjectForm from '../../components/ProjectForm'
 import ProjectHeader from '../../components/ProjectHeader'
 import ProjectTable from '../../components/ProjectTable'
+import SideDrawer from '../../components/SideDrawer'
 import { getProjects, reset } from '../../features/projects/projectSlice'
 
 function Projects() {
@@ -19,7 +20,7 @@ function Projects() {
   // console.log(projects)
 
   const projectArray = Array.from(projects)
-  console.log(projectArray)
+  // console.log(projectArray)
 
 
   const { user } = useSelector((state) => state.auth)
@@ -48,22 +49,14 @@ function Projects() {
 
   return (
     <>
-      <Grid container spacing={10} display="flex" direction="row">
-        <Grid item xs={1}>
-          <ClippedDrawer />
-        </Grid>
-        <Grid item marginTop="4rem" height="52.5rem" xs={8}>
-          <Container style={{ height: '52.5rem', width: '100%', marginTop: '0' }}>
-            <ProjectHeader />
-            <section style={{ marginBottom:'4rem'}}>
-              <ProjectTable style={{ justifyContent: 'center' }} />
-            </section>
-          </Container>
-        </Grid>
-        <Grid item xs={3} style={{ marginTop: "15%"}}>
-            <ProjectForm/>
-        </Grid>
-      </Grid>
+      <Box container bgcolor={"#fafafa"} height={"100%"}>
+        <LoggedInNavbar />
+        <Stack direction="row" spacing={4} justifyContent="space-between" >
+          <SideDrawer /> 
+          <ProjectTable />
+          <ProjectForm />
+        </Stack>
+      </Box>
     </>
   )
 }

@@ -1,15 +1,16 @@
-import { CircularProgress, Grid } from '@mui/material'
+import { Box, CircularProgress, Grid, Stack } from '@mui/material'
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import ClippedDrawer from '../../components/ClippedDrawer'
 import SingleTaskCard from '../../components/SingleTaskCard'
 import { getTasks, reset } from '../../features/tasks/taskSlice'
 import TaskHistory from '../../components/TaskHistory'
 import TaskAttachments from '../../components/TaskAttachments'
 import TaskCommentForm from '../../components/TaskCommentForm'
 import TaskCommentTable from '../../components/TaskCommentTable'
+import LoggedInNavbar from '../../components/LoggedInNavbar'
+import SideDrawer from '../../components/SideDrawer'
 
 export const SingleTask = ({ match }) => {
 
@@ -62,12 +63,20 @@ export const SingleTask = ({ match }) => {
 
     return (
         <>  
-                <ClippedDrawer />
-                <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
-                <TaskCommentForm id={Task._id} />
-                <TaskCommentTable task={Task} id={Task._id}/>
-                <TaskHistory />
-                <TaskAttachments />
+            <Box bgcolor={"#fafafa"}>
+                <LoggedInNavbar />
+                <Stack direction="row" spacing={4} justifyContent="space-between" >
+                    <SideDrawer flex={1} />
+                    <Stack flex={2} direction="column" spacing={4} justifyContent="start" >
+                        <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
+                        <TaskHistory />
+                    </Stack>
+                    <Stack flex={4} direction="column" spacing={4} justifyContent="space-between" >
+                        <TaskCommentForm id={Task._id} />
+                        <TaskCommentTable task={Task} id={Task._id}/>
+                    </Stack>
+                </Stack>
+            </Box>
         </>
     )
 }

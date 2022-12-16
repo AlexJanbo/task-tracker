@@ -1,5 +1,6 @@
 import React from 'react'
-import ClippedDrawer from '../../components/ClippedDrawer'
+import LoggedInNavbar from '../../components/LoggedInNavbar'
+import SideDrawer from '../../components/SideDrawer'
 import UserProfileCard from '../../components/UserProfileCard'
 
 function UserProfile() {
@@ -8,7 +9,8 @@ function UserProfile() {
 
   return (
     <>
-      <ClippedDrawer />
+      <LoggedInNavbar />
+      <SideDrawer />
       <UserProfileCard />
     </>
   )
