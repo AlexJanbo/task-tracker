@@ -21,7 +21,7 @@ function TaskCommentForm({ id }) {
     }
   
     return (
-        <Grid container spacing={3} sx={{ marginLeft: "15%", marginTop: "3%", display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center'}}>
+        <Grid container spacing={3} sx={{ marginLeft: "15%", marginTop: "7%", display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center'}}>
             <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: "orange", border: "2px solid black", borderRadius: "1rem"}}>
                 <Typography variant="h4" style={{ textAlign: "center", marginBottom: "4%"}}>Add Comment!</Typography>
             </Grid>

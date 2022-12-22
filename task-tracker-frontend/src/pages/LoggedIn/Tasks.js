@@ -9,6 +9,7 @@ import TaskTable from '../../components/TaskTable'
 import TaskHeader from '../../components/TaskHeader'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import SideDrawer from '../../components/SideDrawer'
+import TaskFormModal from '../../components/TaskFormModal'
 
 
 function Tasks() {
@@ -47,7 +48,10 @@ function Tasks() {
         <Stack direction="row" spacing={4} justifyContent="space-between" >
           <SideDrawer />
           <TaskTable />
-          <TaskForm />
+          <Stack direction="column" justifyContent="center">
+            <TaskForm />
+            <TaskFormModal />
+          </Stack>
         </Stack>
       </Box>
     </>

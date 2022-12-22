@@ -15,7 +15,7 @@ function SingleTaskCard({ id, title, description, priority, status }) {
     }
 
   return (
-    <Grid flex={1} container sx={{ display: 'flex', flexDirection: 'column', marginTop: '15%', border: '2px solid black', borderRadius: '.5rem'}}>
+    <Grid container sx={{ height: "40vh", display: 'flex', flexDirection: 'column', marginTop: '15%', border: '2px solid black', borderRadius: '.5rem'}}>
         <Grid item sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '4rem', color: 'black', bgcolor: "orange", borderBottom: '.2rem solid black'}}>
             <Typography textAlign='center' variant='h3'>Task Details</Typography>
         </Grid>

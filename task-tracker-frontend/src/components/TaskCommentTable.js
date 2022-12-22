@@ -30,16 +30,17 @@ function TaskCommentTable({ task }) {
 
   return (
     <>  
-        <Grid style={{width:"50%", marginLeft: "15%", marginRight: "5%", marginTop: "2%", backgroundColor: "orange", height: "4rem", border: "1px solid black", borderRadius: "1rem" }}>
+      <Grid container >
+        <Grid style={{width:"50%", marginLeft: "15%", marginTop: "2%", backgroundColor: "orange", height: "4rem", border: "1px solid black", borderRadius: "1rem" }}>
             <Typography variant="h3" style={{paddingTop: ".2rem", color: "black", textAlign: "center"}}>Task Comments:</Typography>
         </Grid>
         <TableContainer component={Paper} style={{ marginLeft: "15%", width: "50%"}}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow sx={{height: "2.5rem"}}>
-              <TableCell sx={{ width: "25%", fontWeight: "bold", fontSize: "20px"}}>Comment</TableCell>
-              <TableCell sx={{ width: "25%", fontWeight: "bold", fontSize: "20px"}}>Made By:</TableCell>
-              <TableCell sx={{ width: "25%", fontWeight: "bold", fontSize: "20px"}} key="created">Created</TableCell>
+              <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}>Comment</TableCell>
+              <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}>Made By:</TableCell>
+              <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}} key="created">Created</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -62,24 +63,25 @@ function TaskCommentTable({ task }) {
                   </Button>
                 </TableCell>
               </TableRow>
-            ))}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 72 * emptyRows}}>
-                <TableCell colSpan={6}></TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination 
-        rowsPerPageOptions={[5, 10]}
-        component="div"
-        count={commentArray.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+              ))}
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 72 * emptyRows}}>
+                  <TableCell colSpan={6}></TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination 
+          rowsPerPageOptions={[5, 10]}
+          component="div"
+          count={commentArray.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Grid>
     </>
   )
 }
