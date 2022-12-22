@@ -8,7 +8,7 @@ import TaskForm from './TaskForm';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createTask } from '../features/tasks/taskSlice';
-import { FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField } from '@mui/material';
+import { Fab, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField } from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -48,7 +48,9 @@ export default function TaskFormModal() {
     <div>
 
         <Button onClick={handleOpen}>
-            <AddIcon fontSize="large" />
+            <Fab color="primary" aria-label="add">
+                <AddIcon />
+            </Fab>
         </Button>
         <Modal
             open={open}

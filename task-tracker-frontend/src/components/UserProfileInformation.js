@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout, reset } from '../features/auth/authSlice'
 
-function UserProfileCard() {
+function UserProfileInformation() {
 
 
     const navigate = useNavigate()
@@ -66,4 +66,4 @@ function UserProfileCard() {
   )
 }
 
-export default UserProfileCard
+export default UserProfileInformation

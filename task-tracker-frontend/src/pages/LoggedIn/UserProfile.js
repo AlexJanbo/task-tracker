@@ -1,7 +1,9 @@
+import { Box, Stack } from '@mui/material'
 import React from 'react'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import SideDrawer from '../../components/SideDrawer'
-import UserProfileCard from '../../components/UserProfileCard'
+import UserProfileImage from '../../components/UserProfileImage'
+import UserProfileInformation from '../../components/UserProfileInformation'
 
 function UserProfile() {
 
@@ -9,9 +11,15 @@ function UserProfile() {
 
   return (
     <>
-      <LoggedInNavbar />
-      <SideDrawer />
-      <UserProfileCard />
+      <Box container bgcolor={"#fafafa"} height={"100%"}>
+        <LoggedInNavbar />
+
+          <SideDrawer />
+          <UserProfileImage />
+          <UserProfileInformation />
+
+
+      </Box>
     </>
   )
 }
