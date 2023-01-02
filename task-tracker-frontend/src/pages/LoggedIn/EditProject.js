@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
+import ProjectUpdateForm from '../../components/ProjectUpdateForm'
 import SideDrawer from '../../components/SideDrawer'
 import { reset, updateProject } from '../../features/projects/projectSlice'
 
@@ -75,33 +76,7 @@ function EditProject( {match} ) {
         <Box container bgcolor={"#fafafa"} height={"100vh"} >
             <LoggedInNavbar />
             <SideDrawer />
-            <Grid container sx={{ display: 'flex', flexDirection: 'column', width: '35%', height: "60%", marginLeft: '25%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
-                <Typography>Edit Project!</Typography>
-                <Grid item>
-                    <TextField
-                    id="title"
-                    name="title"
-                    label="Title"
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    />
-                </Grid>
-                <Grid item>
-                    <TextField
-                    id="description"
-                    name="description"
-                    label="Description"
-                    type="text"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    />
-                </Grid>
-                <Button type='submit' onClick={handleSubmit}>
-                        Update Project
-                </Button>
-
-            </Grid>
+            <ProjectUpdateForm projectId={projectId} />
         </Box>
         
     </>
