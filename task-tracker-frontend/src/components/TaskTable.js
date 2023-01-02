@@ -31,7 +31,7 @@ function TaskTable() {
 
   return (
     <>
-      <Box flex={5} p={1} sx={{ display: { md: "none", lg: "block" } }}>
+      <Box flex={5} p={1} sx={{ display: {lg: "block" } }}>
         <TaskHeader />
         <TableContainer component={Paper}>
           <Table aria-label="simple table">

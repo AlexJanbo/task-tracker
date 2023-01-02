@@ -74,15 +74,15 @@ const addTaskComment = async (commentData, token) => {
     return response.data
 }
 
-// Delete a task comment
+// Add a delete Comment
 const deleteTaskComment = async (commentData, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
-        }
+        },
     }
-
-    const response = await axios.delete(API_URL + "comment/" + commentData.id, config)
+    console.log(commentData)
+    const response = await axios.delete(API_URL + "comment/" + commentData.id, commentData , config)
     console.log(response)
 
     return response.data

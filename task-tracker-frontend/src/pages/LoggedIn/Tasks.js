@@ -47,10 +47,10 @@ function Tasks() {
         <LoggedInNavbar />
         <Stack direction="row" spacing={4} justifyContent="space-between" >
           <SideDrawer />
+          <TaskFormModal />
           <TaskTable />
           <Stack direction="column" justifyContent="center">
             <TaskForm />
-            <TaskFormModal />
           </Stack>
         </Stack>
       </Box>

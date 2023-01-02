@@ -45,7 +45,7 @@ export default function TaskFormModal() {
   }
 
   return (
-    <div>
+    <Box sx={{ display: { md: "block", lg: "none", position: "absolute", right: "-10px", bottom: 0  }}}>
 
         <Button onClick={handleOpen}>
             <Fab color="primary" aria-label="add">
@@ -108,6 +108,6 @@ export default function TaskFormModal() {
                 </Grid>
             </Box>
         </Modal>
-    </div>
+    </Box>
   );
 }

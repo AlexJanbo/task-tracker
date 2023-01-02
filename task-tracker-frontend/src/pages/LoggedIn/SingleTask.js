@@ -63,15 +63,15 @@ export const SingleTask = ({ match }) => {
 
     return (
         <>  
-            <Box bgcolor={"#fafafa"}>
+            <Box container bgcolor={"#fafafa"} height={"100vh"} >
                 <LoggedInNavbar />
                 <Stack direction="row" spacing={4} justifyContent="space-between" >
                     <SideDrawer flex={1} />
-                    <Stack flex={2} direction="column" spacing={4} justifyContent="start" >
+                    <Stack flex={3} direction="column" spacing={4} justifyContent="start" >
                         <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
                         <TaskHistory />
                     </Stack>
-                    <Stack flex={4} direction="column" spacing={4} justifyContent="space-between" >
+                    <Stack flex={3} direction="column" spacing={4} justifyContent="space-between" >
                         <TaskCommentForm id={Task._id} />
                         <TaskCommentTable task={Task} id={Task._id}/>
                     </Stack>

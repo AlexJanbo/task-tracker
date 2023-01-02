@@ -1,4 +1,4 @@
-import { CircularProgress, Grid } from '@mui/material'
+import { Box, CircularProgress, Grid } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -59,11 +59,13 @@ function SingleProject({ match }) {
 
     return (
         <>
-          <LoggedInNavbar />
-          <SideDrawer />
-          <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
-          <ProjectMembers />
-          <ProjectTasks />
+          <Box container bgcolor={"#fafafa"} height={"100vh"} >
+            <LoggedInNavbar />
+            <SideDrawer />
+            <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
+            <ProjectMembers />
+            <ProjectTasks />
+          </Box>
         </>
     )
 }

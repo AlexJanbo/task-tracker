@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Grid, TextField, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Grid, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -72,35 +72,37 @@ function EditProject( {match} ) {
   
     return (
     <>
-        <LoggedInNavbar />
-        <SideDrawer />
-        <Grid container sx={{ display: 'flex', flexDirection: 'column', width: '35%', height: "60%", marginLeft: '25%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
-            <Typography>Edit Project!</Typography>
-            <Grid item>
-                <TextField
-                id="title"
-                name="title"
-                label="Title"
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                />
-            </Grid>
-            <Grid item>
-                <TextField
-                id="description"
-                name="description"
-                label="Description"
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                />
-            </Grid>
-            <Button type='submit' onClick={handleSubmit}>
-                    Update Project
-            </Button>
+        <Box container bgcolor={"#fafafa"} height={"100vh"} >
+            <LoggedInNavbar />
+            <SideDrawer />
+            <Grid container sx={{ display: 'flex', flexDirection: 'column', width: '35%', height: "60%", marginLeft: '25%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
+                <Typography>Edit Project!</Typography>
+                <Grid item>
+                    <TextField
+                    id="title"
+                    name="title"
+                    label="Title"
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    />
+                </Grid>
+                <Grid item>
+                    <TextField
+                    id="description"
+                    name="description"
+                    label="Description"
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    />
+                </Grid>
+                <Button type='submit' onClick={handleSubmit}>
+                        Update Project
+                </Button>
 
-        </Grid>
+            </Grid>
+        </Box>
         
     </>
 )

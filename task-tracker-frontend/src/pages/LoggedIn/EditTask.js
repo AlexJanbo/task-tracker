@@ -57,7 +57,7 @@ function EditTask( {match} ) {
 
     return (
         <>  
-            <Box bgcolor={"#fafafa"}>
+            <Box bgcolor={"#fafafa"} height={"100vh"}>
                 <LoggedInNavbar />
                 <SideDrawer />    
                 <Grid container>

@@ -146,7 +146,9 @@ const addTaskComment = asyncHandler(async (req, res) => {
 // @access      Private
 const deleteTaskComment = asyncHandler(async (req, res) => {
     const task = await Task.findById(req.params.id)
+    let commentId = req.params.id
     console.log(req.params)
+    // console.log(task.user)
 
     if(!task) {
         res.status(400)
@@ -161,14 +163,14 @@ const deleteTaskComment = asyncHandler(async (req, res) => {
     }
 
     // Check if task belongs to user
-    if(task.user.toString() !== req.user.id) {
+    if(task.user !== req.user.id) {
         res.status(401)
         throw new Error('User not authorized')
     }
 
-    // await task.remove()
+    await task.comments.remove({_id: commentId})
 
-    res.status(200).json({ id: req.params.id })
+    // res.status(200).json({ id: req.params.id })
 
 })
 
