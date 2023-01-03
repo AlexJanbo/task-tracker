@@ -41,7 +41,7 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
                         label="Title"
                         type="text"
                         multiline={true}
-                        rows={2}
+                        rows={1}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
@@ -53,6 +53,7 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
                             label="Description"
                             type="text"
                             multiline={true}
+                            rows={2}
                             maxRows={3}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
