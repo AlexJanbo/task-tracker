@@ -8,7 +8,7 @@ const User = require('../models/userModel')
 // @route       GET /api/tasks
 // @access      Private
 const readTasks = asyncHandler(async (req, res) => {
-    const task = await Task.find({ task: req.task.id})
+    const task = await Task.find({ user: req.user.id})
 
     res.status(200).json(task)
 })
@@ -103,84 +103,10 @@ const deleteTask = asyncHandler(async (req, res) => {
     res.status(200).json({ id: req.params.id })
 })
 
-// @desc        Add Task Comment
-// @route       PUT /api/tasks/comment/:id
-// @access      Private
-const addTaskComment = asyncHandler(async (req, res) => {
-    const task = await Task.findById(req.params.id)
-    // console.log(req)
-
-    const comment = {
-        text: req.body.comments,
-        postedBy: req.user._id
-    }
-
-    // console.log(comment)
-    
-    if(!task) {
-        res.status(400)
-        throw new Error("Task not found")
-    }
-
-    // Check for user
-    if(!req.user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
-
-    if(!req.body.comments) {
-        console.log('no body text')
-        res.status(400)
-        throw new Error('Please fill out all fields!')
-    }
-
-    const updatedTask = await Task.findByIdAndUpdate(req.params.id, {
-        $push: {comments: comment}
-    }, {new: true})
-
-    res.status(200).json(updatedTask)
-})
-
-// @desc        Delete Task
-// @route       DELETE /api/tasks
-// @access      Private
-const deleteTaskComment = asyncHandler(async (req, res) => {
-    const task = await Task.findById(req.params.id)
-    let commentId = req.params.id
-    console.log(req.params)
-    // console.log(task.user)
-
-    if(!task) {
-        res.status(400)
-        throw new Error("Task not found")
-    }
-
-
-    // Check for user
-    if(!req.user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
-
-    // Check if task belongs to user
-    if(task.user !== req.user.id) {
-        res.status(401)
-        throw new Error('User not authorized')
-    }
-
-    await task.comments.remove({_id: commentId})
-
-    // res.status(200).json({ id: req.params.id })
-
-})
-
-
 
 module.exports = {
     readTasks,
     createTask,
     updateTask,
     deleteTask,
-    addTaskComment,
-    deleteTaskComment,
 }

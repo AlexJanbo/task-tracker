@@ -53,27 +53,6 @@ export const deleteTask = createAsyncThunk('tasks/delete', async (id, thunkAPI) 
     }
 })
 
-// Add comment on task
-export const addTaskComment = createAsyncThunk('tasks/addComment', async (commentData, thunkAPI) => {
-    try {
-        const token = thunkAPI.getState().auth.user.token
-        return await taskService.addTaskComment(commentData, token)
-    } catch (error) {
-        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
-        return thunkAPI.rejectWithValue(message)
-    }
-})
-
-// Add comment on task
-export const deleteTaskComment = createAsyncThunk('tasks/deleteComment', async (commentData, thunkAPI) => {
-    try {
-        const token = thunkAPI.getState().auth.user.token
-        return await taskService.deleteTaskComment(commentData, token)
-    } catch (error) {
-        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
-        return thunkAPI.rejectWithValue(message)
-    }
-})
 
  
 export const taskSlice = createSlice({
@@ -132,32 +111,6 @@ export const taskSlice = createSlice({
                 state.tasks = action.payload
             })
             .addCase(deleteTask.rejected, (state, action) => {
-                state.isLoading = false
-                state.isError = true
-                state.message = action.payload
-            })
-            .addCase(addTaskComment.pending, (state) => {
-                state.isLoading = true
-            })
-            .addCase(addTaskComment.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.isSuccess = true
-                state.tasks = action.payload
-            })
-            .addCase(addTaskComment.rejected, (state, action) => {
-                state.isLoading = false
-                state.isError = true
-                state.message = action.payload
-            })
-            .addCase(deleteTaskComment.pending, (state) => {
-                state.isLoading = true
-            })
-            .addCase(deleteTaskComment.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.isSuccess = true
-                state.tasks = state.tasks.filter((task) => task._id !== action.payload.id)
-            })
-            .addCase(deleteTaskComment.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

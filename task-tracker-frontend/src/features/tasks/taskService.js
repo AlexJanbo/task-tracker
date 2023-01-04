@@ -61,41 +61,12 @@ const deleteTask = async (taskId, token) => {
     return response.data
 }
 
-// Add a task Comment
-const addTaskComment = async (commentData, token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
-    }
-    const response = await axios.post(API_URL + "comment/" + commentData.id, commentData , config)
-    console.log(response)
-
-    return response.data
-}
-
-// Add a delete Comment
-const deleteTaskComment = async (commentData, token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
-    }
-    console.log(commentData)
-    const response = await axios.delete(API_URL + "comment/" + commentData.id, commentData , config)
-    console.log(response)
-
-    return response.data
-}
-
 
 const taskService = {
     createTask,
     getTasks,
     updateTask,
     deleteTask,
-    addTaskComment,
-    deleteTaskComment,
 }
 
 export default taskService

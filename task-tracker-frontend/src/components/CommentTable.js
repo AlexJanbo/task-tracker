@@ -1,16 +1,17 @@
 import { Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteTaskComment, reset } from '../features/tasks/taskSlice'
+import { deleteComment, reset } from '../features/comments/commentSlice'
 
-function TaskCommentTable({ task }) {
+function CommentTable({ task }) {
 
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
+  const { comments } = useSelector((state) => state.comments) 
   const id = task._id
 
 
-  const commentArray = task.comments
+  const commentArray = Array.from(comments)
   // console.log(task)
 
   const [page, setPage] = React.useState(0);
@@ -57,7 +58,7 @@ function TaskCommentTable({ task }) {
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}></TableCell>
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>
                   <Button onClick={(e) => {
-                    dispatch(deleteTaskComment({id, comment }))
+                    dispatch(deleteComment({id, comment }))
                   }}>
                     delete
                   </Button>
@@ -86,4 +87,4 @@ function TaskCommentTable({ task }) {
   )
 }
 
-export default TaskCommentTable
+export default CommentTable

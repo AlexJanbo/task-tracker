@@ -67,7 +67,7 @@ export const commentSlice = createSlice({
             .addCase(createComment.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.projects.push(action.payload)
+                state.comments.push(action.payload)
             })
             .addCase(createComment.rejected, (state, action) => {
                 state.isLoading = false
@@ -80,7 +80,7 @@ export const commentSlice = createSlice({
             .addCase(getComments.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.projects = action.payload
+                state.comments = action.payload
             })
             .addCase(getComments.rejected, (state, action) => {
                 state.isLoading = false
@@ -93,7 +93,7 @@ export const commentSlice = createSlice({
             .addCase(updateComment.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.projects = action.payload
+                state.comments = action.payload
             })
             .addCase(updateComment.rejected, (state, action) => {
                 state.isLoading = false
@@ -106,7 +106,7 @@ export const commentSlice = createSlice({
             .addCase(deleteComment.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.projects = state.projects.filter((project) => project._id !== action.payload.id)
+                state.comments = state.projects.filter((project) => project._id !== action.payload.id)
             })
             .addCase(deleteComment.rejected, (state, action) => {
                 state.isLoading = false

@@ -1,13 +1,13 @@
 import { Button, Grid, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTaskComment, reset } from '../features/tasks/taskSlice'
+import { createComment, reset } from '../features/comments/commentSlice' 
 
-function TaskCommentForm({ id }) {
+function CommentForm({ id }) {
 
     const { user } = useSelector((state) => state.auth)
   
-    const [ comments, setComments ] = useState('')
+    const [ description, setDescription ] = useState('')
 
     const dispatch = useDispatch()
 
@@ -15,9 +15,9 @@ function TaskCommentForm({ id }) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(addTaskComment({id, comments}))
+        dispatch(createComment({id, description}))
         dispatch(reset())
-        window.location.reload()
+        // window.location.reload()
     }
   
     return (
@@ -28,12 +28,12 @@ function TaskCommentForm({ id }) {
             <Grid container spacing={3} sx={{ zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
                 <Grid item>
                     <TextField
-                        id="comment"
-                        name="comment"
-                        label="Comment"
+                        id="description"
+                        name="description"
+                        label="Description"
                         type="text"
-                        value={comments}
-                        onChange={(e) => setComments(e.target.value)}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                     />
                 </Grid>
                 <Button variant="contained" type='submit' onClick={handleSubmit}>
@@ -44,4 +44,4 @@ function TaskCommentForm({ id }) {
     )
 }
 
-export default TaskCommentForm
+export default CommentForm

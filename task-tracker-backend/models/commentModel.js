@@ -5,9 +5,10 @@ const commentSchema = mongoose.Schema(
     {
         task: {
             type: ObjectId,
+            required: true,
             ref: "Task"
         },
-        text: {
+        description: {
             type: String,
             required: true
         },

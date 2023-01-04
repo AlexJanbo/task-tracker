@@ -34,9 +34,9 @@ function Dashboard() {
         }
     }, [user, navigate, isError, message, dispatch])
     
-    const highTask = tasks.filter((task) => {
-        return task.priority === "High"
-    })
+    // const highTask = tasks.filter((task) => {
+    //     return task.priority === "High"
+    // })
     // console.log(highTask)
 
   return(

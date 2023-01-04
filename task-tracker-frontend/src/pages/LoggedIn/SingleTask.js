@@ -7,8 +7,8 @@ import SingleTaskCard from '../../components/SingleTaskCard'
 import { getTasks, reset } from '../../features/tasks/taskSlice'
 import TaskHistory from '../../components/TaskHistory'
 import TaskAttachments from '../../components/TaskAttachments'
-import TaskCommentForm from '../../components/TaskCommentForm'
-import TaskCommentTable from '../../components/TaskCommentTable'
+import CommentForm from '../../components/CommentForm'
+import CommentTable from '../../components/CommentTable'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import SideDrawer from '../../components/SideDrawer'
 
@@ -72,8 +72,8 @@ export const SingleTask = ({ match }) => {
                         <TaskHistory />
                     </Stack>
                     <Stack flex={3} direction="column" spacing={4} justifyContent="space-between" >
-                        <TaskCommentForm id={Task._id} />
-                        <TaskCommentTable task={Task} id={Task._id}/>
+                        <CommentForm id={Task._id} />
+                        <CommentTable task={Task} id={Task._id}/>
                     </Stack>
                 </Stack>
             </Box>

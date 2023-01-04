@@ -1,11 +1,11 @@
 const express = require('express')
-const { readComment, createComment, updateComment, deleteComment } = require('../controllers/taskController')
+const { readComments, createComment, updateComment, deleteComment } = require('../controllers/commentController')
 
 const router = express.Router()
 
 const { protect } = require('../middleware/authenticationMiddleware')
 
-router.route('/').post(protect, createComment).get(protect, readComment)
+router.route('/').post(protect, createComment).get(protect, readComments)
 router.route('/:id').put(protect, updateComment).delete(protect, deleteComment)
 
 module.exports = router
