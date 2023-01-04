@@ -8,7 +8,7 @@ const User = require('../models/userModel')
 // @route       GET /api/tasks
 // @access      Private
 const readTasks = asyncHandler(async (req, res) => {
-    const task = await Task.find({ user: req.user.id})
+    const task = await Task.find({ task: req.task.id})
 
     res.status(200).json(task)
 })
