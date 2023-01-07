@@ -11,6 +11,7 @@ import CommentForm from '../../components/CommentForm'
 import CommentTable from '../../components/CommentTable'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import SideDrawer from '../../components/SideDrawer'
+import { getComments } from '../../features/comments/commentSlice'
 
 export const SingleTask = ({ match }) => {
 
@@ -29,6 +30,7 @@ export const SingleTask = ({ match }) => {
         if(!user) {
             navigate('/')
           }
+        dispatch(getComments())
         dispatch(getTasks())
 
 

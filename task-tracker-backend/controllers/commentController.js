@@ -8,7 +8,8 @@ const Task = require('../models/taskModel')
 // @route       GET /api/comments
 // @access      Private
 const readComments = asyncHandler(async (req, res) => {
-    const comment = await Comment.find({ task: req.task.id})
+    console.log(req.body.task)
+    const comment = await Comment.find({ task: req.body.id})
 
     res.status(200).json(comment)
 })
@@ -18,7 +19,14 @@ const readComments = asyncHandler(async (req, res) => {
 // @access      Private
 const createComment = asyncHandler(async (req, res) => {
     
-    // console.log(req.body)
+    // console.log(req.user)
+
+    // Make sure that the comment has valid user
+    if(!req.user._id) {
+        console.log("Invalid user")
+        res.status(400)
+        throw new Error("Invalid user")
+    }
 
     // Make sure that the comment has task id and valid description
     if(!req.body.id) {
@@ -34,6 +42,7 @@ const createComment = asyncHandler(async (req, res) => {
     }
 
     const comment = await Comment.create({
+        user: req.user._id,
         task: req.body.id,
         description: req.body.description,
     })
@@ -82,15 +91,17 @@ const updateComment = asyncHandler(async (req, res) => {
 // @access      Private
 const deleteComment = asyncHandler(async (req, res) => {
     const comment = await Comment.findById(req.params.id)
+    
+    console.log(req.body)
 
-    if(!comment) {
-        res.status(400)
-        throw new Error("Comment not found")
-    }
+    // if(!comment) {
+    //     res.status(400)
+    //     throw new Error("Comment not found")
+    // }
 
 
-    // Check for user
-    // if(!req.task) {
+    // Check for task id
+    // if(!req.body.id) {
     //     res.status(401)
     //     throw new Error('User not found')
     // }

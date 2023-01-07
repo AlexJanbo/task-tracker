@@ -3,6 +3,11 @@ const { ObjectId } = mongoose.Schema.Types
 
 const commentSchema = mongoose.Schema(
     {
+        user: {
+            type: ObjectId,
+            required: true,
+            ref: "User"
+        },
         task: {
             type: ObjectId,
             required: true,

@@ -1,7 +1,8 @@
 import { Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteComment, reset } from '../features/comments/commentSlice'
+import { Navigate } from 'react-router-dom'
+import { deleteComment, getComments, reset } from '../features/comments/commentSlice'
 
 function CommentTable({ task }) {
 
@@ -9,7 +10,26 @@ function CommentTable({ task }) {
   const { user } = useSelector((state) => state.auth)
   const { comments } = useSelector((state) => state.comments) 
   const id = task._id
+  console.log(id)
 
+  const { isLoading, isError, message } = useSelector((state) => state.comments) 
+
+  useEffect(() => {
+    if(isError) {
+      console.log(message)
+    }
+
+    if(!user) {
+      Navigate('/')
+    }
+
+    dispatch(getComments({}))
+
+
+    return () => {
+      dispatch(reset())
+    }
+  }, [])
 
   const commentArray = Array.from(comments)
   // console.log(task)
@@ -52,13 +72,13 @@ function CommentTable({ task }) {
                 key={index}
                 sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "50%", paddingBottom: '0', paddingTop: "0"}}>{comment.text}</TableCell>
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "50%", paddingBottom: '0', paddingTop: "0"}}>{comment.description}</TableCell>
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "25%", paddingBottom: '0', paddingTop: "0"}}>{comment.postedBy}</TableCell>
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{comment.createdAt}</TableCell>
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}></TableCell>
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>
                   <Button onClick={(e) => {
-                    dispatch(deleteComment({id, comment }))
+                    dispatch(deleteComment(comment._id))
                   }}>
                     delete
                   </Button>
