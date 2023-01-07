@@ -10,28 +10,28 @@ const API_URL = "/api/comments/"
 
 
 // Create a new comment
-const createComment = async (commentData, token) => {
+const createComment = async (token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         },
     }
 
-    const response = await axios.post(API_URL, commentData , config)
+    const response = await axios.post(API_URL, config)
     console.log(response)
 
     return response.data
 }
 
 // Get task comments
-const getComments = async (token) => {
+const getComments = async (commentData, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         },
     }
 
-    const response = await axios.get(API_URL, config)
+    const response = await axios.get(API_URL, commentData, config)
 
     return response.data
 }
