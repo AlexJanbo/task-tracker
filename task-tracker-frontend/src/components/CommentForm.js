@@ -17,7 +17,7 @@ function CommentForm({ id }) {
 
         dispatch(createComment({id, description}))
         dispatch(reset())
-        // window.location.reload()
+        window.location.reload()
     }
   
     return (

@@ -4,20 +4,20 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import SingleTaskCard from '../../components/SingleTaskCard'
-import { getTasks, reset } from '../../features/tasks/taskSlice'
 import TaskHistory from '../../components/TaskHistory'
 import TaskAttachments from '../../components/TaskAttachments'
 import CommentForm from '../../components/CommentForm'
 import CommentTable from '../../components/CommentTable'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import SideDrawer from '../../components/SideDrawer'
-import { getComments } from '../../features/comments/commentSlice'
+import { getComments, reset } from '../../features/comments/commentSlice'
+import { getTasks } from '../../features/tasks/taskSlice'
 
 export const SingleTask = ({ match }) => {
 
+    const { user } = useSelector((state) => state.auth)
     const { taskId } = useParams()
     const { tasks, isLoading, isError, message } = useSelector((state) => state.tasks) 
-    const { user } = useSelector((state) => state.auth)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -30,8 +30,10 @@ export const SingleTask = ({ match }) => {
         if(!user) {
             navigate('/')
           }
+
         dispatch(getComments())
         dispatch(getTasks())
+
 
 
         return () => {
@@ -75,7 +77,7 @@ export const SingleTask = ({ match }) => {
                     </Stack>
                     <Stack flex={3} direction="column" spacing={4} justifyContent="space-between" >
                         <CommentForm id={Task._id} />
-                        <CommentTable task={Task} id={Task._id}/>
+                        <CommentTable id={Task._id}/>
                     </Stack>
                 </Stack>
             </Box>

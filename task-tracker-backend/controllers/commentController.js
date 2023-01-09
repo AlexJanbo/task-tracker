@@ -8,8 +8,8 @@ const Task = require('../models/taskModel')
 // @route       GET /api/comments
 // @access      Private
 const readComments = asyncHandler(async (req, res) => {
-    console.log(req.body.task)
-    const comment = await Comment.find({ task: req.body.id})
+    // console.log(req.user)
+    const comment = await Comment.find({ user: req.user.id})
 
     res.status(200).json(comment)
 })
@@ -19,7 +19,7 @@ const readComments = asyncHandler(async (req, res) => {
 // @access      Private
 const createComment = asyncHandler(async (req, res) => {
     
-    // console.log(req.user)
+    // console.log(req.body.task)
 
     // Make sure that the comment has valid user
     if(!req.user._id) {
@@ -90,6 +90,9 @@ const updateComment = asyncHandler(async (req, res) => {
 // @route       DELETE /api/comments
 // @access      Private
 const deleteComment = asyncHandler(async (req, res) => {
+    
+    // console.log(req.params)
+    
     const comment = await Comment.findById(req.params.id)
     
     console.log(req.body)
