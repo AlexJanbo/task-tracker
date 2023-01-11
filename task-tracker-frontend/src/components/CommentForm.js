@@ -14,8 +14,17 @@ function CommentForm({ id }) {
 
     const handleImage = (e) => {
         const file = e.target.files[0]
-        setFileToBase(file)
-        console.log(file)
+        console.log(e.target.files[0].type)
+        const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/pdf']
+
+        if(allowedFileTypes.includes(file.type)) {
+            setFileToBase(file)
+            console.log(file) 
+        } else {
+            throw new Error ("Invalid file type. Only jpeg, jpg, png, pdf allowed.")
+        }
+            
+
 
     }
 

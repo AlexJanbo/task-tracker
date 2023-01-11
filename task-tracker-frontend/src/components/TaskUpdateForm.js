@@ -25,7 +25,7 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
 
         dispatch(updateTask({taskId, title, description, priority, status}))
         dispatch(reset())
-        navigate('/tasks/')
+        navigate('/tasks')
     }
 
     return (

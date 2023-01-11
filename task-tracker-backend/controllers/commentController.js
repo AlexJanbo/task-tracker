@@ -41,11 +41,12 @@ const createComment = asyncHandler(async (req, res) => {
         throw new Error("Please add a description")
     }
 
+
     const comment = await Comment.create({
         user: req.user._id,
         task: req.body.id,
         description: req.body.description,
-        image: req.body.image,
+        image: req.body.image.type,
     })
 
     res.status(200).json(comment)
