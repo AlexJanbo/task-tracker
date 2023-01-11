@@ -8,14 +8,30 @@ function CommentForm({ id }) {
     const { user } = useSelector((state) => state.auth)
   
     const [ description, setDescription ] = useState('')
+    const [ image, setImage ] = useState('')
 
     const dispatch = useDispatch()
+
+    const handleImage = (e) => {
+        const file = e.target.files[0]
+        setFileToBase(file)
+        console.log(file)
+
+    }
+
+    const setFileToBase = (file) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+            setImage(reader.result)
+        }
+    }
 
     // console.log(id)
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(createComment({id, description}))
+        dispatch(createComment({id, description, image}))
         dispatch(reset())
         window.location.reload()
     }
@@ -36,6 +52,7 @@ function CommentForm({ id }) {
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </Grid>
+                <input onChange={handleImage} type="file" id="ImageUpload" name="image" label="Image"/>
                 <Button variant="contained" type='submit' onClick={handleSubmit}>
                     Add
                 </Button>

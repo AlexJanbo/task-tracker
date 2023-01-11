@@ -2,6 +2,7 @@ import { Box, Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, 
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteComment, reset } from '../features/comments/commentSlice';
+import CommentImageModal from './CommentImageModal';
 
 function CommentTable( id ) {
     
@@ -40,7 +41,8 @@ function CommentTable( id ) {
                 <TableHead>
                     <TableRow sx={{height: "2.5rem"}}>
                     <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}>Comment</TableCell>
-                    <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}>Made By:</TableCell>
+                    <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}>Made By</TableCell>
+                    <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}>Attachments</TableCell>
                     <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}} key="created">Created</TableCell>
                     </TableRow>
                 </TableHead>
@@ -54,6 +56,10 @@ function CommentTable( id ) {
                     >
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "50%", paddingBottom: '0', paddingTop: "0"}}>{comment.description}</TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "25%", paddingBottom: '0', paddingTop: "0"}}>{comment.user}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "25%", paddingBottom: '0', paddingTop: "0"}}>
+                            
+                            {comment.image ? <CommentImageModal image={comment.image}/> : "No Attachments"}
+                        </TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{comment.createdAt}</TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}></TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>
