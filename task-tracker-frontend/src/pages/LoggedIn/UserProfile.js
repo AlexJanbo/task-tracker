@@ -2,7 +2,7 @@ import { Box, Stack } from '@mui/material'
 import React from 'react'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import SideDrawer from '../../components/SideDrawer'
-import UserProfileImage from '../../components/UserProfileImage'
+import UserProfilePicture from '../../components/UserProfilePicture'
 import UserProfileInformation from '../../components/UserProfileInformation'
 
 function UserProfile() {
@@ -13,10 +13,11 @@ function UserProfile() {
     <>
       <Box container bgcolor={"#fafafa"} height={"100%"}>
         <LoggedInNavbar />
-
+        <Stack direction="row" spacing={4} justifyContent="space-between" >
           <SideDrawer />
-          <UserProfileImage />
+          <UserProfilePicture />
           <UserProfileInformation />
+          </Stack>
 
 
       </Box>

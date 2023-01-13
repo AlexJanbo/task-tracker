@@ -46,7 +46,7 @@ const createComment = asyncHandler(async (req, res) => {
         user: req.user._id,
         task: req.body.id,
         description: req.body.description,
-        image: req.body.image.type,
+        image: req.body.image,
     })
 
     res.status(200).json(comment)

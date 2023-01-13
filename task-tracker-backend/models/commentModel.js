@@ -19,6 +19,7 @@ const commentSchema = mongoose.Schema(
         },
         image: {
             type: String
+            
         }
     },
     {

@@ -14,18 +14,14 @@ function CommentForm({ id }) {
 
     const handleImage = (e) => {
         const file = e.target.files[0]
-        console.log(e.target.files[0].type)
+        // console.log("Type: " + file.type + " Size: " + file.size)
+        
         const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/pdf']
-
-        if(allowedFileTypes.includes(file.type)) {
+        if(allowedFileTypes.includes(file.type) && (file.size < 5000000)) {
             setFileToBase(file)
-            console.log(file) 
         } else {
             throw new Error ("Invalid file type. Only jpeg, jpg, png, pdf allowed.")
         }
-            
-
-
     }
 
     const setFileToBase = (file) => {
@@ -51,7 +47,7 @@ function CommentForm({ id }) {
                 <Typography variant="h4" style={{ textAlign: "center", marginBottom: "4%"}}>Add Comment!</Typography>
             </Grid>
             <Grid container spacing={3} sx={{ zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
-                <Grid item>
+                <Grid item p={2}>
                     <TextField
                         id="description"
                         name="description"

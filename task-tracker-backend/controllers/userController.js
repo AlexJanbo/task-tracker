@@ -149,6 +149,20 @@ const changePassword = asyncHandler(async (req, res) => {
 // @desc        Change user profile picture
 // @route       Put /api/users/change-profile-picture
 // @access      Private
+const changeProfilePicture = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user.id)
+
+    if(!user) {
+        res.status(400)
+        throw new Error("User not found")
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, {
+        profilePicture: req.body.profilePicture
+    }, {new: true})
+
+    res.status(200).json(updatedUser)
+})
 
 
 // @desc        Get user data
@@ -173,4 +187,5 @@ module.exports = {
     getUser,
     updateUser,
     changePassword,
+    changeProfilePicture,
 }
