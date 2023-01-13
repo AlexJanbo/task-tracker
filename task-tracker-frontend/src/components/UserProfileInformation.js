@@ -41,6 +41,7 @@ function UserProfileInformation() {
             <Typography variant='h7' width="50%" textAlign="center">{user.firstName}</Typography>
             <Typography variant='h7' width="50%" textAlign="center">{user.lastName}</Typography>
         </Grid>
+        
         <Grid item>
             <Link to={`/edit-user/`}>
                 <Button color="primary">
