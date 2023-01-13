@@ -146,6 +146,11 @@ const changePassword = asyncHandler(async (req, res) => {
 
 })
 
+// @desc        Change user profile picture
+// @route       Put /api/users/change-profile-picture
+// @access      Private
+
+
 // @desc        Get user data
 // @route       GET /api/users/me
 // @access      Private
