@@ -39,7 +39,6 @@ function UserProfilePicture() {
 
       dispatch(changeProfilePicture({ image }))
       dispatch(reset())
-      // window.location.reload()
   }
 
 
@@ -48,7 +47,7 @@ function UserProfilePicture() {
         <Box sx={{}}>
             <Grid sx={{ height: "25%", width: "25%", marginTop: "4rem"}} >
                 <Typography> Sup yall</Typography>
-                <img src={user.image} alt="Profile" />
+                <img src={user.image} alt="Profile" display="block" width="400px" height="400px" />
                 <input onChange={handleImage} type="file" id="ImageUpload" name="image" label="Image"/>
                 <Button variant="contained" type='submit' onClick={handleSubmit}>
                     Add

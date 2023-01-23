@@ -107,7 +107,7 @@ const updateUser = asyncHandler(async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        user: req.user.id
+        user: req.user.id,
     }, {new: true})
 
     res.status(200).json(updatedUser)
@@ -141,6 +141,7 @@ const changePassword = asyncHandler(async (req, res) => {
 
         const updatedUser = await User.findByIdAndUpdate(req.user.id, {
             password: hashedPassword,
+
         }, {new: true})
         res.status(200).json(updatedUser)
     }
@@ -157,13 +158,26 @@ const changeProfilePicture = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error("User not found")
     }
+    // console.log(req.headers)
     // console.log(req.body.image)
 
     const updatedUser = await User.findByIdAndUpdate(req.user.id, {
-        image: req.body.image
+        image: req.body.image,
+   
     }, {new: true})
 
-    res.status(200).json(updatedUser)
+    // console.log("updated user:" + updatedUser)
+
+    res.status(200).json({
+        username: updatedUser.username,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        email: updatedUser.email,
+        user: req.user.id,
+        image: req.body.image,
+        token: generateToken(user._id),
+
+    })
 })
 
 
