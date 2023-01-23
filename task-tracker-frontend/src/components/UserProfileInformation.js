@@ -40,6 +40,7 @@ function UserProfileInformation() {
         <Grid item sx={{ display: 'flex', height: '4rem', alignItems:"center"}}>
             <Typography variant='h7' width="50%" textAlign="center">{user.firstName}</Typography>
             <Typography variant='h7' width="50%" textAlign="center">{user.lastName}</Typography>
+            
         </Grid>
         
         <Grid item>

@@ -56,6 +56,20 @@ const changePassword = async (userData, token) => {
     return response.data
 }
 
+// Change user profile picture
+const changeProfilePicture = async (userData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + "change-profile-picture", userData , config)
+    console.log(response)
+
+    return response.data
+}
+
 const logout = () => {
     localStorage.removeItem('user')
 }
@@ -66,6 +80,7 @@ const authService = {
     login,
     updateUser,
     changePassword,
+    changeProfilePicture,
 }
 
 export default authService

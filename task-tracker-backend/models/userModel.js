@@ -26,7 +26,11 @@ const userSchema = mongoose.Schema({
     },
     profilePicture: {
         type: String,
-    }
+    },
+    image: {
+        type: String
+        
+    },
 },
 {
     timestamps: true

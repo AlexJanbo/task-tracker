@@ -76,6 +76,7 @@ const loginUser = asyncHandler(async (req, res) => {
             lastName: user.lastName,
             email: user.email,
             token: generateToken(user._id),
+            image: user.image,
         })
     } else {
         res.status(400)
@@ -156,9 +157,10 @@ const changeProfilePicture = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error("User not found")
     }
+    // console.log(req.body.image)
 
     const updatedUser = await User.findByIdAndUpdate(req.user.id, {
-        profilePicture: req.body.profilePicture
+        image: req.body.image
     }, {new: true})
 
     res.status(200).json(updatedUser)

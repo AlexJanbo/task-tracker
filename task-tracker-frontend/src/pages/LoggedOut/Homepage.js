@@ -5,6 +5,10 @@ import ReviewCard from '../../components/ReviewCard'
 import Footer from '../../components/Footer'
 import LoggedOutNavbar from '../../components/LoggedOutNavbar'
 
+const review1 = "I absolutely love this task tracking application! The ability to collaborate with others is a game changer for my team. The interface is user-friendly and intuitive, making it easy to assign tasks, set deadlines, and track progress. The real-time updates and notifications ensure that everyone is on the same page and no task falls through the cracks. The comments and file sharing feature also allows for seamless communication and collaboration among team members. Overall, this application has greatly improved our team's productivity and organization. I highly recommend it to any team looking for a reliable and efficient task tracking solution."
+const review2 = "I am beyond impressed with this task tracking website! As a busy person, time management is key, and this application has been a lifesaver. Not only does it allow me to efficiently assign tasks and deadlines to my team, but it also gives me peace of mind knowing that everything is organized and on track.  The best part is that I am able to spend more quality time with my partner now that work is not consuming all of my time. I am so grateful for this application and the positive impact it has had on my personal and professional life."
+const review3 = "Woof woof! I am just a dog but I can tell you that this task tracking website is pawsome! My human always used to be so busy with work and now that they started using this website, they have more free time to play fetch and take me for walks. I can tell that they are less stressed too, which makes me very happy. The website is very easy to use, and I can tell that it helps my human stay organized and on top of things. I like how the website keeps them updated and they can work with other humans to get things done. I am so glad that my human found this website, it has made a big difference in our lives. 5 paws up!"
+
 function Homepage() {
   return (
     <>
@@ -145,9 +149,9 @@ function Homepage() {
                 flexDirection: 'row',
                 justifyContent: 'center'
             }}>
-                <ReviewCard />
-                <ReviewCard />
-                <ReviewCard />
+                <ReviewCard review={review1} />
+                <ReviewCard review={review2} />
+                <ReviewCard review={review3} />
             </Grid>
         </Grid>
         <Divider />

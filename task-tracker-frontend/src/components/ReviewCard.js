@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Avatar, CardActionArea, Rating } from '@mui/material';
 import lizard from '../images/lizard.jpg'
 
-export default function MultiActionAreaCard() {
+export default function MultiActionAreaCard( props ) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -21,7 +21,7 @@ export default function MultiActionAreaCard() {
             Lizard
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            review text  review text review text review text review text 
+            {props.review}
           </Typography>
         </CardContent>
       </CardActionArea>
