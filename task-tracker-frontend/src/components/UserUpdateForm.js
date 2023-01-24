@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Grid, TextField, Typography } from '@mui/material'
+import { Button, Grid, Stack, TextField, Typography } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { reset, updateUser } from '../features/auth/authSlice'
@@ -22,8 +22,7 @@ function UserUpdateForm() {
  
         dispatch(updateUser({ username, firstName, lastName, email }))
         dispatch(reset())
-        navigate('/user-profile/')
-        window.location.reload()
+        // window.location.reload()
     }
     
     return (
@@ -72,9 +71,14 @@ function UserUpdateForm() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </Grid>
-                <Button type='submit' onClick={handleSubmit}>
-                    Update!
-                </Button>
+                <Stack direction="row" spacing={4} >
+                    <Button onClick={() => navigate("/user-profile")}>
+                        Back
+                    </Button>
+                    <Button type='submit' onClick={handleSubmit}>
+                        Update!
+                    </Button>
+                </Stack>
             </Grid>
         </Grid>
     )

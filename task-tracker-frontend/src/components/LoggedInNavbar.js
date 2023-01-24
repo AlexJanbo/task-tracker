@@ -10,6 +10,7 @@ import { Badge, Box, Grid, IconButton } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useSelector } from 'react-redux';
+import UserProfileCircle from './UserProfileCircle';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -55,6 +56,7 @@ const Search = styled('div')(({ theme }) => ({
 
   export default function LoggedInNavbar() {
 
+    
     const [anchorEl, setAnchorEl] = React.useState(null)
 
     const handleProfileMenuOpen = (event) => {
@@ -87,25 +89,26 @@ const Search = styled('div')(({ theme }) => ({
                         />
                     </Search>
                     <IconButton
-                    size="large"
-                    aria-label="show 17 new notifications"
-                    color="inherit"
+                      size="large"
+                      aria-label="show 17 new notifications"
+                      color="inherit"
                     >
-                    <Badge badgeContent={17} color="error">
+                    <Badge badgeContent={2} color="error">
                         <NotificationsIcon />
                     </Badge>
                     </IconButton>
                     <IconButton
-                    size="large"
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-controls={menuId}
-                    aria-haspopup="true"
-                    onClick={handleProfileMenuOpen}
-                    color="inherit"
+                      size="large"
+                      edge="end"
+                      aria-label="account of current user"
+                      aria-controls={menuId}
+                      aria-haspopup="true"
+                      onClick={handleProfileMenuOpen}
+                      color="inherit"
                     >
-                    <AccountCircle />
+                    <UserProfileCircle picture={user.image} />
                     </IconButton>
+                    {/* <AccountCircle  /> */}
                 </Grid>
                 </Toolbar>
             </AppBar>

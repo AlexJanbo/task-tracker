@@ -89,7 +89,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access      Private
 const updateUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user.id)
-    // console.log(req.body)
+    console.log(req.body)
 
     if(!user) {
         res.status(400)
@@ -107,10 +107,19 @@ const updateUser = asyncHandler(async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        user: req.user.id,
+
     }, {new: true})
 
-    res.status(200).json(updatedUser)
+
+    res.status(200).json({
+        username: updatedUser.username,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        email: updatedUser.email,
+        user: req.user.id,
+        image: req.user.image,
+        token: generateToken(user._id)
+    })
 })
 
 // @desc        Change Password
@@ -143,7 +152,16 @@ const changePassword = asyncHandler(async (req, res) => {
             password: hashedPassword,
 
         }, {new: true})
-        res.status(200).json(updatedUser)
+        res.status(200).json({
+            username: updatedUser.username,
+            firstName: updatedUser.firstName,
+            lastName: updatedUser.lastName,
+            email: updatedUser.email,
+            user: req.user.id,
+            image: req.body.image,
+            token: generateToken(user._id),
+            
+        })
     }
 
 })
