@@ -1,4 +1,4 @@
-import { Box, Grid, ThemeProvider } from '@mui/material'
+import { Avatar, Box, Grid, ThemeProvider } from '@mui/material'
 import React from 'react'
 
 function UserProfileCircle(props) {
@@ -7,7 +7,7 @@ function UserProfileCircle(props) {
 
     return (
     <Grid>
-        <img 
+        <Avatar 
             display="inline-block"
             src={props.picture} 
             alt="Profile Circle" 
