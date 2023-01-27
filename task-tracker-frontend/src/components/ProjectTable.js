@@ -29,7 +29,7 @@ function ProjectTable() {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, projects.length - page * rowsPerPage)
 
   return (
-    <Box flex={5} p={1} sx={{ display: { md: "none", lg: "block" } }}>
+    <Box flex={5} p={1} sx={{ display: {lg: "block" } }}>
       <ProjectHeader />
       <TableContainer  component={Paper}>
         <Table aria-label="simple table">

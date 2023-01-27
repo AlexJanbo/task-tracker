@@ -11,8 +11,7 @@ function UserProfileCircle(props) {
             display="inline-block"
             src={props.picture} 
             alt="Profile Circle" 
-            height="24px"
-            width="100%"
+            sx={{ height: 24, width: 24}}
         />
     </Grid>
   )

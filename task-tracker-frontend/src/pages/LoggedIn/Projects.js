@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import ProjectCard from '../../components/ProjectCard'
 import ProjectForm from '../../components/ProjectForm'
+import ProjectFormModal from '../../components/ProjectFormModal'
 import ProjectHeader from '../../components/ProjectHeader'
 import ProjectTable from '../../components/ProjectTable'
 import SideDrawer from '../../components/SideDrawer'
@@ -53,6 +54,7 @@ function Projects() {
         <LoggedInNavbar />
         <Stack direction="row" spacing={4} justifyContent="space-between" >
           <SideDrawer /> 
+          <ProjectFormModal />
           <ProjectTable />
           <ProjectForm />
         </Stack>
