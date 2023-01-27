@@ -35,9 +35,9 @@ function ProjectTable() {
         <Table aria-label="simple table">
           <TableHead>
             <TableRow sx={{height: "2.5rem"}}>
-              <TableCell sx={{ minWidth: '25rem'}}>Title</TableCell>
-              <TableCell sx={{ maxWidth: '25rem'}}>Description</TableCell>
-              <TableCell sx={{ minWidth: '25rem'}}></TableCell>
+              <TableCell sx={{ minWidth: '20%'}}>Title</TableCell>
+              <TableCell sx={{ maxWidth: '60%'}}>Description</TableCell>
+              <TableCell sx={{ minWidth: '20%%'}}></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -46,11 +46,11 @@ function ProjectTable() {
               .map((project, index) => (
               <TableRow
                 key={project._id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell>{project.title}</TableCell>
-                <TableCell>{project.description}</TableCell>
-                <TableCell sx={{paddingLeft: "25"}}>
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{project.title}</TableCell>
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{project.description}</TableCell>
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>
                   <Link to={`/projects/${project._id}/`}>
                     <Button>
                       View

@@ -23,10 +23,10 @@ function TaskForm() {
 
     return (
 
-      <Box flex={1} p={2} sx={{ display: { md: "none", lg: "block" } }}>
-        <Grid container spacing={3} sx={{ marginTop: "50%", display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center'}}>
+      <Box flex={1} p={2} sx={{ display: { xs: "none", lg: "block" } }}>
+        <Grid container spacing={3} sx={{ marginTop: "50%", display: 'flex', flexDirection: 'column'}}>
           <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: "orange", border: "2px solid black", borderRadius: "1rem"}}>
-            <Typography variant="h4" style={{ textAlign: "center", marginBottom: "4%"}}>Create a New Project!</Typography>
+            <Typography variant="h4" style={{ textAlign: "center", marginBottom: "4%"}}>Create a Project!</Typography>
           </Grid>
           <Grid container spacing={3} sx={{ zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
             <Grid item>
