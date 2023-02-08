@@ -41,8 +41,8 @@ function Dashboard() {
 
   return(
     <>
+        <LoggedInNavbar />
         <Box container bgcolor={"#fafafa"} height={"100vh"} >
-            <LoggedInNavbar />
             <SideDrawer />
             <DashboardPanel />
         </Box>

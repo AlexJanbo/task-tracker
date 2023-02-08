@@ -43,15 +43,13 @@ function Tasks() {
 
   return (
     <>
-      <Box container bgcolor={"#fafafa"} height={"100%"}>
-        <LoggedInNavbar />
+      <LoggedInNavbar />
+      <Box container bgcolor={"#fafafa"} sx={{ flex: 1}}>
         <Stack direction="row" spacing={4} justifyContent="space-between" >
           <SideDrawer />
           <TaskFormModal />
           <TaskTable />
-          <Stack direction="column" justifyContent="center">
-            <TaskForm />
-          </Stack>
+          <TaskForm />
         </Stack>
       </Box>
     </>

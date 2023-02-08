@@ -50,8 +50,8 @@ function Projects() {
 
   return (
     <>
+      <LoggedInNavbar />
       <Box container bgcolor={"#fafafa"} height={"100%"}>
-        <LoggedInNavbar />
         <Stack direction="row" spacing={4} justifyContent="space-between" >
           <SideDrawer /> 
           <ProjectFormModal />

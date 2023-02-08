@@ -11,9 +11,9 @@ function UserProfile() {
 
   return (
     <>
+      <LoggedInNavbar />
       <Box container bgcolor={"#fafafa"} height={"100%"}>
-        <LoggedInNavbar />
-        <Stack direction="row" spacing={4} justifyContent="space-between" >
+        <Stack direction="row" spacing={2} justifyContent="space-between" >
           <SideDrawer />
           <UserProfilePicture />
           <UserProfileInformation />

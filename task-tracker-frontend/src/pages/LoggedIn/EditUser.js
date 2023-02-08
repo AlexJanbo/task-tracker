@@ -7,8 +7,8 @@ import UserUpdateForm from '../../components/UserUpdateForm'
 function EditUser() {
   return (
     <>
+      <LoggedInNavbar />
       <Box bgcolor={"#fafafa"} height={"100vh"}>
-        <LoggedInNavbar />
         <SideDrawer /> 
         <UserUpdateForm />
       </Box>

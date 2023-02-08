@@ -50,7 +50,7 @@ function ProjectTable() {
               >
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{project.title}</TableCell>
                 <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{project.description}</TableCell>
-                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>
+                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}} justfiyContent="center">
                   <Link to={`/projects/${project._id}/`}>
                     <Button>
                       View

@@ -59,8 +59,8 @@ function SingleProject({ match }) {
 
     return (
         <>
+          <LoggedInNavbar />
           <Box container bgcolor={"#fafafa"} height={"100vh"} >
-            <LoggedInNavbar />
             <SideDrawer />
             <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
             <ProjectMembers />

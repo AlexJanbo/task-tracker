@@ -73,8 +73,8 @@ function EditProject( {match} ) {
   
     return (
     <>
+        <LoggedInNavbar />
         <Box container bgcolor={"#fafafa"} height={"100vh"} >
-            <LoggedInNavbar />
             <SideDrawer />
             <ProjectUpdateForm projectId={projectId} />
         </Box>

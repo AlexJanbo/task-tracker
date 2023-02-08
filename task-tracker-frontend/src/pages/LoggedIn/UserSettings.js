@@ -7,9 +7,9 @@ import UserSettingTable from '../../components/UserSettingTable'
 function UserSettings() {
   return (
     <>
+        <LoggedInNavbar />
         <Box container bgcolor={"#fafafa"} height={"100vh"} >
 
-          <LoggedInNavbar />
           <SideDrawer />
           <UserSettingTable />
         </Box>

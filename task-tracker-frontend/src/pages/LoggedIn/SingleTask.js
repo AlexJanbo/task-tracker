@@ -67,10 +67,10 @@ export const SingleTask = ({ match }) => {
 
     return (
         <>  
-            <Box container bgcolor={"#fafafa"} height={"100vh"} >
-                <LoggedInNavbar />
+            <LoggedInNavbar />
+            <Box container bgcolor={"#fafafa"} height={"100%"} sx={{ display: {xs: "none", lg: "block"}}}>
                 <Stack direction="row" spacing={4} justifyContent="space-between" >
-                    <SideDrawer flex={1} />
+                    <SideDrawer />
                     <Stack flex={3} direction="column" spacing={4} justifyContent="start" >
                         <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
                         <TaskHistory />
@@ -80,6 +80,18 @@ export const SingleTask = ({ match }) => {
                         <CommentTable id={Task._id}/>
                     </Stack>
                 </Stack>
+            </Box>
+            <Box container bgcolor={"#fafafa"} height={"100vh"} sx={{ display: {xs: "block"}}}>
+                <Stack direction="row" >
+                    <SideDrawer flex={1} />
+                    <Stack flex={3} direction="column" spacing={4} justifyContent="start" >
+                        <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
+                        <CommentTable id={Task._id}/>
+                        <CommentForm id={Task._id} />
+                        <TaskHistory />
+                    </Stack>
+                </Stack>
+
             </Box>
         </>
     )

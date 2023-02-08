@@ -57,8 +57,8 @@ function EditTask( {match} ) {
 
     return (
         <>  
+            <LoggedInNavbar />
             <Box bgcolor={"#fafafa"} height={"100vh"}>
-                <LoggedInNavbar />
                 <SideDrawer />    
                 <Grid container>
                     <Grid item style={{ marginLeft: "15%", marginTop: "5%"}}>
