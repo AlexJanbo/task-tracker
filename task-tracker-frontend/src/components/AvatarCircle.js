@@ -1,7 +1,7 @@
 import { Avatar, Box, Grid, ThemeProvider } from '@mui/material'
 import React from 'react'
 
-function UserProfileCircle(props) {
+function AvatarCircle(props) {
 
 
 
@@ -17,4 +17,4 @@ function UserProfileCircle(props) {
   )
 }
 
-export default UserProfileCircle
+export default AvatarCircle

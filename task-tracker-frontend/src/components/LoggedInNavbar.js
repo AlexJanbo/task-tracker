@@ -10,7 +10,8 @@ import { Badge, Box, Grid, IconButton } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useSelector } from 'react-redux';
-import UserProfileCircle from './UserProfileCircle';
+import AvatarCircle from './AvatarCircle';
+import AvatarMenu from './AvatarMenu';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -97,7 +98,8 @@ const Search = styled('div')(({ theme }) => ({
                         <NotificationsIcon />
                     </Badge>
                     </IconButton>
-                    <IconButton
+                    <AvatarMenu picture={user.image}/>
+                    {/* <IconButton
                       size="large"
                       edge="end"
                       aria-label="account of current user"
@@ -106,8 +108,8 @@ const Search = styled('div')(({ theme }) => ({
                       onClick={handleProfileMenuOpen}
                       color="inherit"
                     >
-                    <UserProfileCircle picture={user.image} />
-                    </IconButton>
+                      <AvatarCircle picture={user.image} />
+                    </IconButton> */}
                     {/* <AccountCircle  /> */}
                 </Grid>
                 </Toolbar>
