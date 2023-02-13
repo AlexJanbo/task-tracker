@@ -14,6 +14,7 @@ import SingleProject from './pages/LoggedIn/SingleProject'
 import EditProject from './pages/LoggedIn/EditProject'
 import EditUser from './pages/LoggedIn/EditUser'
 import ChangePassword from './pages/LoggedIn/ChangePassword'
+import ManageRoles from './pages/LoggedIn/ManageRoles'
 
 
 
@@ -26,6 +27,7 @@ export default function App() {
                     <Route path='/login' element={<Login />}/>
                     <Route path='/signup' element={<Signup />}/>
                     <Route path='/dashboard' element={<Dashboard />}/>
+                    <Route path='/manage-roles' element={<ManageRoles />}/>
                     <Route path='/projects' element={<Projects />} />
                     <Route path='/tasks' element={<Tasks />} />
                     <Route path='/user-profile' element={<UserProfile />} />

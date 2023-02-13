@@ -74,6 +74,9 @@ const list = {
 
   export default function SideDrawer() {
 
+    const { user } = useSelector((state) => state.auth)
+    console.log(user)
+
 
 
     return (
@@ -99,7 +102,8 @@ const list = {
                   </ListItemButton>
                 </ListItem>
               </Link>
-              <Link to={list.manageRoles.link}>
+              {user.role === "Admin" && (
+                <Link to={list.manageRoles.link}>
                 <ListItem key={list.manageRoles.text} disablePadding>
                   <ListItemButton>
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
@@ -109,6 +113,7 @@ const list = {
                   </ListItemButton>
                 </ListItem>
               </Link>
+              )}
               <Link to={list.projects.link}>
                 <ListItem key={list.projects.text} disablePadding>
                   <ListItemButton>

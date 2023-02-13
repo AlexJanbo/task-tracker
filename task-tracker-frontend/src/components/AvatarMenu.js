@@ -116,14 +116,12 @@ export default function AvatarMenu(props) {
                 Settings
                 </MenuItem>
             </Link>
-            <MenuItem onClick={handleClose}>
             {/* <ListItemIcon>
                 <Logout fontSize="small" />
             </ListItemIcon> */}
             <Button color="error" onClick={onLogout}>
                 Logout
             </Button> 
-            </MenuItem>
         </Menu>
         </>
     );
