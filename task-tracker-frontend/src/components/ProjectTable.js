@@ -1,9 +1,8 @@
 import React, { useState} from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Box } from '@mui/material/'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Box, Grid, Typography } from '@mui/material/'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import TablePagination from '@mui/material/TablePagination';
-import ProjectHeader from './ProjectHeader';
 
 function ProjectTable() {
 
@@ -30,7 +29,9 @@ function ProjectTable() {
 
   return (
     <Box flex={5} p={1} sx={{ display: {lg: "block" } }}>
-      <ProjectHeader />
+      <Grid style={{ marginLeft: "5%", marginRight: "5%", marginTop: "7%", backgroundColor: "orange", height: "4rem", border: "2px solid black", borderRadius: "1rem" }}>
+          <Typography variant="h3" style={{paddingTop: ".2rem", color: "black", textAlign: "center"}}>My Projects!</Typography>
+      </Grid>
       <TableContainer  component={Paper}>
         <Table aria-label="simple table">
           <TableHead>

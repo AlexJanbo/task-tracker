@@ -31,15 +31,15 @@ function TaskTable() {
 
   return (
     <>
-      <Box flex={5} p={1} sx={{ display: {lg: "block" } }}>
+      <Box flex={5} p={1} m={2} sx={{ display: {lg: "block" } }}>
         <TaskHeader />
         <TableContainer component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
               <TableRow sx={{height: "2.5rem"}}>
-                <TableCell sx={{ width: "20%", fontWeight: "bold", fontSize: "20px"}}>Title</TableCell>
-                <TableCell sx={{ width: "60%", fontWeight: "bold", fontSize: "20px"}}>Description</TableCell>
-                <TableCell sx={{ width: "5%", fontWeight: "bold", fontSize: "20px"}} key="priority">
+                <TableCell sx={{ fontWeight: "bold", fontSize: "20px"}}>Title</TableCell>
+                <TableCell sx={{ fontWeight: "bold", fontSize: "20px"}}>Description</TableCell>
+                <TableCell sx={{ fontWeight: "bold", fontSize: "20px"}} key="priority">
                   Priority
                   {/* <TableSortLabel
                     active={"priority" === "priority"}
@@ -48,7 +48,7 @@ function TaskTable() {
                   >
                   </TableSortLabel> */}
                 </TableCell>
-                <TableCell sx={{ width: "5%", fontWeight: "bold", fontSize: "20px"}} key="status">
+                <TableCell sx={{ fontWeight: "bold", fontSize: "20px"}} key="status">
                   Status
                   {/* <TableSortLabel
                     active={"status" === "status"}
@@ -57,14 +57,14 @@ function TaskTable() {
                   >
                   </TableSortLabel> */}
                 </TableCell>
-                <TableCell sx={{ width: "5%", fontWeight: "bold", fontSize: "20px"}} key="created">
+                <TableCell sx={{ fontWeight: "bold", fontSize: "20px"}} key="created">
                   Created
                   {/* <TableSortLabel
                     active={true}
                   >
                   </TableSortLabel> */}
                 </TableCell>
-                <TableCell sx={{ width: "5%"}}></TableCell>
+                <TableCell sx={{}}></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -75,12 +75,12 @@ function TaskTable() {
                   key={task._id}
                   sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{task.title}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "50%", paddingBottom: '0', paddingTop: "0"}}>{task.description}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{task.priority}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{task.status}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>
+                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.title}</TableCell>
+                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.description}</TableCell>
+                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.priority}</TableCell>
+                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.status}</TableCell>
+                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
+                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>
                     {/* <Link to={`/editTask/${task._id}/`}>
                       <Button>
                         Edit

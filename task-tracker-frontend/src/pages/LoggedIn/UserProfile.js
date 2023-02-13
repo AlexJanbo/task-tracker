@@ -17,7 +17,7 @@ function UserProfile() {
           <SideDrawer />
           <UserProfilePicture />
           <UserProfileInformation />
-          </Stack>
+        </Stack>
 
 
       </Box>

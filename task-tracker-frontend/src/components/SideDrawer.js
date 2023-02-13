@@ -29,6 +29,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
+import GroupIcon from '@mui/icons-material/Group';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 
 const list = {
@@ -37,6 +39,12 @@ const list = {
       icon: <DashboardIcon />,
       link: '/dashboard'
       
+    },
+    manageRoles: {
+      text: 'Manage Roles',
+      icon: <GroupAddIcon />,
+      link: '/manage-roles'
+
     },
     projects: {
       text: 'Projects',
@@ -91,11 +99,21 @@ const list = {
                   </ListItemButton>
                 </ListItem>
               </Link>
+              <Link to={list.manageRoles.link}>
+                <ListItem key={list.manageRoles.text} disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
+                      {list.manageRoles.icon}
+                    </ListItemIcon>
+                    <ListItemText primary={list.manageRoles.text} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
               <Link to={list.projects.link}>
                 <ListItem key={list.projects.text} disablePadding>
                   <ListItemButton>
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
-                      {<WorkIcon />}
+                      {list.projects.icon}
                     </ListItemIcon>
                     <ListItemText primary={list.projects.text} />
                   </ListItemButton>

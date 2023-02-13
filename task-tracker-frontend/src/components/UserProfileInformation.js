@@ -20,7 +20,7 @@ function UserProfileInformation() {
     }
 
   return (
-    <Grid container sx={{ display: 'flex', flexDirection: 'column', width: '20%', height: "60%", marginLeft: '15%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
+    <Grid container sx={{ display: 'flex', flexDirection: 'column', maxWidth: "25vw", maxHeight: "40vh", marginLeft: '15%', marginTop: '10%', border: '.2rem solid black', borderRadius: '.5rem'}}>
         <Grid item sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '4rem', color: 'black', bgcolor: "orange", borderBottom: '.2rem solid black'}}>
             <Typography textAlign='center' variant='h5'>Profile Information</Typography>
         </Grid>

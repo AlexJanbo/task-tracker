@@ -45,7 +45,7 @@ function UserProfilePicture() {
   return (
     <>
         <Box sx={{}}>
-            <Grid sx={{ height: "25%", width: "25%", marginTop: "4rem", marginLeft: "0px"}} >
+            <Grid sx={{ height: "100vh", marginTop: "4rem"}} >
                 <img src={user.image} alt="Profile" display="block" width="400px" height="400px" />
                 <input onChange={handleImage} type="file" id="ImageUpload" name="image" label="Image"/>
                 <Button variant="contained" type='submit' onClick={handleSubmit}>

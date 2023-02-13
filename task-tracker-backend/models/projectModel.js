@@ -16,6 +16,11 @@ const projectSchema = mongoose.Schema(
             type: String,
             required: [true, 'Please add a description']
         },
+        members: {
+            type: ObjectId,
+            required: true,
+            ref: "User"
+        },
     }
 )
 

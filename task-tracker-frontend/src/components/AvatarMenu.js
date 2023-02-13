@@ -12,7 +12,7 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import AvatarCircle from './AvatarCircle';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
 import { Button } from '@mui/material';
@@ -39,6 +39,8 @@ export default function AvatarMenu(props) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+
     return (
         <>
         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -90,10 +92,13 @@ export default function AvatarMenu(props) {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
+            <Link to={"/user-profile"}>
             <MenuItem onClick={handleClose}>
-            <Avatar /> Profile
+            <Avatar />
+                    Profile
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            </Link>
+            <MenuItem onClick={(handleClose)}>
             <Avatar /> My account
             </MenuItem>
             <Divider />
@@ -103,12 +108,14 @@ export default function AvatarMenu(props) {
             </ListItemIcon>
             Add another account
             </MenuItem>
-            <MenuItem onClick={handleClose}>
-            <ListItemIcon>
-                <Settings fontSize="small" />
-            </ListItemIcon>
-            Settings
-            </MenuItem>
+            <Link to={"/user-profile"}>
+                <MenuItem onClick={handleClose}>
+                <ListItemIcon>
+                    <Settings fontSize="small" />
+                </ListItemIcon>
+                Settings
+                </MenuItem>
+            </Link>
             <MenuItem onClick={handleClose}>
             {/* <ListItemIcon>
                 <Logout fontSize="small" />

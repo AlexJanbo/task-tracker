@@ -26,7 +26,8 @@ const createProject = asyncHandler(async (req, res) => {
     const project = await Project.create({
         title: req.body.title,
         description: req.body.description,
-        user: req.user.id
+        user: req.user.id,
+        members: req.user.id,
     })
 
     res.status(200).json(project)
