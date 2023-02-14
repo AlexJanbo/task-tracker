@@ -206,6 +206,7 @@ const changeProfilePicture = asyncHandler(async (req, res) => {
 // @access      Private
 const getUser = asyncHandler(async (req, res) => {
     
+    
 
     res.status(200).json(req.user)
 })
@@ -217,6 +218,23 @@ const generateToken = (id) => {
     })
 }
 
+// @desc        Get all users
+// @route       GET /api/users/get-all-users
+// @access      Private
+const getAllUsers = asyncHandler(async (req, res) => {
+    
+    const users = await User.find({})
+    
+    if(users) {
+        res.status(200)
+        res.send(users)
+    }
+    else {
+        res.status(404)
+    }
+
+})
+
 module.exports = {
     registerUser,
     loginUser,
@@ -224,4 +242,5 @@ module.exports = {
     updateUser,
     changePassword,
     changeProfilePicture,
+    getAllUsers,
 }
