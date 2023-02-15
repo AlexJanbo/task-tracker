@@ -1,5 +1,5 @@
 const express = require('express')
-const { getUser, loginUser, registerUser, updateUser, changePassword, changeProfilePicture, getAllUsers } = require('../controllers/userController')
+const { getUser, loginUser, registerUser, updateUser, changePassword, changeProfilePicture, getAllUsers, changeRole } = require('../controllers/userController')
 
 const router = express.Router()
 
@@ -12,6 +12,7 @@ router.post('/me', protect, getUser)
 router.route('/get-all-users').get(protect, getAllUsers)
 router.route('/update').put(protect, updateUser)
 router.route('/change-password').put(protect, changePassword)
+router.route('/change-role').put(protect, changeRole)
 router.route('/change-profile-picture').put(protect, changeProfilePicture)
 
 

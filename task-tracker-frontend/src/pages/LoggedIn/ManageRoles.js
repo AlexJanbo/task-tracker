@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material'
+import { Box, CircularProgress, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -14,42 +14,44 @@ function ManageRoles() {
 
 
     const auth = useSelector(state => state.auth)
+    const { isLoading, isError, message } = useSelector((state) => state.auth)
     const  [ users, setUsers ] = useState([])
+
 
     useEffect(() => {
 
+        if(isError) {
+          console.log(message)
+        }
+    
         const fetchData = async () => {
             const data = await dispatch(getAllUsers());
             setUsers(data);
          }
-        
-        // if(!response.ok) {
-        //     throw new Error(response.statusText)
-        // }
-        // const data = JSON.parse(response)
-        // setUsers(data)
 
         fetchData()
         .catch(console.error)
+
         
     }, [])
 
-    const allUsersArray = Array.from(users.payload)
-    console.log(allUsersArray)
+    let allUsersArray = []
+
+    if(users.payload) {
+      allUsersArray = Array.from(users.payload)
+      console.log(allUsersArray)
+    }
+
+    if(isLoading) {
+      return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
+    }
 
 
-
-
-
-    
-  
-    
-  
     return (
     <>
       <LoggedInNavbar />
       <Box container bgcolor={"#fafafa"} sx={{ flex: 1}}>
-        <Stack direction="row" spacing={4} justifyContent="space-between" >
+        <Stack direction="row" spacing={4} margin={5} justifyContent="space-between" >
           <SideDrawer />
           <ManageRolesTable users={allUsersArray}/>
         </Stack>

@@ -96,6 +96,20 @@ const getAllUsers = async (token) => {
     return response.data
 }
 
+// Change user role
+const changeRole = async (userData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + "change-role", userData , config)
+    // console.log(response)
+
+    return response.data
+}
+
 const authService = {
     register,
     logout,
@@ -104,6 +118,7 @@ const authService = {
     changePassword,
     changeProfilePicture,
     getAllUsers,
+    changeRole
 }
 
 export default authService
