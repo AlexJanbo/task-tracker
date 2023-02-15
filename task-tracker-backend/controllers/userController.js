@@ -235,6 +235,28 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 })
 
+// @desc        Change Role
+// @route       PUT /api/user/change-role
+// @access      Private
+const changeRole = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.body.id)
+    // console.log("req.body:" + req.body)
+
+
+    if(!user) {
+        res.status(400)
+        throw new Error("User not found")
+    }
+
+
+    const updatedUser = await User.findByIdAndUpdate(req.body.id, {
+        role: req.body.role,
+
+    }, {new: false})
+    res.status(200).json(updatedUser)
+    
+})
+
 module.exports = {
     registerUser,
     loginUser,
@@ -243,4 +265,5 @@ module.exports = {
     changePassword,
     changeProfilePicture,
     getAllUsers,
+    changeRole,
 }
