@@ -52,6 +52,17 @@ export const deleteProject = createAsyncThunk('projects/delete', async (id, thun
         return thunkAPI.rejectWithValue(message)
     }
 })
+
+// Add a project member
+export const addProjectMember = createAsyncThunk('projects/addMember', async (projectData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await projectService.addProjectMember(projectData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
  
 export const projectSlice = createSlice({
     name: 'project',
@@ -109,6 +120,19 @@ export const projectSlice = createSlice({
                 state.projects = state.projects.filter((project) => project._id !== action.payload.id)
             })
             .addCase(deleteProject.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(addProjectMember.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(addProjectMember.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.projects = action.payload
+            })
+            .addCase(addProjectMember.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

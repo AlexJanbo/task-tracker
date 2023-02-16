@@ -16,11 +16,10 @@ const projectSchema = mongoose.Schema(
             type: String,
             required: [true, 'Please add a description']
         },
-        members: {
+        members: [{
             type: ObjectId,
-            required: true,
             ref: "User"
-        },
+        }],
     }
 )
 

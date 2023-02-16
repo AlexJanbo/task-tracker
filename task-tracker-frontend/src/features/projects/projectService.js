@@ -63,11 +63,26 @@ const deleteProject = async (projectId, token) => {
     return response.data
 }
 
+// Add member to project
+const addProjectMember = async (projectData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + "add-project-member", projectData , config)
+    console.log(response)
+
+    return response.data
+}
+
 const projectService = {
     createProject,
     getProjects,
     updateProject,
     deleteProject,
+    addProjectMember
 }
 
 export default projectService
