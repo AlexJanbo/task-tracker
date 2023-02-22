@@ -34,7 +34,7 @@ const createProject = asyncHandler(async (req, res) => {
 })
 
 // @desc        Update Project
-// @route       PUT /api/projects
+// @route       PUT /api/projects/:id
 // @access      Private
 const updateProject = asyncHandler(async (req, res) => {
     const project = await Project.findById(req.params.id)
@@ -72,7 +72,7 @@ const updateProject = asyncHandler(async (req, res) => {
 })
 
 // @desc        Delete Project
-// @route       DELETE /api/projects
+// @route       DELETE /api/projects/:id
 // @access      Private
 const deleteProject = asyncHandler(async (req, res) => {
     const project = await Project.findById(req.params.id)
@@ -101,7 +101,7 @@ const deleteProject = asyncHandler(async (req, res) => {
 })
 
 // @desc        Add member to project
-// @route       PUT /api/projects/add-project-member
+// @route       PUT /api/projects/:id/members
 // @access      Private
 const addProjectMember = asyncHandler(async (req, res) => {
     const { projectId } = req.body
@@ -128,10 +128,18 @@ const addProjectMember = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc        Get all of the members for a project
+// @route       PUT /api/projects/:id
+// @access      Private
+const getProjectMembers = asyncHandler(async (req, res) => {
+    
+})
+
 module.exports = {
     readProjects,
     createProject,
     updateProject,
     deleteProject,
     addProjectMember,
+    getProjectMembers,
 }
