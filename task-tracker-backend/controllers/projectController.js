@@ -104,20 +104,24 @@ const deleteProject = asyncHandler(async (req, res) => {
 // @route       PUT /api/projects/add-project-member
 // @access      Private
 const addProjectMember = asyncHandler(async (req, res) => {
-    const { id } = req.params
-    const { memberId } = req.body
+    const { projectId } = req.body
+    const { username } = req.body
+    // console.log(req.body)
 
     try {
-        const user = await User.findById(memberId)
+        const user = await User.find({ username: username})
+        // console.log(user)
         if(!user) {
             return res.status(404).json({message: "User not found"})
         }
+        
+        // Add code to check if member is already in project
 
         const project = await Project.updateOne(
-            { _id: id },
-            { $push: { members: memberId }}
+            { _id: projectId },
+            { $push: { members: user } }
+        );
 
-        )
         res.status(200).json(project)
     } catch (err) {
         res.status(500).json({ message: err.message})
