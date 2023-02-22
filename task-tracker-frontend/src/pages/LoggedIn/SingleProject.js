@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import ProjectMembers from '../../components/ProjectMembers'
+import ProjectMembersTable from '../../components/ProjectMembersTable'
 import ProjectTasks from '../../components/ProjectTasks'
 import SideDrawer from '../../components/SideDrawer'
 import SingleProjectCard from '../../components/SingleProjectCard'
@@ -64,7 +65,7 @@ function SingleProject({ match }) {
             <SideDrawer />
             <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
             <ProjectMembers id={projectId} />
-            {/* <ProjectTasks /> */}
+            <ProjectMembersTable members={Project.members} />
           </Box>
         </>
     )
