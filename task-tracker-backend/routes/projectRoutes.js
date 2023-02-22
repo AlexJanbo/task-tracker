@@ -7,6 +7,6 @@ const { protect } = require('../middleware/authenticationMiddleware')
 
 router.route('/').post(protect, createProject).get(protect, readProjects)
 router.route('/:id').put(protect, updateProject).delete(protect, deleteProject)
-router.route('/add-project-member').put(protect, addProjectMember)
+router.route('/:id/members').post(protect, addProjectMember)
 
 module.exports = router

@@ -35,24 +35,24 @@ function SingleProject({ match }) {
         }
       }, [user, navigate, isError, message, dispatch])
 
-      if(isLoading) {
-        return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
-      }
+    if(isLoading) {
+      return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
+    }
 
-        let Project;
-        projects?.map(project => {
-        if(project._id === projectId) {
-            Project = project
-        }
-        return Project
-        })
-        // console.log(Project)
+    let Project;
+    projects?.map(project => {
+    if(project._id === projectId) {
+        Project = project
+    }
+    return Project
+    })
+    // console.log(Project)
 
 
-    if(!projects) {
+    if(!Project) {
         return (
             <Grid>
-                <h2>Project not found!</h2>
+                <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
             </Grid>
         )
     }
@@ -63,8 +63,8 @@ function SingleProject({ match }) {
           <Box container bgcolor={"#fafafa"} height={"100vh"} >
             <SideDrawer />
             <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
-            <ProjectMembers />
-            <ProjectTasks />
+            <ProjectMembers id={projectId} />
+            {/* <ProjectTasks /> */}
           </Box>
         </>
     )

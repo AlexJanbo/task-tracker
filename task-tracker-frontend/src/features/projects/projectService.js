@@ -70,8 +70,8 @@ const addProjectMember = async (projectData, token) => {
             Authorization: `Bearer ${token}`
         },
     }
-
-    const response = await axios.put(API_URL + "add-project-member", projectData , config)
+    console.log(projectData)
+    const response = await axios.post(API_URL + projectData.projectId + "/members/", projectData , config)
     console.log(response)
 
     return response.data
