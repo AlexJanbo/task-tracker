@@ -1,13 +1,15 @@
-import { Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
+import { Box, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserInformation } from '../features/auth/authSlice'
+import { getUserInformation, reset } from '../features/auth/authSlice'
 
 function ProjectMembersTable(props) {
 
     const projectMembers = props.members
-    console.log(projectMembers)
+    // console.log(projectMembers)
     const [ memberIds, setMemberIds ] = useState([...projectMembers])
+    const [ members, isLoading ] = useSelector((state) => state.auth.members)
+    console.log("this is state.auth:" + members)
 
 
 
@@ -18,6 +20,7 @@ function ProjectMembersTable(props) {
     useEffect(() => {
 
         dispatch(getUserInformation({memberIds}))
+        dispatch(reset())
     }, [])
 
 
@@ -33,7 +36,11 @@ function ProjectMembersTable(props) {
         setPage(0);
     };
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, projectMembers.length - page * rowsPerPage)
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, projectMembers.length - page * rowsPerPage)
+
+    if(isLoading) {
+        return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
+    }
 
     return (
         <Box flex={5} p={1} sx={{ marginLeft: "15%", display: {lg: "block" } }}>
