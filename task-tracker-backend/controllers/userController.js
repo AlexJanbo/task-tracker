@@ -244,7 +244,7 @@ const changeRole = asyncHandler(async (req, res) => {
 
 
     if(!user) {
-        res.status(400)
+        res.status(404)
         throw new Error("User not found")
     }
 
@@ -257,6 +257,37 @@ const changeRole = asyncHandler(async (req, res) => {
     
 })
 
+// @desc        Get user information from Id
+// @route       GET /api/user/:id
+// @access      Private
+const getUserInformation = asyncHandler(async (req, res) => {
+    // const userId = req.body.userId
+    const { memberIds } = req.body
+    // const ObjectIds = memberIds.map((id) => { return ObjectId(id) });
+    // console.log(ObjectIds)
+
+    let memberArray = []
+    
+    User.find({ _id: { $in: memberIds}})
+        .then(users => {
+            users.forEach(user => {
+                console.log(user.username + user.firstName + user.lastName + user.email + user.role)
+
+            })
+        })
+
+
+    // if(user) {
+    //     res.status(200).json(user)
+    // } 
+    // else {
+    //     res.status(404)
+    //     throw new Error("User not found")
+    // }
+})
+
+
+
 module.exports = {
     registerUser,
     loginUser,
@@ -266,4 +297,5 @@ module.exports = {
     changeProfilePicture,
     getAllUsers,
     changeRole,
+    getUserInformation,
 }

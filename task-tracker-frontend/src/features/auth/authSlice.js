@@ -92,15 +92,29 @@ export const changeRole = createAsyncThunk('auth/changeRole', async (userData, t
     }
 })
 
+// Get User Information
+export const getUserInformation = createAsyncThunk('auth/getUserInformation', async (userData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await authService.getUserInformation(userData, token)
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 export const authSlice = createSlice({
     name: 'auth',
-    initialState,
+    initialState: {
+        members: []
+    },
     reducers: {
         reset: (state) => {
             state.isLoading = false
             state.isError = false
             state.isSuccess = false
             state.message = ''
+            state.members = []
         }
     },
     extraReducers: (builder) => {
@@ -197,6 +211,18 @@ export const authSlice = createSlice({
                 state.user = action.payload
             })
             .addCase(changeRole.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(getUserInformation.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getUserInformation.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+            })
+            .addCase(getUserInformation.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

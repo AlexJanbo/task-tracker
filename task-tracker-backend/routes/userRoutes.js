@@ -1,5 +1,5 @@
 const express = require('express')
-const { getUser, loginUser, registerUser, updateUser, changePassword, changeProfilePicture, getAllUsers, changeRole } = require('../controllers/userController')
+const { getUser, loginUser, registerUser, updateUser, changePassword, changeProfilePicture, getAllUsers, changeRole, getUserInformation } = require('../controllers/userController')
 
 const router = express.Router()
 
@@ -9,6 +9,7 @@ const loginAttemptLimiter = require('../middleware/loginAttemptLimiter')
 router.post('/', registerUser)
 router.post('/login', loginAttemptLimiter, loginUser)
 router.post('/me', protect, getUser)
+router.route('/get-user-information').post(protect, getUserInformation)
 router.route('/get-all-users').get(protect, getAllUsers)
 router.route('/update').put(protect, updateUser)
 router.route('/change-password').put(protect, changePassword)

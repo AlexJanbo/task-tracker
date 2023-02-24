@@ -1,10 +1,25 @@
 import { Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserInformation } from '../features/auth/authSlice'
 
 function ProjectMembersTable(props) {
 
     const projectMembers = props.members
     console.log(projectMembers)
+    const [ memberIds, setMemberIds ] = useState([...projectMembers])
+
+
+
+
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+
+        dispatch(getUserInformation({memberIds}))
+    }, [])
+
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -21,7 +36,7 @@ function ProjectMembersTable(props) {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, projectMembers.length - page * rowsPerPage)
 
     return (
-        <Box flex={5} p={1} sx={{ display: {lg: "block" } }}>
+        <Box flex={5} p={1} sx={{ marginLeft: "15%", display: {lg: "block" } }}>
             <Grid style={{ marginLeft: "5%", marginRight: "5%", marginTop: "7%", backgroundColor: "orange", height: "4rem", border: "2px solid black", borderRadius: "1rem" }}>
                 <Typography variant="h3" style={{paddingTop: ".2rem", color: "black", textAlign: "center"}}>Project Members!</Typography>
             </Grid>
@@ -29,7 +44,7 @@ function ProjectMembersTable(props) {
                 <Table aria-label="simple table">
                 <TableHead>
                     <TableRow sx={{height: "2.5rem"}}>
-                    <TableCell sx={{ minWidth: '20%'}}>Title</TableCell>
+                    <TableCell sx={{ minWidth: '20%'}}>Members</TableCell>
                     <TableCell sx={{ maxWidth: '60%'}}>Description</TableCell>
                     <TableCell sx={{ minWidth: '20%%'}}></TableCell>
                     </TableRow>
@@ -37,13 +52,13 @@ function ProjectMembersTable(props) {
                 <TableBody>
                     {projectMembers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((project, index) => (
+                    .map((member, index) => (
                     <TableRow
-                        key={project._id}
+                        key={member._id}
                         sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{project.title}</TableCell>
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{project.description}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{}</TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}} justfiyContent="center">
                         {/* <Link to={`/projects/${project._id}/`}>
                             <Button>
