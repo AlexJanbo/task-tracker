@@ -268,22 +268,24 @@ const getUserInformation = asyncHandler(async (req, res) => {
 
     let memberArray = []
     
-    User.find({ _id: { $in: memberIds}})
+    await User.find({ _id: { $in: memberIds}})
         .then(users => {
             users.forEach(user => {
-                console.log(user.username + user.firstName + user.lastName + user.email + user.role)
-
+                if(!memberArray.includes(user)) {
+                    memberArray.push(user)
+                }
             })
         })
+    // console.log(memberArray)
 
 
-    // if(user) {
-    //     res.status(200).json(user)
-    // } 
-    // else {
-    //     res.status(404)
-    //     throw new Error("User not found")
-    // }
+    if(memberArray) {
+        res.status(200).json(memberArray)
+    } 
+    else {
+        res.status(404)
+        throw new Error("Users not found")
+    }
 })
 
 

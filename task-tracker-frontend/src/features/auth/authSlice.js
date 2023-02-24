@@ -221,6 +221,9 @@ export const authSlice = createSlice({
             .addCase(getUserInformation.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
+                if(!state.members.includes(action.payload)) {
+                    state.members.push(action.payload)
+                }
             })
             .addCase(getUserInformation.rejected, (state, action) => {
                 state.isLoading = false
