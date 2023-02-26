@@ -1,5 +1,5 @@
 import { Box, CircularProgress, Grid } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
@@ -8,64 +8,66 @@ import ProjectMembersTable from '../../components/ProjectMembersTable'
 import ProjectTasks from '../../components/ProjectTasks'
 import SideDrawer from '../../components/SideDrawer'
 import SingleProjectCard from '../../components/SingleProjectCard'
-import { getProjects, reset } from '../../features/projects/projectSlice'
+import { getUserInformation } from '../../features/auth/authSlice'
+import { getProject, getProjects, reset } from '../../features/projects/projectSlice'
 
 function SingleProject({ match }) {
 
     const { projectId } = useParams()
-    const { projects, isLoading, isError, message } = useSelector((state) => state.projects)
-    const { user } = useSelector((state) => state.auth)
+    // const { projects, isLoading, isError, message } = useSelector((state) => state.projects)
+    // const { user } = useSelector((state) => state.auth)
+
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(isError) {
-          console.log(message)
-        }
+        // if(isError) {
+        //   console.log(message)
+        // }
     
-        if(!user) {
-          navigate('/')
-        }
+        // if(!user) {
+        //   navigate('/')
+        // }
     
-        dispatch(getProjects())
+        dispatch(getProject(projectId))
     
     
         return () => {
           dispatch(reset())
         }
-      }, [user, navigate, isError, message, dispatch])
+      }, [])
 
-    if(isLoading) {
-      return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
-    }
+    // if(isLoading) {
+    //   return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
+    // }
 
-    let Project;
-    projects?.map(project => {
-    if(project._id === projectId) {
-        Project = project
-    }
-    return Project
-    })
+    // let Project;
+    // projects?.map(project => {
+    // if(project._id === projectId) {
+    //     Project = project
+    // }
+    // return Project
+    // })
     // console.log(Project)
 
 
-    if(!Project) {
-        return (
-            <Grid>
-                <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
-            </Grid>
-        )
-    }
+    // if(!Project) {
+    //     return (
+    //         <Grid>
+    //             <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
+    //         </Grid>
+    //     )
+    // }
 
     return (
         <>
           <LoggedInNavbar />
           <Box container bgcolor={"#fafafa"} height={"100vh"} >
             <SideDrawer />
-            <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
-            <ProjectMembers id={projectId} />
-            <ProjectMembersTable members={Project.members} />
+            {/* <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
+            <ProjectMembers id={projectId} /> */}
+            {/* <ProjectMembersTable members={Project.members} membersArray={members} /> */}
           </Box>
         </>
     )

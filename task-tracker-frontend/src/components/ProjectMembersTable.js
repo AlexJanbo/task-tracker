@@ -8,8 +8,14 @@ function ProjectMembersTable(props) {
     const projectMembers = props.members
     // console.log(projectMembers)
     const [ memberIds, setMemberIds ] = useState([...projectMembers])
-    const [ members, isLoading ] = useSelector((state) => state.auth.members)
-    console.log("this is state.auth:" + members)
+    const [ members ] = useSelector((state) => state.auth.members)
+    const { isLoading } = useSelector((state) => state.auth)
+    // console.log(isLoading)
+    // console.log(members)
+
+
+    // console.log("is members array: " + Array.isArray(members))
+
 
 
 
@@ -20,7 +26,7 @@ function ProjectMembersTable(props) {
     useEffect(() => {
 
         dispatch(getUserInformation({memberIds}))
-        dispatch(reset())
+
     }, [])
 
 

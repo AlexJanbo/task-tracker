@@ -77,12 +77,26 @@ const addProjectMember = async (projectData, token) => {
     return response.data
 }
 
+// Get Single Project
+const getProject = async (projectId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.get(API_URL + projectId, config)
+
+    return response.data
+}
+
 const projectService = {
     createProject,
     getProjects,
     updateProject,
     deleteProject,
-    addProjectMember
+    addProjectMember,
+    getProject,
 }
 
 export default projectService
