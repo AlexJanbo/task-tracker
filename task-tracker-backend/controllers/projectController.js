@@ -128,11 +128,25 @@ const addProjectMember = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc        Get all of the members for a project
+// @desc        Get information about a project
 // @route       PUT /api/projects/:id
 // @access      Private
-const getProjectMembers = asyncHandler(async (req, res) => {
-    
+const getProject = asyncHandler(async (req, res) => {
+    console.log(req.params)
+    const project = await Project.findById(req.params.id)
+    // console.log(project)
+
+    const members = project.members
+    const membersArray = []
+
+    members.forEach(async (member) => {
+
+        let user = await User.findById(member)
+        membersArray.push({ firstName: user.firstName, lastName: user.lastName, username: user.username, email: user.email, role: user.role})
+    })
+    // Get project info and user info at the same time
+
+    console.log(membersArray)
 })
 
 module.exports = {
@@ -141,5 +155,5 @@ module.exports = {
     updateProject,
     deleteProject,
     addProjectMember,
-    getProjectMembers,
+    getProject,
 }
