@@ -105,16 +105,13 @@ export const getUserInformation = createAsyncThunk('auth/getUserInformation', as
 
 export const authSlice = createSlice({
     name: 'auth',
-    initialState: {
-        members: []
-    },
+    initialState,
     reducers: {
         reset: (state) => {
             state.isLoading = false
             state.isError = false
             state.isSuccess = false
             state.message = ''
-            state.members = {}
         }
     },
     extraReducers: (builder) => {
