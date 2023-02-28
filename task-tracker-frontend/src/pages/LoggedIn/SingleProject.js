@@ -15,7 +15,20 @@ function SingleProject({ match }) {
 
     const { projectId } = useParams()
     // const { projects, isLoading, isError, message } = useSelector((state) => state.projects)
-    // const { user } = useSelector((state) => state.auth)
+    const { projects, isLoading } = useSelector((state) => state.projects) 
+    // console.log(projects)
+    
+    let projectInformation
+    if(projects[0]) {
+      projectInformation = projects[0]
+    }
+    console.log(projectInformation)
+
+    let projectMembers
+    if(projects[1]) {
+      projectMembers = projects[1]
+    }
+
 
 
     const dispatch = useDispatch()
@@ -36,11 +49,11 @@ function SingleProject({ match }) {
         return () => {
           dispatch(reset())
         }
-      }, [])
+      }, [dispatch])
 
-    // if(isLoading) {
-    //   return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
-    // }
+    if(isLoading) {
+      return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
+    }
 
     // let Project;
     // projects?.map(project => {
@@ -65,9 +78,9 @@ function SingleProject({ match }) {
           <LoggedInNavbar />
           <Box container bgcolor={"#fafafa"} height={"100vh"} >
             <SideDrawer />
-            {/* <SingleProjectCard id={Project._id} title={Project.title} description={Project.description}/>
-            <ProjectMembers id={projectId} /> */}
-            {/* <ProjectMembersTable members={Project.members} membersArray={members} /> */}
+            <SingleProjectCard projectCreator={projectInformation.projectCreator} title={projectInformation.title} description={projectInformation.description}/>
+            <ProjectMembers id={projectId} />
+            {projectMembers.length > 0 && <ProjectMembersTable members={projectMembers} />}
           </Box>
         </>
     )

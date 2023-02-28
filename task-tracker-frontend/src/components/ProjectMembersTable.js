@@ -6,10 +6,11 @@ import { getUserInformation, reset } from '../features/auth/authSlice'
 function ProjectMembersTable(props) {
 
     const projectMembers = props.members
+    console.log(projectMembers)
     // console.log(projectMembers)
-    const [ memberIds, setMemberIds ] = useState([...projectMembers])
-    const [ members ] = useSelector((state) => state.auth.members)
-    const { isLoading } = useSelector((state) => state.auth)
+    // const [ memberIds, setMemberIds ] = useState([...projectMembers])
+    // const [ members ] = useSelector((state) => state.auth.members)
+    // const { isLoading } = useSelector((state) => state.auth)
     // console.log(isLoading)
     // console.log(members)
 
@@ -20,14 +21,14 @@ function ProjectMembersTable(props) {
 
 
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        dispatch(getUserInformation({memberIds}))
+    //     dispatch(getUserInformation({memberIds}))
 
-    }, [])
+    // }, [])
 
 
     const [page, setPage] = useState(0);
@@ -44,9 +45,9 @@ function ProjectMembersTable(props) {
 
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, projectMembers.length - page * rowsPerPage)
 
-    if(isLoading) {
-        return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
-    }
+    // if(isLoading) {
+    //     return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
+    // }
 
     return (
         <Box flex={5} p={1} sx={{ marginLeft: "15%", display: {lg: "block" } }}>
@@ -59,7 +60,10 @@ function ProjectMembersTable(props) {
                     <TableRow sx={{height: "2.5rem"}}>
                     <TableCell sx={{ minWidth: '20%'}}>Members</TableCell>
                     <TableCell sx={{ maxWidth: '60%'}}>Description</TableCell>
-                    <TableCell sx={{ minWidth: '20%%'}}></TableCell>
+                    <TableCell sx={{ minWidth: '20%%'}}>Username</TableCell>
+                    <TableCell sx={{ minWidth: '20%%'}}>Email</TableCell>
+                    <TableCell sx={{ minWidth: '20%%'}}>Role</TableCell>
+                    
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -67,18 +71,14 @@ function ProjectMembersTable(props) {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((member, index) => (
                     <TableRow
-                        key={member._id}
+                        key={member.username}
                         sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member}</TableCell>
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{}</TableCell>
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}} justfiyContent="center">
-                        {/* <Link to={`/projects/${project._id}/`}>
-                            <Button>
-                            View
-                            </Button>
-                        </Link> */}
-                        </TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member.firstName}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member.lastName}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member.username}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member.email}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member.role}</TableCell>
                     </TableRow>
                     ))}
                     {emptyRows > 0 && (

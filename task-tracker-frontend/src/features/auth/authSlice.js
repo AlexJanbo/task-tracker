@@ -114,7 +114,7 @@ export const authSlice = createSlice({
             state.isError = false
             state.isSuccess = false
             state.message = ''
-            state.members = []
+            state.members = {}
         }
     },
     extraReducers: (builder) => {

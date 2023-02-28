@@ -132,21 +132,36 @@ const addProjectMember = asyncHandler(async (req, res) => {
 // @route       PUT /api/projects/:id
 // @access      Private
 const getProject = asyncHandler(async (req, res) => {
-    console.log(req.params)
+    // console.log(req.params)
     const project = await Project.findById(req.params.id)
+    
+    const projectCreator = await User.findById(project.user)
     // console.log(project)
+    const projectObject = {
+        projectCreator: projectCreator.firstName + " " + projectCreator.lastName,
+        title: project.title,
+        description: project.description,
+    }
 
     const members = project.members
-    const membersArray = []
 
-    members.forEach(async (member) => {
+    const membersInfo = await User.find(
+        { _id: {$in: members}},
+        { firstName: 1, lastName: 1, username: 1, email: 1, role: 1, _id: 0 }
+    )
+    // console.log(membersInfo)
 
-        let user = await User.findById(member)
-        membersArray.push({ firstName: user.firstName, lastName: user.lastName, username: user.username, email: user.email, role: user.role})
-    })
-    // Get project info and user info at the same time
+    const resultArray = []
+    resultArray.push(projectObject)
+    resultArray.push(membersInfo)
 
-    console.log(membersArray)
+    if(project && membersInfo) {
+        res.status(200).send(resultArray)
+    } else {
+        res.status(404).send("Project not found")
+    }
+
+    
 })
 
 module.exports = {
