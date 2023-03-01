@@ -58,8 +58,8 @@ function ProjectMembersTable(props) {
                 <Table aria-label="simple table">
                 <TableHead>
                     <TableRow sx={{height: "2.5rem"}}>
-                    <TableCell sx={{ minWidth: '20%'}}>Members</TableCell>
-                    <TableCell sx={{ maxWidth: '60%'}}>Description</TableCell>
+                    <TableCell sx={{ minWidth: '20%'}}>First Name</TableCell>
+                    <TableCell sx={{ maxWidth: '60%'}}>Last Name</TableCell>
                     <TableCell sx={{ minWidth: '20%%'}}>Username</TableCell>
                     <TableCell sx={{ minWidth: '20%%'}}>Email</TableCell>
                     <TableCell sx={{ minWidth: '20%%'}}>Role</TableCell>
