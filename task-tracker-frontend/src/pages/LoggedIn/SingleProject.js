@@ -22,7 +22,7 @@ function SingleProject({ match }) {
     if(projects[0]) {
       projectInformation = projects[0]
     }
-    console.log(projectInformation)
+    // console.log(projectInformation)
 
     let projectMembers
     if(projects[1]) {
@@ -72,13 +72,14 @@ function SingleProject({ match }) {
     //         </Grid>
     //     )
     // }
+    console.log(projectId)
 
     return (
         <>
           <LoggedInNavbar />
           <Box container bgcolor={"#fafafa"} height={"100vh"} >
             <SideDrawer />
-            <SingleProjectCard projectCreator={projectInformation.projectCreator} title={projectInformation.title} description={projectInformation.description}/>
+            <SingleProjectCard projectId={projectId} projectCreator={projectInformation.projectCreator} title={projectInformation.title} description={projectInformation.description}/>
             <ProjectMembers id={projectId} />
             {projectMembers.length > 0 && <ProjectMembersTable members={projectMembers} />}
           </Box>

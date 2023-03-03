@@ -4,13 +4,14 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { deleteProject } from '../features/projects/projectSlice'
 
-function SingleProjectCard({  id, title, description }) {
+function SingleProjectCard({  projectId, id, title, description }) {
+
   
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const handleDeleteClick = () => {
-        dispatch(deleteProject(id))
+        dispatch(deleteProject(projectId))
         navigate('/projects')
     }
   
@@ -28,7 +29,7 @@ function SingleProjectCard({  id, title, description }) {
             <Typography variant='h7' width="50%" textAlign="center">{description}</Typography>
         </Grid>
         <Grid item sx={{ display: 'flex', height: '4rem', justifyContent: 'center', justifyItems:"center"}}>
-            <Link to={`/editProject/${id}/`} textAlign="center">
+            <Link to={`/editProject/${projectId}/`} textAlign="center">
                 <Button color="primary">
                     Edit Project
                 </Button>

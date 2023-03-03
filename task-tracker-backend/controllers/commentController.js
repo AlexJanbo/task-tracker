@@ -21,19 +21,19 @@ const readComments = asyncHandler(async (req, res) => {
 // @route       POST /api/comments
 // @access      Private
 const createComment = asyncHandler(async (req, res) => {
-    if(!req.user._id) {
-        res.status(400).send("Invalid user")
-        throw new Error("Invalid user")
-    }
-    if(!req.body.id) {
-        res.status(400).send("No task id")
-        throw new Error("No Task Id")
-    }
-    if(!req.body.description) {
-        res.status(400).send("No description")
-        throw new Error("Please add a description")
-    }
     try {
+        if(!req.user._id) {
+            res.status(400).send("Invalid user")
+            throw new Error("Invalid user")
+        }
+        if(!req.body.id) {
+            res.status(400).send("No task id")
+            throw new Error("No Task Id")
+        }
+        if(!req.body.description) {
+            res.status(400).send("No description")
+            throw new Error("Please add a description")
+        }
         const comment = await Comment.create({
             user: req.user._id,
             task: req.body.id,

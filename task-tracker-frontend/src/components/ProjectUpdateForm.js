@@ -4,23 +4,22 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { reset, updateProject } from '../features/projects/projectSlice'
 
-function ProjectUpdateForm( projectId ) {
+function ProjectUpdateForm( props ) {
+
+    const projectId = props.projectId
 
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [ title, setTitle ] = useState("")
-    const [ description, setDescription ] = useState("")
+    const [ title, setTitle ] = useState(props.title)
+    const [ description, setDescription ] = useState(props.description)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
         dispatch(updateProject({projectId, title, description}))
         dispatch(reset())
         navigate('/projects')
-        
-
     }
 
   return (
