@@ -8,124 +8,65 @@ const Task = require('../models/taskModel')
 // @route       GET /api/comments
 // @access      Private
 const readComments = asyncHandler(async (req, res) => {
-    // console.log(req.user)
-    const comment = await Comment.find({ user: req.user.id})
-
-    res.status(200).json(comment)
+    try {
+        const comment = await Comment.find({ user: req.user.id})
+        // console.log(comment)
+        res.status(200).json(comment)
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
 })
 
 // @desc        Create Comment
 // @route       POST /api/comments
 // @access      Private
 const createComment = asyncHandler(async (req, res) => {
-    
-    // console.log(req.body.task)
-
-    // Make sure that the comment has valid user
     if(!req.user._id) {
-        console.log("Invalid user")
-        res.status(400)
+        res.status(400).send("Invalid user")
         throw new Error("Invalid user")
     }
-
-    // Make sure that the comment has task id and valid description
     if(!req.body.id) {
-        console.log("No Task Id")
-        res.status(400)
+        res.status(400).send("No task id")
         throw new Error("No Task Id")
     }
-
     if(!req.body.description) {
-        console.log("No description")
-        res.status(400)
+        res.status(400).send("No description")
         throw new Error("Please add a description")
     }
-
-
-    const comment = await Comment.create({
-        user: req.user._id,
-        task: req.body.id,
-        description: req.body.description,
-        image: req.body.image,
-    })
-
-    res.status(200).json(comment)
-})
-
-// @desc        Update Comment
-// @route       PUT /api/comments
-// @access      Private
-const updateComment = asyncHandler(async (req, res) => {
-    const comment = await Comment.findById(req.params.id)
-
-    if(!comment) {
-        res.status(400)
-        throw new Error("Comment not found")
-    }
-
-    // Check for task
-    if(!req.task) {
-        res.status(401)
-        throw new Error('User not found')
-    }
-
-    // Check if task belongs to user
-    // if(task.user.toString() !== req.user.id){
-    //     res.status(401)
-    //     throw new Error('User not authorized')
-    // }
-
-    if(!req.body.description) {
-        console.log('no body text')
-        res.status(400)
-        throw new Error('Please fill out all fields!')
-    }
-
-    const updatedComment = await Comment.findByIdAndUpdate(req.params.id, {
-        description: req.body.description,
-    }, {new: true})
-
-    res.status(200).json(updatedComment)
+    try {
+        const comment = await Comment.create({
+            user: req.user._id,
+            task: req.body.id,
+            description: req.body.description,
+            image: req.body.image,
+        })
+        res.status(200).json(comment)
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }   
 })
 
 // @desc        Delete Comment
 // @route       DELETE /api/comments
 // @access      Private
 const deleteComment = asyncHandler(async (req, res) => {
-    
-    // console.log(req.params)
-    
-    const comment = await Comment.findById(req.params.id)
-    
-    console.log(req.body)
+    try {
+        const comment = await Comment.findById(req.params.id)
+        if(!comment) {
+            res.status(400)
+            throw new Error("Comment not found")
+        }
+        await comment.remove()
 
-    // if(!comment) {
-    //     res.status(400)
-    //     throw new Error("Comment not found")
-    // }
-
-
-    // Check for task id
-    // if(!req.body.id) {
-    //     res.status(401)
-    //     throw new Error('User not found')
-    // }
-
-    // Check if task belongs to user
-    // if(co.user.toString() !== req.user.id) {
-    //     res.status(401)
-    //     throw new Error('User not authorized')
-    // }
-
-    await comment.remove()
-
-    res.status(200).json({ id: req.params.id })
+        res.status(200).json({ id: req.params.id })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
 })
 
 
 module.exports = {
     readComments,
     createComment,
-    updateComment,
     deleteComment,
 }
