@@ -43,7 +43,6 @@ const createProject = asyncHandler(async (req, res) => {
 // @route       PUT /api/projects/:id
 // @access      Private
 const updateProject = asyncHandler(async (req, res) => {
-
     try {
         const project = await Project.findById(req.params.id)
         if(!project) {
@@ -80,56 +79,45 @@ const updateProject = asyncHandler(async (req, res) => {
 // @route       DELETE /api/projects/:id
 // @access      Private
 const deleteProject = asyncHandler(async (req, res) => {
-    const project = await Project.findById(req.params.id)
-
-    if(!project) {
-        res.status(400)
-        throw new Error("Project not found")
+    try {
+        const project = await Project.findById(req.params.id)
+        if(!project) {
+            res.status(400)
+            throw new Error("Project not found")
+        }
+        if(!req.user) {
+            res.status(401)
+            throw new Error('User not found')
+        }
+        if(project.user.toString() !== req.user.id) {
+            res.status(401)
+            throw new Error('User not authorized')
+        }
+        await project.remove()
+        res.status(200).json({ id: req.params.id })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
     }
-
-
-    // Check for user
-    if(!req.user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
-
-    // Check if project belongs to user
-    if(project.user.toString() !== req.user.id) {
-        res.status(401)
-        throw new Error('User not authorized')
-    }
-
-    await project.remove()
-
-    res.status(200).json({ id: req.params.id })
 })
 
 // @desc        Add member to project
 // @route       PUT /api/projects/:id/members
 // @access      Private
 const addProjectMember = asyncHandler(async (req, res) => {
-    const { projectId } = req.body
-    const { username } = req.body
-    // console.log(req.body)
-
     try {
+        const { projectId, username } = req.body
         const user = await User.find({ username: username})
-        // console.log(user)
         if(!user) {
             return res.status(404).json({message: "User not found"})
         }
-        
         // Add code to check if member is already in project
-
         const project = await Project.updateOne(
             { _id: projectId },
             { $push: { members: user } }
         );
-
         res.status(200).json(project)
     } catch (err) {
-        res.status(500).json({ message: err.message})
+        res.status(404).json({ message: error.message })
     }
 })
 
@@ -138,35 +126,30 @@ const addProjectMember = asyncHandler(async (req, res) => {
 // @access      Private
 const getProject = asyncHandler(async (req, res) => {
     // console.log(req.params)
-    const project = await Project.findById(req.params.id)
-    
-    const projectCreator = await User.findById(project.user)
-    // console.log(project)
-    const projectObject = {
-        projectCreator: projectCreator.firstName + " " + projectCreator.lastName,
-        title: project.title,
-        description: project.description,
+    try {
+        const project = await Project.findById(req.params.id)
+        const projectCreator = await User.findById(project.user)
+        const projectObject = {
+            projectCreator: projectCreator.firstName + " " + projectCreator.lastName,
+            title: project.title,
+            description: project.description,
+        }
+        const members = project.members
+        const membersInfo = await User.find(
+            { _id: {$in: members}},
+            { firstName: 1, lastName: 1, username: 1, email: 1, role: 1, _id: 0 }
+        )
+        const resultArray = []
+        resultArray.push(projectObject)
+        resultArray.push(membersInfo)
+        if(project && membersInfo) {
+            res.status(200).send(resultArray)
+        } else {
+            res.status(404).send("Project not found")
+        }
+    } catch (error) {
+        res.status(404).json({ message: error.message })
     }
-
-    const members = project.members
-
-    const membersInfo = await User.find(
-        { _id: {$in: members}},
-        { firstName: 1, lastName: 1, username: 1, email: 1, role: 1, _id: 0 }
-    )
-    // console.log(membersInfo)
-
-    const resultArray = []
-    resultArray.push(projectObject)
-    resultArray.push(membersInfo)
-
-    if(project && membersInfo) {
-        res.status(200).send(resultArray)
-    } else {
-        res.status(404).send("Project not found")
-    }
-
-    
 })
 
 module.exports = {
