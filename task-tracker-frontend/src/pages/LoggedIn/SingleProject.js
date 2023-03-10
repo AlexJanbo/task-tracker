@@ -32,7 +32,6 @@ function SingleProject({ match }) {
 
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     useEffect(() => {
         // if(isError) {
@@ -55,24 +54,6 @@ function SingleProject({ match }) {
       return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
     }
 
-    // let Project;
-    // projects?.map(project => {
-    // if(project._id === projectId) {
-    //     Project = project
-    // }
-    // return Project
-    // })
-    // console.log(Project)
-
-
-    // if(!Project) {
-    //     return (
-    //         <Grid>
-    //             <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
-    //         </Grid>
-    //     )
-    // }
-    console.log(projectId)
 
     return (
         <>
