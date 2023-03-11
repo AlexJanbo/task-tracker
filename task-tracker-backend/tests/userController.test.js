@@ -3,68 +3,75 @@ const request = require('supertest')
 require('dotenv').config()
 
 const app = require('../index.js')
+const User = require('../models/userModel')
+
 const { registerUser } = require('../controllers/userController')
 
-beforeEach(async () => {
-    await mongoose.connect(process.env.TEST_MONGODB_URI)
-})
+var MongoDB = process.env.TEST_MONGODB_URI
 
-afterEach(async () => {
-    await mongoose.connection.close()
-})
-afterAll(async () => {
-    const collections = mongoose.connection.collections
-    for(const key in collections) {
-        const collection = collections[key]
-        await collection.deleteMany()
-    }
-})
 
+const testUser = {
+    username: "testUsername",
+    firstName: "testFirstName",
+    lastName: "testLastName",
+    email: "testEmail",
+    password: "testPassword"
+}
 
 // Test suite for the user controller
-describe('User controller', () => {
+describe("Test the user API", () => {
 
-    // Test suite for registerUser function
-    describe('registerUser', () => {
-        it('should create a new user in the database and return the user object when information is valid', async () => {
-            // Arrange
-            const user = {
-                firstName: 'John',
-                lastName: 'Doe',
-                username: 'JohnDoe',
-                email: 'john.doe@gmail.com',
-                password: 'password',
-            }
-
-            // Act
-            const newUser = await registerUser(user)
-            const result = await User.find({ username: newUser.username })
-
-            // Assert
-            expect(result.status).tobe(201)
-            expect(result.firstName).tobe(user.firstName)
-            expect(result.lastName).tobe(user.lastName)
-            expect(result.username).tobe(user.username)
-            expect(result.email).tobe(user.email)
-            expect(result.password).tobe(user.password)
-
-        })
+    beforeAll(async () => {
+        await mongoose.connect(MongoDB)
     })
 
+    afterEach(async () => {
+        await User.deleteMany({})
+    })
 
+    afterAll(async () => {
+        await mongoose.connection.close()
+    })
 
+    it("Has a module", () => {
+        expect(User).toBeDefined()
+    })
+    
+    test('POST /users registerUser', async() => {
+        const response = await request(app)
+            .post('/api/users/')
+            .send(testUser)
+            .expect(201)
+        expect(response.body.username).toEqual(testUser.username)
+
+    })
+    
+    
+    
+    // beforeAll(async () => {
+    //     await mongoose.connect(MongoDB)
+    // })
+
+    // afterEach(async () => {
+    //     await User.deleteMany({})
+    // })
+
+    // afterAll(async () => {
+    //     await mongoose.connection.close()
+    // })
+
+    // it("Has a module", () => {
+    //     expect(User).toBeDefined()
+    // })
+
+    // describe("Register user", async () => {
+    //     const user = registerUser(testUser)
+
+    //     expect(user.username).toEqual("testUsername")
+    //     expect(user.firstName).toEqual("testFirstName")
+    //     expect(user.lastName).toEqual("testLastName")
+    //     expect(user.email).toEqual("testEmail")
+    //     expect(user.password).toEqual("testPassword")
+    // })
 
 })
-
-git filter-branch --env-filter '
-OLD_EMAIL="ajanbo@uci.edu"
-CORRECT_EMAIL="alexanderjanbo98@gmail.com"
-if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
-then
-    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
-fi
-if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
-then
-    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
-fi
-' --tag-name-filter cat -- --branches --tags
