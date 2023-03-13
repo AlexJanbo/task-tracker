@@ -66,7 +66,7 @@ const loginUser = asyncHandler(async (req, res) => {
         const { email, password } = req.body
         const user = await User.findOne({email})
         if(user && (await bcrypt.compare(password, user.password))) {
-            res.json({
+            res.status(200).json({
                 id: user.id,
                 username: user.username,
                 firstName: user.firstName,
@@ -206,17 +206,6 @@ const changeProfilePicture = asyncHandler(async (req, res) => {
 })
 
 
-// @desc        Get user data
-// @route       GET /api/users/me
-// @access      Private
-const getUser = asyncHandler(async (req, res) => {
-    try {
-        res.status(200).json(req.user)
-    } catch (error) {
-        res.status(404).json({ message: error.message })
-    }
-})
-
 // JWT generation
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -303,7 +292,6 @@ const getUserInformation = asyncHandler(async (req, res) => {
 module.exports = {
     registerUser,
     loginUser,
-    getUser,
     updateUser,
     changePassword,
     changeProfilePicture,
