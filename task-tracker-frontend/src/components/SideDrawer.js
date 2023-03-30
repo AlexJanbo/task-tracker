@@ -90,9 +90,9 @@ const list = {
               [`& .MuiDrawer-paper`]: { boxSizing: 'border-box' },
           }}>
           <Toolbar />
-          <Box sx={{ overflow: 'auto' }}>
+          <Box sx={{ overflow: 'auto' }} >
             <List>
-              <Link to={list.dashboard.link}>
+              <Link to={list.dashboard.link} style={{ textDecoration: 'none' }}>
                 <ListItem key={list.dashboard.text} disablePadding>
                   <ListItemButton>
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
@@ -103,7 +103,7 @@ const list = {
                 </ListItem>
               </Link>
               {user.role === "Admin" && (
-                <Link to={list.manageRoles.link}>
+                <Link to={list.manageRoles.link} style={{ textDecoration: 'none' }}>
                 <ListItem key={list.manageRoles.text} disablePadding>
                   <ListItemButton>
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
@@ -114,7 +114,7 @@ const list = {
                 </ListItem>
               </Link>
               )}
-              <Link to={list.projects.link}>
+              <Link to={list.projects.link} style={{ textDecoration: 'none' }}>
                 <ListItem key={list.projects.text} disablePadding>
                   <ListItemButton>
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
@@ -124,7 +124,7 @@ const list = {
                   </ListItemButton>
                 </ListItem>
               </Link>
-              <Link to={list.tasks.link}>
+              <Link to={list.tasks.link} style={{ textDecoration: 'none' }}>
                 <ListItem key={list.tasks.text} disablePadding>
                   <ListItemButton>
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
@@ -137,7 +137,7 @@ const list = {
             </List>
             <Divider />
             <List>
-              <Link to={list2.userProfile.link}>
+              <Link to={list2.userProfile.link} style={{ textDecoration: 'none' }}>
                 <ListItem key={list2.userProfile.text} disablePadding>
                   <ListItemButton>
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
@@ -147,13 +147,13 @@ const list = {
                   </ListItemButton>
                 </ListItem>
               </Link>
-              <Link to={list2.userSettings.link}>
+              <Link to={list2.userSettings.link} style={{ textDecoration: 'none' }}>
                 <ListItem key={list2.userSettings.text} disablePadding>
                   <ListItemButton>
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
                       {<SettingsIcon />}
                     </ListItemIcon>
-                    <ListItemText primary={list2.userSettings.text} />
+                    <ListItemText  primary={list2.userSettings.text} />
                   </ListItemButton>
                 </ListItem>
               </Link>

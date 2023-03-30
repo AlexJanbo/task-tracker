@@ -1,11 +1,15 @@
 import { Grid, Typography } from '@mui/material'
 import React from 'react'
+import { useTheme } from '@mui/material'
 
 function TaskHeader() {
+
+  const theme = useTheme()
+
   return (
     <>  
-        <Grid style={{ marginLeft: "5%", marginRight: "5%", marginTop: "7%", backgroundColor: "orange", height: "4rem", border: "2px solid black", borderRadius: "1rem" }}>
-            <Typography variant="h3" style={{marginRight: "35%", paddingTop: ".2rem", color: "black", textAlign: "center"}}>My Tasks!</Typography>
+        <Grid style={{ marginLeft: "5%", marginRight: "5%", marginTop: "7%", backgroundColor: theme.palette.secondary.main , height: "4rem", border: "1px solid black", borderRadius: "1rem" }}>
+            <Typography variant="h4" style={{marginRight: "35%", color: theme.palette.text.secondary , textAlign: "center", alignItems: 'center'}}>My Tasks!</Typography>
         </Grid>
     </>
   )

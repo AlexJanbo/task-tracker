@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom'
 import TablePagination from '@mui/material/TablePagination';
 import { Box } from '@mui/system';
 import TaskHeader from './TaskHeader';
+import { useTheme } from '@mui/material'
+
 
 function TaskTable() {
 
-  
+  const theme = useTheme()
   const { tasks } = useSelector((state) => state.tasks) 
   // console.log(tasks)
 
@@ -31,15 +33,14 @@ function TaskTable() {
 
   return (
     <>
-      <Box flex={5} p={1} m={2} sx={{ display: {lg: "block" } }}>
-        <TaskHeader />
-        <TableContainer component={Paper}>
+      <Box flex={5} p={1} m={2} style={{ marginTop: "5%" }} sx={{ display: {lg: "block" } }}>
+        <TableContainer component={Paper} style={{ backgroundColor: theme.palette.background.default}}>
           <Table aria-label="simple table">
             <TableHead>
-              <TableRow sx={{height: "2.5rem"}}>
-                <TableCell sx={{ fontWeight: "bold", fontSize: "20px"}}>Title</TableCell>
-                <TableCell sx={{ fontWeight: "bold", fontSize: "20px"}}>Description</TableCell>
-                <TableCell sx={{ fontWeight: "bold", fontSize: "20px"}} key="priority">
+              <TableRow sx={{height: "2.5rem", backgroundColor: theme.palette.primary.main, border: '2px solid black', borderRadius: "5%" }}>
+                <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}}>Task Title</TableCell>
+                <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}}>Description</TableCell>
+                <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}} key="priority">
                   Priority
                   {/* <TableSortLabel
                     active={"priority" === "priority"}
@@ -48,7 +49,7 @@ function TaskTable() {
                   >
                   </TableSortLabel> */}
                 </TableCell>
-                <TableCell sx={{ fontWeight: "bold", fontSize: "20px"}} key="status">
+                <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}} key="status">
                   Status
                   {/* <TableSortLabel
                     active={"status" === "status"}
@@ -57,7 +58,7 @@ function TaskTable() {
                   >
                   </TableSortLabel> */}
                 </TableCell>
-                <TableCell sx={{ fontWeight: "bold", fontSize: "20px"}} key="created">
+                <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}} key="created">
                   Created
                   {/* <TableSortLabel
                     active={true}
@@ -86,7 +87,7 @@ function TaskTable() {
                         Edit
                       </Button>
                     </Link> */}
-                    <Link to={`/tasks/${task._id}/`}>
+                    <Link to={`/tasks/${task._id}/`} style={{ textDecoration: "none"}}>
                       <Button>
                         View
                       </Button>

@@ -1,11 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Box, Button, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material'
+import { Box, Button, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography, useTheme } from '@mui/material'
 import { createTask } from '../features/tasks/taskSlice'
 
 
+
 function TaskForm() {
+
+    const theme = useTheme()
 
     const [ title, setTitle ] = useState('')
     const [ description, setDescription ] = useState('')
@@ -28,10 +31,10 @@ function TaskForm() {
     return (
       <Box flex={1} p={2} sx={{ display: { xs: "none", lg: "block" } }}>
         <Grid container spacing={3} sx={{ marginTop: "50%", display: 'flex', flexDirection: 'column'}}>
-            <Grid item style={{ marginRight: "5%", zIndex: "1", backgroundColor: "orange", border: "2px solid black", borderRadius: "1rem"}}>
-              <Typography variant="h4" style={{ textAlign: "center", marginBottom: "4%"}}>Create a Task!</Typography>
+            <Grid item style={{ marginRight: "5%", zIndex: "1", backgroundColor: theme.palette.primary.main, border: "2px solid black", borderRadius: "1rem"}}>
+              <Typography variant="h5" style={{ color: theme.palette.text.primary, textAlign: "center", marginBottom: "4%"}}>Create a New Task!</Typography>
             </Grid>
-            <Grid container spacing={3} sx={{ backgroundColor: "white", zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
+            <Grid container spacing={3} sx={{ backgroundColor: theme.palette.background.default, zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
               <Grid item>
                   <TextField
                     id="title"

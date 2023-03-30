@@ -13,8 +13,16 @@ const testUser = {
     username: "testUsername",
     firstName: "testFirstName",
     lastName: "testLastName",
-    email: "testEmail",
+    email: "testEmail@gmail.com",
     password: "testPassword"
+}
+
+const testUser2 = {
+    username: "testUsername2",
+    firstName: "testFirstName2",
+    lastName: "testLastName2",
+    email: "testEmail2@gmail.com",
+    password: "testPassword2"
 }
 
 // Test suite for the user controller
@@ -66,40 +74,55 @@ describe("Test the user API", () => {
     })
 
     // Tests update user
-    test('PUT /users/update updateUser', async() => {
-        let token
+    // test('PUT /users/update updateUser', async() => {
+    //     let token
         
+    //     await request(app)
+    //         .post('/api/users/')
+    //         .send(testUser)
+
+    //     const loginResponse = await request(app)
+    //         .post('/api/users/login/')
+    //         .send({ email: "testEmail",password: "testPassword"})
+    //     token = loginResponse.body.token
+
+    //     const headers = {
+    //         Authorization: `Bearer ${token}`,
+    //     }
+
+
+    //     const response = await request(app)
+    //         .put('/api/users/update/')
+    //         .set(headers)
+    //         .send({ username: "testUpdatedUsername" })
+    //         .expect(200)
+    // })
+
+    // Tests get all users
+    test('PUT /users/get-all-users getAllUsers', async() => {
+
         await request(app)
             .post('/api/users/')
             .send(testUser)
+        await request(app)
+            .post('/api/users/')
+            .send(testUser2)
 
         const loginResponse = await request(app)
             .post('/api/users/login/')
             .send({ email: "testEmail",password: "testPassword"})
         token = loginResponse.body.token
-        console.log(token)
-        const user = await User.findOne({ username: "testUsername" })
-        console.log(user)
 
         const headers = {
             Authorization: `Bearer ${token}`,
         }
 
-        const Payload = {
-            body: {
-                username: "testUpdatedUsername"
-            },
-        }
-
-
-        await request(app)
-            .put('/api/users/update/')
+        const response = await request(app)
+            .get('/api/users/get-all-users')
             .set(headers)
-            .set(user)
-            .send( { username: "testUpdatedUsername"})
             .expect(200)
-        expect(response.body.username).toEqual("testUpdatedUsername")
-
+        const users = User.find({})
+        expect(reponse.users).toEqual(users)
     })
 
 

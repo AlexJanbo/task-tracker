@@ -12,6 +12,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useSelector } from 'react-redux';
 import AvatarCircle from './AvatarCircle';
 import AvatarMenu from './AvatarMenu';
+import { useTheme } from '@mui/material'
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -57,6 +58,7 @@ const Search = styled('div')(({ theme }) => ({
 
   export default function LoggedInNavbar() {
 
+    const theme = useTheme()
     
     const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -69,14 +71,14 @@ const Search = styled('div')(({ theme }) => ({
     const { user } = useSelector((state) => state.auth)
 
     return (
-            <AppBar position="fixed" sx={{ bgcolor: '#292f4c', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+            <AppBar position="fixed" sx={{ backgroundColor: theme.palette.primary.main , zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar style={{ paddingLeft: "0", paddingRight: "0" }}  variant="dense">
                 <Typography marginLeft="2.5%" variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    <Link style={{ textDecoration: 'none' }} to='/dashboard' >
+                    <Link style={{ textDecoration: 'none', color: theme.palette.text.primary, fontSize: "32px" }} to='/dashboard' >
                     Task Tracker
                     </Link>
                 </Typography>
-                <Typography sx={{ display: { xs: "none", sm: "block"} }}>
+                <Typography sx={{ display: { color: theme.palette.text.primary, xs: "none", sm: "block"} }}>
                     Logged in as: {user.username}
                 </Typography>
                 <Grid marginRight="15%" sx={{display: "flex"}}>
