@@ -1,13 +1,15 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Select, Stack, TextField, Typography } from '@mui/material'
+import { Button, FormControl, useTheme, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Select, Stack, TextField, Typography } from '@mui/material'
 import { reset, updateTask } from '../features/tasks/taskSlice'
 import { useNavigate } from 'react-router-dom'
 
 
+
 function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, statusProp }) {
 
+    const theme = useTheme()
     const { user } = useSelector((state) => state.auth)
 
     const dispatch = useDispatch()
@@ -30,8 +32,8 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
 
     return (
         <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center'}}>
-            <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: "orange", border: "2px solid black", borderRadius: "1rem"}}>
-                <Typography variant="h4" style={{ textAlign: "center", marginBottom: "4%"}}>Update Task!</Typography>
+            <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: theme.palette.primary.main, border: "1px solid black", borderRadius: "1rem"}}>
+                <Typography variant="h4" style={{ color: theme.palette.text.primary, textAlign: "center", marginBottom: "4%"}}>Update Task!</Typography>
             </Grid>
             <Grid container spacing={3} sx={{ zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
                 <Grid item>

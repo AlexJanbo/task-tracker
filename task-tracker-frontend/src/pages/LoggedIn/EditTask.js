@@ -6,6 +6,7 @@ import { reset, getTasks } from '../../features/tasks/taskSlice'
 import TaskUpdateForm from '../../components/TaskUpdateForm'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import SideDrawer from '../../components/SideDrawer'
+import TaskUpdateBreadcrumbs from '../../components/TaskUpdateBreadcrumbs'
 
 
 function EditTask( {match} ) {
@@ -61,7 +62,8 @@ function EditTask( {match} ) {
             <Box bgcolor={"#fafafa"} height={"100vh"}>
                 <SideDrawer />    
                 <Grid container>
-                    <Grid item style={{ marginLeft: "15%", marginTop: "5%"}}>
+                    <Grid item style={{ marginLeft: "15%", marginTop: "4%"}}>
+                        <TaskUpdateBreadcrumbs id={Task._id} />
                         <TaskUpdateForm taskId={Task._id} titleProp={Task.title} descriptionProp={Task.description} priorityProp={Task.priority} statusProp={Task.status} />
                     </Grid>
                 </Grid>

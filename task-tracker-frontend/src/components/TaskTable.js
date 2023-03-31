@@ -37,7 +37,7 @@ function TaskTable() {
         <TableContainer component={Paper} style={{ backgroundColor: theme.palette.background.default}}>
           <Table aria-label="simple table">
             <TableHead>
-              <TableRow sx={{height: "2.5rem", backgroundColor: theme.palette.primary.main, border: '2px solid black', borderRadius: "5%" }}>
+              <TableRow sx={{height: "2.5rem", backgroundColor: theme.palette.primary.main }}>
                 <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}}>Task Title</TableCell>
                 <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}}>Description</TableCell>
                 <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}} key="priority">

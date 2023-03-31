@@ -1,10 +1,11 @@
-import { Button, Grid, InputLabel, MenuItem, Select } from '@mui/material'
+import { Button, Grid, InputLabel, MenuItem, Select, useTheme } from '@mui/material'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { changeRole, reset } from '../features/auth/authSlice'
 
 export default function UpdateRolesMenu(props) {
-
+    
+    const theme = useTheme()
     const [ role, setRole ] = useState(props.user.role)
 
     const id = props.user._id
@@ -22,8 +23,9 @@ export default function UpdateRolesMenu(props) {
 
     return (
     <>
-        <Grid item>
-            <InputLabel id="role-select-label"></InputLabel>
+        <Grid container >
+            <Grid item style={{ backgroundColor: theme.palette.secondary.main, color: "white"}}>
+            <InputLabel id="role-select-label" ></InputLabel>
             <Select
                 labelId="role-select-label"
                 id="role-simple-select"
@@ -35,10 +37,11 @@ export default function UpdateRolesMenu(props) {
             <MenuItem value="Manager">Manager</MenuItem>
             <MenuItem value="Developer">Developer</MenuItem>
             </Select>
-        </Grid>
+            </Grid>
         <Button type='submit' onClick={handleSubmit} >
             Change
         </Button>
+        </Grid>
     </>
   )
 }

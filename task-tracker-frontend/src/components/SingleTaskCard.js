@@ -4,9 +4,11 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { deleteTask } from '../features/tasks/taskSlice'
+import { useTheme } from '@mui/material'
 
 function SingleTaskCard({ id, title, description, priority, status }) {
-
+    
+    const theme = useTheme()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -16,68 +18,79 @@ function SingleTaskCard({ id, title, description, priority, status }) {
     }
 
   return (
-    // <Grid container sx={{ maxHeight: "40vh", maxWidth: "35rem", display: 'flex', flexDirection: 'column', marginTop: '15%', border: '2px solid black', borderRadius: '.5rem'}}>
-    //     <Grid item sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', color: 'black', bgcolor: "orange", borderBottom: '.2rem solid black'}}>
-    //         <Typography textAlign='center' variant='h3'>Task Details</Typography>
-    //     </Grid>
-    //     <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: 'center', height: '3rem', alignContent:"center"}}>
-    //         <Typography variant='h6' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold">Title:</Typography>
-    //         <Typography variant='h7' width="50%" textAlign="center">{title}</Typography>
-    //     </Grid>
-    //     <Divider />
-    //     <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: "center", height: '3rem', alignContent:"center"}}>
-    //         <Typography variant='h6' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" >Description:</Typography>
-    //         <Typography variant='h7' width="50%" textAlign="center">{description}</Typography>
-    //     </Grid>
-    //     <Divider />
-    //     <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: "center", height: '3rem', alignContent:"center"}}>
-    //         <Typography variant='h6' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" >Priority:</Typography>
-    //         <Typography variant='h7' width="50%" textAlign="center">{priority}</Typography>
-    //     </Grid>
-    //     <Divider />
-    //     <Grid item sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', justifyItems: 'center', alignItems: "center", height: '3rem', alignContent:"center"}}>
-    //         <Typography variant='h6' width="50%" textAlign="center" fontStyle="italic" fontWeight="bold" >Status:</Typography>
-    //         <Typography variant='h7' width="50%" textAlign="center">{status}</Typography>
-    //     </Grid>
-    //     <Divider />
-    //     <Grid item sx={{ display: 'flex', height: '4rem', justifyContent: 'center', alignItems: "center"}}>
-    //         <Grid item>
-    //             <Link to={`/edit-task/${id}`}>
-    //                 <Button color="primary">
-    //                     Edit Task
-    //                 </Button>
-    //             </Link>
-    //         </Grid>
-    //         <Grid item>
-    //             <Button variant="contained" color="error" onClick={handleDeleteClick}>
-    //                 Delete Task
-    //             </Button> 
-    //         </Grid>
-    //     </Grid>
-    // </Grid>
     <>
-        <Card display="flex" sx={{ minWidth: 275, marginTop: "15%", border: "1px solid black"}}>
-            <CardContent>
-                <Grid sx={{ borderBottom: '1px solid black'}}>
-
-                    <Typography variant="h2" textAlign="center">
+        <Card display="flex" sx={{ minWidth: 275, border: "1px solid black"}}>
+                <Grid style={{ width: '100%', height: "inherit", backgroundColor: theme.palette.primary.main, margin: "0", padding: "0"}} >
+                    <Typography m={0} p={0} variant="h2" textAlign="center" style={{ color: theme.palette.text.primary}}>
                         {title}
                     </Typography>
                 </Grid>
                 <Divider/>
-                <Typography variant="h5" textAlign="center">
-                    {description}
-                </Typography>
-                <Typography variant="h6" textAlign="center">
-                    Task priority: {priority}
-                </Typography>
-                <Typography variant="h6" textAlign="center">
-                    Status: {status} 
-                </Typography>
-                <Typography textAlign="center">
-                    Id: {id}
-                </Typography>
-            </CardContent>
+                <Grid container>
+                    <Grid item style={{ minWidth: "50%"}}>
+                        <Typography variant="h5" textAlign="center">
+                            Description
+                        </Typography>
+                    </Grid>
+                    <Grid item style={{ maxWidth: "50%"}}>
+                        <Typography variant="h6" textAlign="center">
+                            {description}
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Divider/>
+                <Grid container>
+                    <Grid item style={{ minWidth: "50%"}}>
+                        <Typography variant="h5" textAlign="center">
+                            Priority
+                        </Typography>
+                    </Grid>
+                    <Grid item style={{ maxWidth: "50%"}}>
+                        <Typography variant="h6" textAlign="center">
+                            {priority}
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Divider/>
+                <Grid container>
+                    <Grid item style={{ minWidth: "50%"}}>
+                        <Typography variant="h5" textAlign="center">
+                            Status
+                        </Typography>
+                    </Grid>
+                    <Grid item style={{ maxWidth: "50%"}}>
+                        <Typography variant="h6" textAlign="center">
+                            {status}
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Divider/>
+                <Grid container>
+                    <Grid item style={{ minWidth: "50%"}}>
+                        <Typography variant="h5" textAlign="center">
+                            ID
+                        </Typography>
+                    </Grid>
+                    <Grid item style={{ maxWidth: "50%"}}>
+                        <Typography variant="h6" textAlign="center">
+                            {id}
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid item sx={{ display: 'flex', height: '4rem', justifyContent: 'center', alignItems: "center"}}>
+                    <Grid item>
+                        <Link to={`/edit-task/${id}`}>
+                            <Button color="primary">
+                                Edit Task
+                            </Button>
+                        </Link>
+                    </Grid>
+                    <Grid item>
+                        <Button variant="contained" color="error" onClick={handleDeleteClick}>
+                            Delete Task
+                        </Button> 
+                    </Grid>
+                </Grid>
         </Card>
     </>
   )

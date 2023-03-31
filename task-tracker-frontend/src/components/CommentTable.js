@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material';
+import { Box, Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography, useTheme } from '@mui/material';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteComment, reset } from '../features/comments/commentSlice';
@@ -6,6 +6,7 @@ import CommentImageModal from './CommentImageModal';
 
 function CommentTable( id ) {
     
+    const theme = useTheme()
     const dispatch = useDispatch()
 
     const { comments } = useSelector((state) => state.comments)
@@ -15,7 +16,7 @@ function CommentTable( id ) {
     // console.log(commentArray)
 
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
   
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -33,18 +34,16 @@ function CommentTable( id ) {
     return (
         <>  
             <Grid container >
-                <Grid style={{width:"50%", marginLeft: "15%", backgroundColor: "orange", height: "4rem", border: "1px solid black", borderRadius: "1rem" }}>
-                    <Typography variant="h3" style={{paddingTop: ".2rem", color: "black", textAlign: "center"}}>Task Comments:</Typography>
-                </Grid>
-                <TableContainer component={Paper} style={{ marginLeft: "15%", width: "75%"}}>
-                <Table aria-label="simple table">
-                    <TableHead>
-                        <TableRow sx={{height: "2.5rem"}}>
-                            <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}>Comment</TableCell>
-                            <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}>Made By</TableCell>
-                            <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}>Attachments</TableCell>
-                            <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}>Created</TableCell>
-                            <TableCell sx={{ width: "10%", fontWeight: "bold", fontSize: "20px"}}></TableCell>
+                
+                <TableContainer component={Paper}>
+                <Table aria-label="simple table" >
+                    <TableHead style={{ backgroundColor: theme.palette.primary.main}}>
+                        <TableRow >
+                            <TableCell sx={{ fontWeight: "bold", fontSize: "20px", color: theme.palette.text.primary}}>Comment</TableCell>
+                            <TableCell sx={{ fontWeight: "bold", fontSize: "20px", color: theme.palette.text.primary}}>Made By</TableCell>
+                            <TableCell sx={{ fontWeight: "bold", fontSize: "20px", color: theme.palette.text.primary}}>Attachments</TableCell>
+                            <TableCell sx={{ fontWeight: "bold", fontSize: "20px", color: theme.palette.text.primary}}>Created</TableCell>
+                            <TableCell sx={{ fontWeight: "bold", fontSize: "20px", color: theme.palette.text.primary}}></TableCell>
                         </TableRow>
                     </TableHead>
                 <TableBody>
@@ -62,7 +61,6 @@ function CommentTable( id ) {
                             {comment.image ? <CommentImageModal image={comment.image}/> : "No Attachments"}
                         </TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{comment.createdAt}</TableCell>
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}></TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>
                         <Button onClick={(e) => {
                             dispatch(deleteComment(comment._id))

@@ -28,7 +28,7 @@ export default function ManageRolesTable(props) {
   
     return (
     <>
-        <TableContainer  component={Paper} sx={{ maxWidth: "80vw"}}>
+        <TableContainer  component={Paper} sx={{ maxWidth: "80vw"}} style={{ marginTop: "4%"}}>
             <Table aria-label="simple table">
             <TableHead>
                 <TableRow >
@@ -36,8 +36,8 @@ export default function ManageRolesTable(props) {
                     <TableCell >Last Name</TableCell>
                     <TableCell >Username</TableCell>
                     <TableCell >Email</TableCell>
-                    <TableCell >Role</TableCell>
                     <TableCell >Joined</TableCell>
+                    <TableCell >Access Level</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -52,10 +52,10 @@ export default function ManageRolesTable(props) {
                     <TableCell >{user.lastName}</TableCell>
                     <TableCell >{user.username}</TableCell>
                     <TableCell >{user.email}</TableCell>
+                    <TableCell >{user.createdAt}</TableCell>
                     <TableCell >
                         <UpdateRolesMenu user={user} />
                     </TableCell>
-                    <TableCell >{user.createdAt}</TableCell>
 
 
 
