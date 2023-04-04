@@ -11,7 +11,7 @@ function ChangePassword() {
       <Box bgcolor={"#fafafa"} height={"100vh"}>
         <SideDrawer />
         <Grid container>
-            <Grid item style={{ marginLeft: "15%", marginTop: "5%"}}>
+            <Grid item style={{ marginLeft: "15%", marginTop: "4rem"}}>
                 <PasswordUpdateForm />
             </Grid>
         </Grid>

@@ -13,8 +13,8 @@ function UserProfile() {
     <>
       <LoggedInNavbar />
       <Box container bgcolor={"#fafafa"} height={"100%"}>
-        <Stack direction="row" spacing={2} justifyContent="space-between" >
-          <SideDrawer />
+      <SideDrawer />
+        <Stack direction="row" spacing={4} style={{ marginLeft: "15%"}}>
           <UserProfilePicture />
           <UserProfileInformation />
         </Stack>

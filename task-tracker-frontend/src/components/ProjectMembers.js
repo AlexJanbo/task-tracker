@@ -1,11 +1,11 @@
-import { Button, Grid, TextField, Typography } from '@mui/material'
+import { Button, Grid, TextField, Typography, useTheme } from '@mui/material'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addProjectMember } from '../features/projects/projectSlice'
 
 function ProjectMembers(props) {
 
-  
+  const theme = useTheme()
   const dispatch = useDispatch()
   
   const [ projectId, setProjectId ] = useState(props.id)
@@ -21,9 +21,8 @@ function ProjectMembers(props) {
 
   return (
     <>  
-        <Grid style={{ marginLeft: "15%", marginRight: "5%", marginTop: "2%", backgroundColor: "orange", height: "4rem", border: "1px solid black", borderRadius: "1rem" }}>
-            <Typography variant="h3" style={{paddingTop: ".2rem", color: "black", textAlign: "center"}}>Project Members</Typography>
-            <Grid container >
+        <Grid p={2} style={{  maxWidth: "20vw", marginLeft: "15%", marginRight: "5%", marginTop: "2%",  border: "1px solid black", borderRadius: "1rem" }}>
+            <Grid container display="flex" justifyContent="center" >
               <Grid item>
                   <TextField
                     id="username"

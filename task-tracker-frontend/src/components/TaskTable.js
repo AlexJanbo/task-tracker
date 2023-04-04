@@ -1,11 +1,12 @@
 import React from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material/'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Checkbox, Typography } from '@mui/material/'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import TablePagination from '@mui/material/TablePagination';
 import { Box } from '@mui/system';
 import TaskHeader from './TaskHeader';
 import { useTheme } from '@mui/material'
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 
 function TaskTable() {
@@ -79,7 +80,7 @@ function TaskTable() {
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.title}</TableCell>
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.description}</TableCell>
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.priority}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.status}</TableCell>
+                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.status == "Completed" ? <CheckBoxIcon color="success" /> : <Typography>{task.status}</Typography>}</TableCell>
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>
                     {/* <Link to={`/editTask/${task._id}/`}>

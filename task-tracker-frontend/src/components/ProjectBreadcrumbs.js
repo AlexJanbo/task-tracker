@@ -15,18 +15,18 @@ function handleButton(e) {
     window.location.reload()
 }
 
-export default function TaskBreadcrumbs(props) {
+export default function ProjectBreadcrumbs(props) {
 
     console.log(props)
 
   return (
-    <div role="presentation" onClick={handleClick} style={{ marginTop: "10%"}}>
+    <div role="presentation" onClick={handleClick} style={{ marginTop: "4%", marginLeft: "15%"}}>
       <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" to={`/tasks`} style={{ textDecoration: 'none'}} >
-          Back to Tasks
+          Back to tasks
         </Link>
         <Button onClick={handleButton} >
-            Task id: {props.id}
+            Project: {props.title}
         </Button>
       </Breadcrumbs>
     </div>

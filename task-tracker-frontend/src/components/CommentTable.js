@@ -79,7 +79,6 @@ function CommentTable( id ) {
                     )}
                     </TableBody>
                 </Table>
-                </TableContainer>
                 <TablePagination
                 rowsPerPageOptions={[5, 10]}
                 component="div"
@@ -89,6 +88,7 @@ function CommentTable( id ) {
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 />
+                </TableContainer>
             </Grid>
         </>
   )

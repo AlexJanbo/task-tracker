@@ -9,7 +9,6 @@ import EditTask from './pages/LoggedIn/EditTask'
 import Tasks from './pages/LoggedIn/Tasks'
 import Projects from './pages/LoggedIn/Projects'
 import UserProfile from './pages/LoggedIn/UserProfile'
-import UserSettings from './pages/LoggedIn/UserSettings'
 import SingleProject from './pages/LoggedIn/SingleProject'
 import EditProject from './pages/LoggedIn/EditProject'
 import EditUser from './pages/LoggedIn/EditUser'
@@ -37,7 +36,6 @@ export default function App() {
                         <Route path='/projects' element={<Projects />} />
                         <Route path='/tasks' element={<Tasks />} />
                         <Route path='/user-profile' element={<UserProfile />} />
-                        <Route path='/user-settings' element={<UserSettings />} />
                         <Route exact path='/tasks/:taskId' element={<SingleTask />}/>
                         <Route exact path='/projects/:projectId' element={<SingleProject />}/>
                         <Route exact path='/edit-task/:taskId' element={<EditTask />} />

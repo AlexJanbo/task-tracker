@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
+import { Box, CircularProgress, Grid, Paper, useTheme, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserInformation, reset } from '../features/auth/authSlice'
@@ -30,9 +30,10 @@ function ProjectMembersTable(props) {
 
     // }, [])
 
+    const theme = useTheme()
 
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -50,19 +51,16 @@ function ProjectMembersTable(props) {
     // }
 
     return (
-        <Box flex={5} p={1} sx={{ marginLeft: "15%", display: {lg: "block" } }}>
-            <Grid style={{ marginLeft: "5%", marginRight: "5%", marginTop: "7%", backgroundColor: "orange", height: "4rem", border: "2px solid black", borderRadius: "1rem" }}>
-                <Typography variant="h3" style={{paddingTop: ".2rem", color: "black", textAlign: "center"}}>Project Members!</Typography>
-            </Grid>
-            <TableContainer  component={Paper}>
+        <Box>
+            <TableContainer component={Paper} style={{ marginLeft: "15%", marginTop: "10%", maxWidth: "50vw"}}>
                 <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow sx={{height: "2.5rem"}}>
-                    <TableCell sx={{ minWidth: '20%'}}>First Name</TableCell>
-                    <TableCell sx={{ maxWidth: '60%'}}>Last Name</TableCell>
-                    <TableCell sx={{ minWidth: '20%%'}}>Username</TableCell>
-                    <TableCell sx={{ minWidth: '20%%'}}>Email</TableCell>
-                    <TableCell sx={{ minWidth: '20%%'}}>Role</TableCell>
+                <TableHead style={{ backgroundColor: theme.palette.primary.main}}>
+                    <TableRow>
+                    <TableCell style={{ color: theme.palette.text.primary}}>First Name</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>Last Name</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>Username</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>Email</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>Role</TableCell>
                     
                     </TableRow>
                 </TableHead>
@@ -74,11 +72,11 @@ function ProjectMembersTable(props) {
                         key={member.username}
                         sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member.firstName}</TableCell>
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member.lastName}</TableCell>
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member.username}</TableCell>
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member.email}</TableCell>
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{member.role}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.firstName}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.lastName}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.username}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.email}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.role}</TableCell>
                     </TableRow>
                     ))}
                     {emptyRows > 0 && (

@@ -64,11 +64,6 @@ const list = {
       icon: 'link',
       link: '/user-profile'
     },
-    userSettings: {
-      text: 'User Settings',
-      icon: 'link',
-      link: '/user-settings'
-    }
   }
 
 
@@ -77,7 +72,7 @@ const list = {
     const { user } = useSelector((state) => state.auth)
     // console.log(user)
 
-
+    const theme = useTheme()
 
     return (
       <>
@@ -98,7 +93,9 @@ const list = {
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
                       {list.dashboard.icon}
                     </ListItemIcon>
-                    <ListItemText primary={list.dashboard.text} />
+                    <Typography color={theme.palette.text.secondary}>
+                      {list.dashboard.text}
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
@@ -109,7 +106,9 @@ const list = {
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
                       {list.manageRoles.icon}
                     </ListItemIcon>
-                    <ListItemText primary={list.manageRoles.text} />
+                    <Typography color={theme.palette.text.secondary}>
+                      {list.manageRoles.text}
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
@@ -120,7 +119,9 @@ const list = {
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
                       {list.projects.icon}
                     </ListItemIcon>
-                    <ListItemText primary={list.projects.text} />
+                    <Typography color={theme.palette.text.secondary}>
+                      {list.projects.text}
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
@@ -130,7 +131,9 @@ const list = {
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
                       {<TaskIcon />}
                     </ListItemIcon>
-                    <ListItemText primary={list.tasks.text} />
+                    <Typography color={theme.palette.text.secondary}>
+                      {list.tasks.text}
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
@@ -143,17 +146,9 @@ const list = {
                     <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
                       {<PersonIcon />}
                     </ListItemIcon>
-                    <ListItemText primary={list2.userProfile.text} />
-                  </ListItemButton>
-                </ListItem>
-              </Link>
-              <Link to={list2.userSettings.link} style={{ textDecoration: 'none' }}>
-                <ListItem key={list2.userSettings.text} disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon sx={{ display: {md: "none", lg: "block"}}}>
-                      {<SettingsIcon />}
-                    </ListItemIcon>
-                    <ListItemText  primary={list2.userSettings.text} />
+                    <Typography color={theme.palette.text.secondary}>
+                      {list2.userProfile.text}
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>

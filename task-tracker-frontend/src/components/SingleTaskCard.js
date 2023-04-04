@@ -19,7 +19,7 @@ function SingleTaskCard({ id, title, description, priority, status }) {
 
   return (
     <>
-        <Card display="flex" sx={{ minWidth: 275, border: "1px solid black"}}>
+        {/* <Card display="flex" sx={{ minWidth: 275, border: "1px solid black"}}>
                 <Grid style={{ width: '100%', height: "inherit", backgroundColor: theme.palette.primary.main, margin: "0", padding: "0"}} >
                     <Typography m={0} p={0} variant="h2" textAlign="center" style={{ color: theme.palette.text.primary}}>
                         {title}
@@ -91,6 +91,49 @@ function SingleTaskCard({ id, title, description, priority, status }) {
                         </Button> 
                     </Grid>
                 </Grid>
+        </Card> */}
+        <Card style={{ maxWidth: 400, border: "2px solid blue", borderRadius: "5%"}}>
+            <CardContent >
+            <Grid container spacing={3} >
+                <Grid item xs={12}>
+                    <Typography variant="h5" component="h2">
+                    {title}
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography variant="body1" component="p">
+                    {description}
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                    Status: {status}
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                    Priority: {priority}
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                    ID: {id}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Link to={`/edit-task/${id}`}>
+                        <Button color="primary" style={{ textDecoration: "none"}}>
+                            Edit Task
+                        </Button>
+                    </Link>
+                </Grid>
+                <Grid item>
+                    <Button variant="contained" color="error" onClick={handleDeleteClick}>
+                        Delete Task
+                    </Button> 
+                </Grid>
+            </Grid>
+            </CardContent>
         </Card>
     </>
   )

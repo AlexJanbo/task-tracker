@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid } from '@mui/material'
+import { Box, CircularProgress, Grid, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -10,6 +10,7 @@ import SideDrawer from '../../components/SideDrawer'
 import SingleProjectCard from '../../components/SingleProjectCard'
 import { getUserInformation } from '../../features/auth/authSlice'
 import { getProject, getProjects, reset } from '../../features/projects/projectSlice'
+import ProjectBreadcrumbs from '../../components/ProjectBreadcrumbs'
 
 function SingleProject({ match }) {
 
@@ -58,11 +59,12 @@ function SingleProject({ match }) {
     return (
         <>
           <LoggedInNavbar />
-          <Box container bgcolor={"#fafafa"} height={"100vh"} >
-            <SideDrawer />
-            <SingleProjectCard projectId={projectId} projectCreator={projectInformation.projectCreator} title={projectInformation.title} description={projectInformation.description}/>
-            <ProjectMembers id={projectId} />
-            {projectMembers.length > 0 && <ProjectMembersTable members={projectMembers} />}
+          <Box container bgcolor={"#fafafa"} >
+              <SideDrawer />
+              <ProjectBreadcrumbs title={projectInformation.title}/>
+              <SingleProjectCard projectId={projectId} projectCreator={projectInformation.projectCreator} title={projectInformation.title} description={projectInformation.description}/>
+              <ProjectMembers id={projectId} />
+              {projectMembers.length > 0 && <ProjectMembersTable members={projectMembers} />}
           </Box>
         </>
     )

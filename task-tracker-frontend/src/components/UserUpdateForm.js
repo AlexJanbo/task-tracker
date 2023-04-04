@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { Button, Grid, Stack, TextField, Typography } from '@mui/material'
+import { Button, Grid, Stack, TextField, Typography, useTheme } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { reset, updateUser } from '../features/auth/authSlice'
 
 function UserUpdateForm() {
+
+    const theme = useTheme()
 
     const { user } = useSelector(state => state.auth)
     console.log(user)
@@ -26,12 +28,12 @@ function UserUpdateForm() {
     }
     
     return (
-        <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center', marginLeft: '15%', marginTop: "5%"}}>
-            <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: "orange", border: "2px solid black", borderRadius: "1rem"}}>
-                <Typography variant="h4" style={{ textAlign: "center", marginBottom: "4%"}}>Profile Information!</Typography>
+        <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center', marginLeft: '15%', marginTop: "4rem"}}>
+            <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: theme.palette.primary.main, border: "1px solid black", borderRadius: "1rem"}}>
+                <Typography variant="h5" style={{ textAlign: "center", marginBottom: "4%", color: theme.palette.text.primary}}>Profile Information!</Typography>
             </Grid>
-            <Grid container spacing={3} sx={{ zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
-                <Grid item>
+            <Grid container spacing={4} sx={{  backgroundColor: "white", zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
+                <Grid item xs={12}>
                     <TextField
                         id="username"
                         name="username"
@@ -41,7 +43,7 @@ function UserUpdateForm() {
                         onChange={(e) => setUsername(e.target.value)}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item xs={12}>
                     <TextField
                         id="firstName"
                         name="firstName"
@@ -51,7 +53,7 @@ function UserUpdateForm() {
                         onChange={(e) => setFirstName(e.target.value)}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item xs={12}>
                     <TextField
                         id="lastName"
                         name="lastName"
@@ -61,7 +63,7 @@ function UserUpdateForm() {
                         onChange={(e) => setLastName(e.target.value)}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item xs={12}>
                     <TextField
                         id="email"
                         name="email"
@@ -71,14 +73,11 @@ function UserUpdateForm() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </Grid>
-                <Stack direction="row" spacing={4} >
-                    <Button onClick={() => navigate("/user-profile")}>
-                        Back
-                    </Button>
+                <Grid item xs={12}>
                     <Button type='submit' onClick={handleSubmit}>
                         Update!
                     </Button>
-                </Stack>
+                </Grid>
             </Grid>
         </Grid>
     )

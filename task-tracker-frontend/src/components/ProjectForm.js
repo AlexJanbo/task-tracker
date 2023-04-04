@@ -1,12 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Box, Button, Grid, TextField, Typography } from '@mui/material'
+import { Box, Button, Grid, TextField, Typography, useTheme } from '@mui/material'
 import { createProject } from '../features/projects/projectSlice'
 
 
 function TaskForm() {
 
+    const theme = useTheme()
     const [ title, setTitle ] = useState('')
     const [ description, setDescription ] = useState('')
 
@@ -25,8 +26,8 @@ function TaskForm() {
 
       <Box flex={1} p={2} sx={{ display: { xs: "none", lg: "block" } }}>
         <Grid container spacing={3} sx={{  marginTop: "50%", display: 'flex', flexDirection: 'column'}}>
-          <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: "orange", border: "2px solid black", borderRadius: "1rem"}}>
-            <Typography variant="h4" style={{ textAlign: "center", marginBottom: "4%"}}>Create a Project!</Typography>
+          <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: theme.palette.primary.main, border: "2px solid black", borderRadius: "1rem"}}>
+            <Typography variant="h5" style={{ textAlign: "center", marginBottom: "4%", color: theme.palette.text.primary}}>Create a Project!</Typography>
           </Grid>
           <Grid container spacing={3} sx={{ bgcolor: "white", zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
             <Grid item>

@@ -1,12 +1,12 @@
 import React, { useState} from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Box, Grid, Typography } from '@mui/material/'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Box, Grid, Typography, useTheme } from '@mui/material/'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import TablePagination from '@mui/material/TablePagination';
 
 function ProjectTable() {
 
-  
+  const theme = useTheme()  
   const { projects } = useSelector((state) => state.projects) 
   // console.log(projects)
 
@@ -29,8 +29,8 @@ function ProjectTable() {
 
   return (
     <Box flex={5} p={1} sx={{ display: {lg: "block" } }}>
-      <Grid style={{ marginLeft: "5%", marginRight: "5%", marginTop: "7%", backgroundColor: "orange", height: "4rem", border: "2px solid black", borderRadius: "1rem" }}>
-          <Typography variant="h3" style={{paddingTop: ".2rem", color: "black", textAlign: "center"}}>My Projects!</Typography>
+      <Grid style={{ marginLeft: "5%", marginRight: "5%", marginTop: "7%", backgroundColor: theme.palette.primary.main, height: "4rem", border: "2px solid black", borderRadius: "1rem" }}>
+          <Typography variant="h3" style={{paddingTop: ".2rem", textAlign: "center", color: theme.palette.text.primary}}>My Projects!</Typography>
       </Grid>
       <TableContainer  component={Paper}>
         <Table aria-label="simple table">

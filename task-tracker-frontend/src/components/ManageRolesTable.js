@@ -1,10 +1,12 @@
-import { Button, Grid, InputLabel, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
+import { Button, Grid, InputLabel, MenuItem, useTheme, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { changeRole, reset } from '../features/auth/authSlice'
 import UpdateRolesMenu from './UpdateRolesMenu'
 
 export default function ManageRolesTable(props) {
+
+    const theme = useTheme()
 
     const allUsersArray = props.users
     console.log(props.users)
@@ -30,14 +32,14 @@ export default function ManageRolesTable(props) {
     <>
         <TableContainer  component={Paper} sx={{ maxWidth: "80vw"}} style={{ marginTop: "4%"}}>
             <Table aria-label="simple table">
-            <TableHead>
+            <TableHead style={{ backgroundColor: theme.palette.primary.main}}>
                 <TableRow >
-                    <TableCell >First Name</TableCell>
-                    <TableCell >Last Name</TableCell>
-                    <TableCell >Username</TableCell>
-                    <TableCell >Email</TableCell>
-                    <TableCell >Joined</TableCell>
-                    <TableCell >Access Level</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>First Name</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>Last Name</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>Username</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>Email</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>Joined</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>Access Level</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
