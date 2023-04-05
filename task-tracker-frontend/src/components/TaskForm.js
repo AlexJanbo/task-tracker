@@ -34,9 +34,10 @@ function TaskForm() {
             <Grid item style={{ marginRight: "5%", zIndex: "1", backgroundColor: theme.palette.primary.main, border: "1px solid black", borderRadius: "1rem"}}>
               <Typography variant="h5" style={{ color: theme.palette.text.primary, textAlign: "center", marginBottom: "4%"}}>Create a New Task!</Typography>
             </Grid>
-            <Grid container spacing={3} sx={{ backgroundColor: theme.palette.background.default, zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>        
+            <Grid container spacing={3} sx={{ backgroundColor: "white", zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>        
               <Grid item>
                   <TextField
+                    style={{ backgroundColor: theme.palette.background.default}}
                     id="title"
                     name="title"
                     label="Title"
@@ -48,6 +49,7 @@ function TaskForm() {
               </Grid>
               <Grid item>
                   <TextField
+                    style={{ backgroundColor: theme.palette.background.default}}
                     id="description"
                     name="description"
                     label="Description"

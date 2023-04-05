@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
-import ProjectMembers from '../../components/ProjectMembers'
+import ProjectMembersForm from '../../components/ProjectMembersForm'
 import ProjectMembersTable from '../../components/ProjectMembersTable'
 import ProjectTasks from '../../components/ProjectTasks'
 import SideDrawer from '../../components/SideDrawer'
@@ -55,16 +55,29 @@ function SingleProject({ match }) {
       return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
     }
 
+    if(!projectInformation || !projectMembers) {
+      return (
+          <Grid>
+              <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
+          </Grid>
+      )
+  }
 
     return (
         <>
           <LoggedInNavbar />
-          <Box container bgcolor={"#fafafa"} >
+          <Box container bgcolor={"#fafafa"} height={"100%"} >
+            <Stack direction="row" spacing={1} justifyContent="space-between" >
               <SideDrawer />
-              <ProjectBreadcrumbs title={projectInformation.title}/>
-              <SingleProjectCard projectId={projectId} projectCreator={projectInformation.projectCreator} title={projectInformation.title} description={projectInformation.description}/>
-              <ProjectMembers id={projectId} />
-              {projectMembers.length > 0 && <ProjectMembersTable members={projectMembers} />}
+              <Stack flex={3} direction="column" spacing={4} justifyContent="start" >
+                <ProjectBreadcrumbs title={projectInformation.title}/>
+                <SingleProjectCard projectId={projectId} projectCreator={projectInformation.projectCreator} title={projectInformation.title} description={projectInformation.description}/>
+              </Stack>
+              <Stack flex={3} direction="column" spacing={4} justifyContent="space-between" >
+                <ProjectMembersForm id={projectId} />
+                <ProjectMembersTable members={projectMembers} />
+              </Stack>
+            </Stack>
           </Box>
         </>
     )

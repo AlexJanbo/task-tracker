@@ -3,6 +3,7 @@ import React from 'react'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import PasswordUpdateForm from '../../components/PasswordUpdateForm'
 import SideDrawer from '../../components/SideDrawer'
+import ChangePasswordBreadcrumbs from '../../components/ChangePasswordBreadcrumbs'
 
 function ChangePassword() {
   return (
@@ -12,6 +13,7 @@ function ChangePassword() {
         <SideDrawer />
         <Grid container>
             <Grid item style={{ marginLeft: "15%", marginTop: "4rem"}}>
+                <ChangePasswordBreadcrumbs />
                 <PasswordUpdateForm />
             </Grid>
         </Grid>

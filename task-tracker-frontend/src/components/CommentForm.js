@@ -45,11 +45,12 @@ function CommentForm({ id }) {
     return (
         <Grid container spacing={3} sx={{ marginLeft: "15%", marginTop: "15%", display: 'flex',  maxWidth:"400px", justifyContent: 'start', alignContent: "center"}}>
             <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: theme.palette.primary.main, border: "1px solid black", borderRadius: "1rem"}}>
-                <Typography variant="h4" style={{ color: theme.palette.text.primary, textAlign: "center", marginBottom: "4%"}}>Add Comment!</Typography>
+                <Typography variant="h5" style={{ color: theme.palette.text.primary, textAlign: "center", marginBottom: "4%"}}>Add Comment!</Typography>
             </Grid>
-            <Grid container spacing={3} sx={{ zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
+            <Grid container spacing={3} sx={{ backgroundColor: "white", zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
                 <Grid item p={2}>
-                    <TextField
+                    <TextField  
+                        style={{backgroundColor: theme.palette.background.default}}
                         id="description"
                         name="description"
                         label="Description"

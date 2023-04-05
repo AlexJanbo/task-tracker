@@ -28,13 +28,14 @@ function UserUpdateForm() {
     }
     
     return (
-        <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center', marginLeft: '15%', marginTop: "4rem"}}>
+        <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center', marginLeft: '10%', marginTop: "5%"}}>
             <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: theme.palette.primary.main, border: "1px solid black", borderRadius: "1rem"}}>
                 <Typography variant="h5" style={{ textAlign: "center", marginBottom: "4%", color: theme.palette.text.primary}}>Profile Information!</Typography>
             </Grid>
             <Grid container spacing={4} sx={{  backgroundColor: "white", zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
                 <Grid item xs={12}>
                     <TextField
+                        style={{ backgroundColor: theme.palette.background.default}}
                         id="username"
                         name="username"
                         label="Username"
@@ -45,6 +46,7 @@ function UserUpdateForm() {
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                        style={{ backgroundColor: theme.palette.background.default}}
                         id="firstName"
                         name="firstName"
                         label="First Name"
@@ -55,6 +57,7 @@ function UserUpdateForm() {
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                        style={{ backgroundColor: theme.palette.background.default}}
                         id="lastName"
                         name="lastName"
                         label="Last Name"
@@ -65,6 +68,7 @@ function UserUpdateForm() {
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                        style={{ backgroundColor: theme.palette.background.default}}
                         id="email"
                         name="email"
                         label="Email Address"

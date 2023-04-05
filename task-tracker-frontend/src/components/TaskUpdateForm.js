@@ -31,13 +31,14 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
     }
 
     return (
-        <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center'}}>
+        <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center', marginLeft: "5%"}}>
             <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: theme.palette.primary.main, border: "1px solid black", borderRadius: "1rem"}}>
                 <Typography variant="h4" style={{ color: theme.palette.text.primary, textAlign: "center", marginBottom: "4%"}}>Update Task!</Typography>
             </Grid>
-            <Grid container spacing={3} sx={{ zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
-                <Grid item>
+            <Grid container spacing={3} sx={{ backgroundColor: "white", zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
+                <Grid item >
                     <TextField
+                        style={{backgroundColor: theme.palette.background.default}}
                         id="title"
                         name="title"
                         label="Title"
@@ -50,6 +51,7 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
                 </Grid>
                     <Grid item>
                         <TextField
+                            style={{backgroundColor: theme.palette.background.default}}
                             id="description"
                             name="description"
                             label="Description"
@@ -77,6 +79,7 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
                         </FormControl> */}
                         <InputLabel id="priority-select-label">Priority</InputLabel>
                         <Select
+                            style={{backgroundColor: theme.palette.background.default}}
                             labelId="priority-select-label"
                             id="priority-simple-select"
                             value={priority}
@@ -103,6 +106,7 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
                         </FormControl> */}
                         <InputLabel id="status-select-label">Status</InputLabel>
                         <Select
+                            style={{backgroundColor: theme.palette.background.default}}
                             labelId="status-select-label"
                             id="status-simple-select"
                             value={status}

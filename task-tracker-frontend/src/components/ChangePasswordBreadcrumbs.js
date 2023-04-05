@@ -15,18 +15,18 @@ function handleButton(e) {
     window.location.reload()
 }
 
-export default function ProjectBreadcrumbs(props) {
+export default function ChangePasswordBreadcrumbs(props) {
 
-    // console.log(props)
+    console.log(props)
 
   return (
-    <div role="presentation" onClick={handleClick} style={{ marginTop: "4%", marginLeft: "15%"}}>
+    <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" to={`/tasks`} style={{ textDecoration: 'none'}} >
-          Back to tasks
+        <Link underline="hover" color="inherit" to={`/user-profile`} style={{ textDecoration: 'none'}} >
+          Back to Profile
         </Link>
         <Button onClick={handleButton} >
-            Project: {props.title}
+            Change Password
         </Button>
       </Breadcrumbs>
     </div>

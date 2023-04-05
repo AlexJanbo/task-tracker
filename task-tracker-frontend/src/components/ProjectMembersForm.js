@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addProjectMember } from '../features/projects/projectSlice'
 
-function ProjectMembers(props) {
+function ProjectMembersForm(props) {
 
   const theme = useTheme()
   const dispatch = useDispatch()
@@ -40,4 +40,4 @@ function ProjectMembers(props) {
   )
 }
 
-export default ProjectMembers
+export default ProjectMembersForm

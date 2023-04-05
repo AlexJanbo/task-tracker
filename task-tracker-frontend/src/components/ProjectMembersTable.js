@@ -7,6 +7,7 @@ function ProjectMembersTable(props) {
 
     const projectMembers = props.members
     console.log(projectMembers)
+
     // console.log(projectMembers)
     // const [ memberIds, setMemberIds ] = useState([...projectMembers])
     // const [ members ] = useSelector((state) => state.auth.members)
@@ -52,6 +53,7 @@ function ProjectMembersTable(props) {
 
     return (
         <Box>
+            {projectMembers.length > 0 &&
             <TableContainer component={Paper} style={{ marginLeft: "15%", marginTop: "10%", maxWidth: "50vw"}}>
                 <Table aria-label="simple table">
                 <TableHead style={{ backgroundColor: theme.palette.primary.main}}>
@@ -96,6 +98,7 @@ function ProjectMembersTable(props) {
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </TableContainer>
+            }
         </Box>
   )
 }

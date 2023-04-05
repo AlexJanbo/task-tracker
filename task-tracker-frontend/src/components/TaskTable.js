@@ -69,12 +69,13 @@ function TaskTable() {
                 <TableCell sx={{}}></TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody style={{backgroundColor: "white"}}>
               {taskArray
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((task, index) => (
                 <TableRow
                   key={task._id}
+                  
                   sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.title}</TableCell>
