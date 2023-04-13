@@ -29,14 +29,18 @@ function SingleProjectCard({  projectId, id, title, description }) {
                         {description}
                         </Typography>
                     </Grid>
-                    <Link to={`/editProject/${projectId}/`} textAlign="center">
-                        <Button color="primary">
-                            Edit Project
-                        </Button>
-                    </Link>
-                    <Button variant="contained" color="error" onClick={handleDeleteClick}>
-                        Delete Project
-                    </Button> 
+                    <Grid item xs={6}>
+                        <Link to={`/editProject/${projectId}/`} textAlign="center">
+                            <Button color="primary">
+                                Edit Project
+                            </Button>
+                        </Link>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Button variant="contained" color="error" onClick={handleDeleteClick}>
+                            Delete Project
+                        </Button> 
+                    </Grid>
                 </Grid>
             </CardContent>
         </Card>

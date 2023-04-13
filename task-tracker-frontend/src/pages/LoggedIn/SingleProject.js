@@ -68,16 +68,16 @@ function SingleProject({ match }) {
           <LoggedInNavbar />
           <Box container bgcolor={"#fafafa"} height={"100%"} >
             <Stack direction="row" spacing={1} justifyContent="space-between" >
-              <SideDrawer />
-              <Stack flex={3} direction="column" spacing={4} justifyContent="start" >
-                <ProjectBreadcrumbs title={projectInformation.title}/>
-                <SingleProjectCard projectId={projectId} projectCreator={projectInformation.projectCreator} title={projectInformation.title} description={projectInformation.description}/>
+              <SideDrawer/>
+                <Stack flex={3} direction="column" spacing={4} justifyContent="start" >
+                  <ProjectBreadcrumbs title={projectInformation.title}/>
+                  <SingleProjectCard projectId={projectId} projectCreator={projectInformation.projectCreator} title={projectInformation.title} description={projectInformation.description}/>
+                  <ProjectMembersTable members={projectMembers} />
+                </Stack>
+                <Stack flex={3} direction="column" spacing={4} justifyContent="space-between" >
+                  <ProjectMembersForm id={projectId} />
+                </Stack>
               </Stack>
-              <Stack flex={3} direction="column" spacing={4} justifyContent="space-between" >
-                <ProjectMembersForm id={projectId} />
-                <ProjectMembersTable members={projectMembers} />
-              </Stack>
-            </Stack>
           </Box>
         </>
     )

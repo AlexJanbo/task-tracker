@@ -6,6 +6,7 @@ import LoggedInNavbar from '../../components/LoggedInNavbar'
 import ProjectUpdateForm from '../../components/ProjectUpdateForm'
 import SideDrawer from '../../components/SideDrawer'
 import { getProject, reset, updateProject } from '../../features/projects/projectSlice'
+import EditProjectBreadcrumbs from '../../components/EditProjectBreadcrumbs'
 
 function EditProject( {match} ) {
   
@@ -61,7 +62,12 @@ function EditProject( {match} ) {
         <LoggedInNavbar />
         <Box container bgcolor={"#fafafa"} height={"100vh"} >
             <SideDrawer />
-            <ProjectUpdateForm projectId={projectId} title={title} description={description} />
+            <Grid container>
+                <Grid item style={{ marginLeft: "15%", marginTop: "4%"}}>
+                    <EditProjectBreadcrumbs title={title} id={projectId}/>
+                    <ProjectUpdateForm projectId={projectId} title={title} description={description} />
+                </Grid>
+            </Grid>
         </Box>
         
     </>

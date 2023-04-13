@@ -33,7 +33,7 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
     return (
         <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center', marginLeft: "5%"}}>
             <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: theme.palette.primary.main, border: "1px solid black", borderRadius: "1rem"}}>
-                <Typography variant="h4" style={{ color: theme.palette.text.primary, textAlign: "center", marginBottom: "4%"}}>Update Task!</Typography>
+                <Typography variant="h5" style={{ color: theme.palette.text.primary, textAlign: "center", marginBottom: "4%"}}>Update Task!</Typography>
             </Grid>
             <Grid container spacing={3} sx={{ backgroundColor: "white", zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
                 <Grid item >
@@ -49,20 +49,20 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </Grid>
-                    <Grid item>
-                        <TextField
-                            style={{backgroundColor: theme.palette.background.default}}
-                            id="description"
-                            name="description"
-                            label="Description"
-                            type="text"
-                            multiline={true}
-                            rows={2}
-                            maxRows={3}
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                    </Grid>
+                <Grid item>
+                    <TextField
+                        style={{backgroundColor: theme.palette.background.default}}
+                        id="description"
+                        name="description"
+                        label="Description"
+                        type="text"
+                        multiline={true}
+                        rows={2}
+                        maxRows={3}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </Grid>
                 <Stack spacing={4} m={2} direction="row">
                     <Grid item>
                         {/* <FormControl>

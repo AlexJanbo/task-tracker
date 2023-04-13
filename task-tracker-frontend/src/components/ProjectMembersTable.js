@@ -54,13 +54,13 @@ function ProjectMembersTable(props) {
     return (
         <Box>
             {projectMembers.length > 0 &&
-            <TableContainer component={Paper} style={{ marginLeft: "15%", marginTop: "10%", maxWidth: "50vw"}}>
+            <TableContainer component={Paper} style={{ marginTop: "5%", maxWidth: "50vw"}}>
                 <Table aria-label="simple table">
                 <TableHead style={{ backgroundColor: theme.palette.primary.main}}>
                     <TableRow>
+                    <TableCell style={{ color: theme.palette.text.primary}}>Member</TableCell>
                     <TableCell style={{ color: theme.palette.text.primary}}>First Name</TableCell>
                     <TableCell style={{ color: theme.palette.text.primary}}>Last Name</TableCell>
-                    <TableCell style={{ color: theme.palette.text.primary}}>Username</TableCell>
                     <TableCell style={{ color: theme.palette.text.primary}}>Email</TableCell>
                     <TableCell style={{ color: theme.palette.text.primary}}>Role</TableCell>
                     
@@ -74,9 +74,9 @@ function ProjectMembersTable(props) {
                         key={member.username}
                         sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
                     >
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.username}</TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.firstName}</TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.lastName}</TableCell>
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.username}</TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.email}</TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{member.role}</TableCell>
                     </TableRow>

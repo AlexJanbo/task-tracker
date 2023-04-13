@@ -21,10 +21,11 @@ function ProjectMembersForm(props) {
 
   return (
     <>  
-        <Grid p={2} style={{  maxWidth: "20vw", marginLeft: "15%", marginRight: "5%", marginTop: "2%",  border: "1px solid black", borderRadius: "1rem" }}>
+        <Grid p={2} style={{ backgroundColor: "white", maxWidth: "20vw", marginTop: "4rem",  border: "1px solid black", borderRadius: "1rem" }}>
             <Grid container display="flex" justifyContent="center" >
               <Grid item>
                   <TextField
+                    style={{ backgroundColor: theme.palette.background.default}}
                     id="username"
                     name="username"
                     label="Username"
