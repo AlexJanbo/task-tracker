@@ -24,6 +24,9 @@ const taskSchema = mongoose.Schema(
             type: String,
             required: [true, 'Please add a status']
         },
+        deadline: {
+            type: Date
+        },
     },
     {
         timestamps: true,

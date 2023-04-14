@@ -31,6 +31,7 @@ const createTask = asyncHandler(async (req, res) => {
             description: req.body.description,
             priority: req.body.priority,
             status: req.body.status,
+            deadline: req.body.deadline,
             user: req.user.id
         })
         res.status(200).json(task)
@@ -69,6 +70,7 @@ const updateTask = asyncHandler(async (req, res) => {
             description: req.body.description,
             priority: req.body.priority,
             status: req.body.status,
+            deadline: req.body.deadline,
             user: req.user.id
         }, {new: true})
         res.status(200).json(updatedTask)

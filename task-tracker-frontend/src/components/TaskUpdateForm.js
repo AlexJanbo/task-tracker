@@ -118,6 +118,7 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
                             <MenuItem value="Completed">Completed</MenuItem>
                         </Select>
                     </Grid>
+                    
                 </Stack>
 
                 <Button type='submit' onClick={handleSubmit}>
