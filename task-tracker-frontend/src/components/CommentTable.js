@@ -29,7 +29,18 @@ function CommentTable( id ) {
   
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, commentArray.length - page * rowsPerPage)
 
-
+    const formatDate = (date) => {
+        let formattedDate = new Date(date).toLocaleString('en-us', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+            timeZoneName: 'short'
+        })
+        return formattedDate
+    }
   
     return (
         <>  
@@ -60,7 +71,7 @@ function CommentTable( id ) {
                             
                             {comment.image ? <CommentImageModal image={comment.image}/> : "No Attachments"}
                         </TableCell>
-                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{comment.createdAt}</TableCell>
+                        <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{formatDate(comment.createdAt)}</TableCell>
                         <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>
                         <Button onClick={(e) => {
                             dispatch(deleteComment(comment._id))

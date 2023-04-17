@@ -13,7 +13,6 @@ function TaskForm() {
     const [ title, setTitle ] = useState('')
     const [ description, setDescription ] = useState('')
     const [ priority, setPriority ] = useState('Low')
-    const [ deadline, setDeadline ] = useState()
     const status = "Created"
 
 
@@ -22,7 +21,7 @@ function TaskForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(createTask({title, description, priority, status, deadline}))
+        dispatch(createTask({title, description, priority, status}))
         setTitle('')
         setDescription('')
         setPriority('Low')
@@ -74,19 +73,6 @@ function TaskForm() {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <Grid item>
-                <FormControl>
-                  <inputlabel>Deadline</inputlabel>
-                  <input 
-                  type="datetime-local" 
-                  id="deadline" 
-                  name="deadline"
-                  value={deadline}
-                  onChange={(e) => setDeadline(e.target.value)}
-                  />
-                </FormControl>
-              </Grid>
-
               <Button  type='submit' onClick={handleSubmit}>
                   Create Task
               </Button>

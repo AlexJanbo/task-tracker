@@ -64,7 +64,7 @@ function EditTask( {match} ) {
                 <Grid container>
                     <Grid item style={{ marginLeft: "15%", marginTop: "4%"}}>
                         <TaskUpdateBreadcrumbs id={Task._id} />
-                        <TaskUpdateForm taskId={Task._id} titleProp={Task.title} descriptionProp={Task.description} priorityProp={Task.priority} statusProp={Task.status} />
+                        <TaskUpdateForm taskId={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} deadline={Task.deadline} />
                     </Grid>
                 </Grid>
             </Box>

@@ -74,7 +74,7 @@ export const SingleTask = ({ match }) => {
                     <SideDrawer />
                     <Stack flex={3} direction="column" spacing={4} justifyContent="start" >
                         <TaskBreadcrumbs id={Task._id} />
-                        <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
+                        <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} deadline={Task.deadline} created={Task.createdAt}/>
                         {/* <TaskHistory /> */}
                         <CommentTable id={Task._id}/>
                     </Stack>

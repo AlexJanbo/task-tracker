@@ -26,6 +26,15 @@ export default function ManageRolesTable(props) {
     };
   
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, allUsersArray.length - page * rowsPerPage)
+
+    const formatDate = (date) => {
+        let formattedDeadline = new Date(date).toLocaleString('en-us', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+        })
+        return formattedDeadline
+    }
   
   
     return (
@@ -54,7 +63,7 @@ export default function ManageRolesTable(props) {
                     <TableCell >{user.lastName}</TableCell>
                     <TableCell >{user.username}</TableCell>
                     <TableCell >{user.email}</TableCell>
-                    <TableCell >{user.createdAt}</TableCell>
+                    <TableCell >{formatDate(user.createdAt)}</TableCell>
                     <TableCell >
                         <UpdateRolesMenu user={user} />
                     </TableCell>

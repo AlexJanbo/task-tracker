@@ -7,27 +7,47 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, statusProp }) {
+function TaskUpdateForm(props) {
 
+    console.log(props)
     const theme = useTheme()
+    const taskId = props.taskId
     const { user } = useSelector((state) => state.auth)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [ title, setTitle ] = useState(titleProp)
-    const [ description, setDescription ] = useState(descriptionProp)
-    const [ priority, setPriority ] = useState(priorityProp)
-    const [ status, setStatus ] = useState(statusProp)
+    const [ title, setTitle ] = useState(props.title)
+    const [ description, setDescription ] = useState(props.description)
+    const [ priority, setPriority ] = useState(props.priority)
+    const [ status, setStatus ] = useState(props.status)
+    const [ deadline, setDeadline ] = useState(props.deadline)
 
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(updateTask({taskId, title, description, priority, status}))
-        dispatch(reset())
-        navigate('/tasks')
+        if(!deadline) {
+            dispatch(updateTask({taskId, title, description, priority, status}))
+            dispatch(reset())
+            navigate('/tasks')
+        }
+
+        const now = new Date().getTime()
+        const selectedDeadline = new Date(deadline).getTime()
+    
+
+        if( selectedDeadline <= now ) {
+            alert('Please select a some time in the future.')
+            return
+        }
+
+        if( selectedDeadline > now ) {
+            dispatch(updateTask({taskId, title, description, priority, status, deadline}))
+            dispatch(reset())
+            navigate('/tasks')
+        }
     }
 
     return (
@@ -120,6 +140,18 @@ function TaskUpdateForm({ taskId, titleProp, descriptionProp, priorityProp, stat
                     </Grid>
                     
                 </Stack>
+                <Grid item>
+                <FormControl>
+                  <inputlabel>Deadline</inputlabel>
+                  <input 
+                  type="datetime-local" 
+                  id="deadline" 
+                  name="deadline"
+                  value={deadline}
+                  onChange={(e) => setDeadline(e.target.value)}
+                  />
+                </FormControl>
+              </Grid>
 
                 <Button type='submit' onClick={handleSubmit}>
                     Update
