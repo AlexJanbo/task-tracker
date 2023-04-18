@@ -25,7 +25,6 @@ function SingleTaskCard({ id, title, description, priority, status, deadline, cr
             hour: 'numeric',
             minute: 'numeric',
             hour12: true,
-            timeZoneName: 'short'
         })
         return formattedDate
     }

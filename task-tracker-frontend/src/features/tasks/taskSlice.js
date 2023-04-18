@@ -42,11 +42,77 @@ export const updateTask = createAsyncThunk('tasks/update', async (taskData, thun
     }
 })
 
+// Update user task title
+export const updateTaskTitle = createAsyncThunk('tasks/updateTitle', async (taskData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.updateTaskTitle(taskData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+// Update user task description
+export const updateTaskDescription = createAsyncThunk('tasks/updateDescription', async (taskData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.updateTaskDescription(taskData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+// Update user task priority
+export const updateTaskPriority = createAsyncThunk('tasks/updatePriority', async (taskData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.updateTaskPriority(taskData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+// Update user task status
+export const updateTaskStatus = createAsyncThunk('tasks/updateStatus', async (taskData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.updateTaskStatus(taskData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+// Update user task deadline
+export const updateTaskDeadline = createAsyncThunk('tasks/updateDeadline', async (taskData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.updateTaskDeadline(taskData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 // Delete a task
 export const deleteTask = createAsyncThunk('tasks/delete', async (id, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
         return await taskService.deleteTask(id, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+// Get urgent tasks
+export const getUrgentTasks = createAsyncThunk('tasks/getUrgent', async (_, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.getUrgentTasks(token)
     } catch (error) {
         const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
@@ -102,6 +168,71 @@ export const taskSlice = createSlice({
                 state.isError = true
                 state.message = action.payload
             })
+            .addCase(updateTaskTitle.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateTaskTitle.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(updateTaskTitle.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateTaskDescription.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateTaskDescription.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(updateTaskDescription.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateTaskPriority.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateTaskPriority.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(updateTaskPriority.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateTaskStatus.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateTaskStatus.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(updateTaskStatus.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateTaskDeadline.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateTaskDeadline.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(updateTaskDeadline.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
             .addCase(deleteTask.pending, (state) => {
                 state.isLoading = true
             })
@@ -111,6 +242,19 @@ export const taskSlice = createSlice({
                 state.tasks = action.payload
             })
             .addCase(deleteTask.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(getUrgentTasks.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getUrgentTasks.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(getUrgentTasks.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

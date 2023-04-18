@@ -59,6 +59,7 @@ function TaskTable() {
                   >
                   </TableSortLabel> */}
                 </TableCell>
+                <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}}>Deadline</TableCell>
                 <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}} key="created">
                   Created
                   {/* <TableSortLabel
@@ -82,7 +83,9 @@ function TaskTable() {
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.description}</TableCell>
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.priority}</TableCell>
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.status == "Completed" ? <CheckBoxIcon color="success" /> : <Typography>{task.status}</Typography>}</TableCell>
+                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.deadline ? new Date(task.deadline).toLocaleDateString('en-US') : "No deadline"}</TableCell>
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
+                  
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>
                     {/* <Link to={`/editTask/${task._id}/`}>
                       <Button>

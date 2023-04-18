@@ -48,6 +48,76 @@ const updateTask = async (taskData, token) => {
     return response.data
 }
 
+// Update a task title
+const updateTaskTitle = async (taskData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + taskData.taskId + "/update-task-title", taskData , config)
+    console.log(response)
+
+    return response.data
+}
+
+// Update a task description
+const updateTaskDescription = async (taskData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + taskData.taskId + "/update-task-description", taskData , config)
+    console.log(response)
+
+    return response.data
+}
+
+// Update a task priority
+const updateTaskPriority = async (taskData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + taskData.taskId + "/update-task-priority", taskData , config)
+    console.log(response)
+
+    return response.data
+}
+
+// Update a task status
+const updateTaskStatus = async (taskData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + taskData.taskId + "/update-task-status", taskData , config)
+    console.log(response)
+
+    return response.data
+}
+
+// Update a task deadline
+const updateTaskDeadline = async (taskData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + taskData.taskId + "/update-task-deadline", taskData , config)
+    console.log(response)
+
+    return response.data
+}
+
 // Delete a task
 const deleteTask = async (taskId, token) => {
     const config = {
@@ -61,12 +131,31 @@ const deleteTask = async (taskId, token) => {
     return response.data
 }
 
+// Get urgent tasks
+const getUrgentTasks = async (token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.get(API_URL + 'get-urgent-tasks', config)
+
+    return response.data
+}
+
 
 const taskService = {
     createTask,
     getTasks,
     updateTask,
+    updateTaskTitle,
+    updateTaskDescription,
+    updateTaskPriority,
+    updateTaskStatus,
+    updateTaskDeadline,
     deleteTask,
+    getUrgentTasks,
 }
 
 export default taskService

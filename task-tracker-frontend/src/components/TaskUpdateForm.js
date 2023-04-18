@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, FormControl, useTheme, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Select, Stack, TextField, Typography } from '@mui/material'
-import { reset, updateTask } from '../features/tasks/taskSlice'
+import { reset, updateTask, updateTaskDeadline, updateTaskDescription, updateTaskPriority, updateTaskStatus, updateTaskTitle } from '../features/tasks/taskSlice'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -50,6 +50,98 @@ function TaskUpdateForm(props) {
         }
     }
 
+    const handleSubmitTitle = (e) => {
+        e.preventDefault()
+
+        if(!title) {
+            alert("No title")
+            return
+        }
+        if(title.length > 40) {
+            alert("Title is too long")
+            return
+        }
+        if(title.length < 3) {
+            alert("Title is too short")
+            return
+        }
+
+        dispatch(updateTaskTitle({taskId, title}))
+        dispatch(reset())
+        window.location.reload()
+    }
+
+    const handleSubmitDescription = (e) => {
+        e.preventDefault()
+
+        if(!description) {
+            alert("No description")
+            return
+        }
+        if(description.length > 140) {
+            alert("Description is too long")
+            return
+        }
+        if(description.length < 3) {
+            alert("Description is too short")
+            return
+        }
+
+        dispatch(updateTaskDescription({taskId, description}))
+        dispatch(reset())
+        window.location.reload()
+    }
+
+    const handleSubmitPriority = (e) => {
+        e.preventDefault()
+
+        if(!priority) {
+            alert("No priority")
+            return
+        }
+
+        dispatch(updateTaskPriority({taskId, priority}))
+        dispatch(reset())
+        window.location.reload()
+    }
+
+    const handleSubmitStatus = (e) => {
+        e.preventDefault()
+        
+        if(!status) {
+            alert("No status")
+            return
+        }
+
+        dispatch(updateTaskStatus({taskId, status}))
+        dispatch(reset())
+        window.location.reload()
+    }
+
+    const handleSubmitDeadline = (e) => {
+        e.preventDefault()
+
+        if(!deadline) {
+            alert("No deadline")
+            return
+        }
+
+        const now = new Date().getTime()
+        const selectedDeadline = new Date(deadline).getTime()
+    
+
+        if( selectedDeadline <= now ) {
+            alert('Please select a some time in the future.')
+            return
+        }
+
+  
+        dispatch(updateTaskDeadline({taskId, deadline}))
+        dispatch(reset())
+        window.location.reload()
+        
+    }
+
     return (
         <Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'column', width:"400px", justifyContent: 'center', marginLeft: "5%"}}>
             <Grid item style={{ width: "350px", zIndex: "1", backgroundColor: theme.palette.primary.main, border: "1px solid black", borderRadius: "1rem"}}>
@@ -58,6 +150,7 @@ function TaskUpdateForm(props) {
             <Grid container spacing={3} sx={{ backgroundColor: "white", zIndex: "0", display: 'flex', flexDirection: 'column', paddingTop: "1rem", width:"400px", alignItems: 'center', border: "1px solid black"}}>
                 <Grid item >
                     <TextField
+                        xs={6}
                         style={{backgroundColor: theme.palette.background.default}}
                         id="title"
                         name="title"
@@ -68,7 +161,11 @@ function TaskUpdateForm(props) {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
+                    <Button xs={6} type='submit' onClick={handleSubmitTitle}>
+                        Set Title
+                    </Button>
                 </Grid>
+
                 <Grid item>
                     <TextField
                         style={{backgroundColor: theme.palette.background.default}}
@@ -82,21 +179,12 @@ function TaskUpdateForm(props) {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
+                    <Button type='submit' onClick={handleSubmitDescription}>
+                        Set Description
+                    </Button>
                 </Grid>
                 <Stack spacing={4} m={2} direction="row">
                     <Grid item>
-                        {/* <FormControl>
-                        <FormLabel style={{textAlign:"center"}}>Priority</FormLabel>
-                        <RadioGroup
-                        row
-                        value={priority}
-                        onChange={(e) => setPriority(e.target.value)}
-                        >
-                            <FormControlLabel value="Low" control={<Radio />} label="Low" />
-                            <FormControlLabel value="Medium" control={<Radio />} label="Medium" />
-                            <FormControlLabel value="High" control={<Radio />} label="High" />
-                        </RadioGroup>
-                        </FormControl> */}
                         <InputLabel id="priority-select-label">Priority</InputLabel>
                         <Select
                             style={{backgroundColor: theme.palette.background.default}}
@@ -110,20 +198,11 @@ function TaskUpdateForm(props) {
                             <MenuItem value="Medium">Medium</MenuItem>
                             <MenuItem value="High">High</MenuItem>
                         </Select>
+                        <Button type='submit' onClick={handleSubmitPriority}>
+                            Set Priority
+                        </Button>
                     </Grid>
                     <Grid item>
-                        {/* <FormControl>
-                        <FormLabel style={{textAlign:"center"}}>Status</FormLabel>
-                        <RadioGroup
-                        row
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value)}
-                        >
-                            <FormControlLabel value="Created" control={<Radio />} label="Created" />
-                            <FormControlLabel value="In Progress" control={<Radio />} label="In Progress" />
-                            <FormControlLabel value="Completed" control={<Radio />} label="Completed" />
-                        </RadioGroup>
-                        </FormControl> */}
                         <InputLabel id="status-select-label">Status</InputLabel>
                         <Select
                             style={{backgroundColor: theme.palette.background.default}}
@@ -137,25 +216,26 @@ function TaskUpdateForm(props) {
                             <MenuItem value="In Progress">In Progress</MenuItem>
                             <MenuItem value="Completed">Completed</MenuItem>
                         </Select>
-                    </Grid>
-                    
+                        <Button type='submit' onClick={handleSubmitStatus}>
+                            Set Status
+                        </Button>
+                    </Grid>          
                 </Stack>
                 <Grid item>
-                <FormControl>
-                  <inputlabel>Deadline</inputlabel>
-                  <input 
-                  type="datetime-local" 
-                  id="deadline" 
-                  name="deadline"
-                  value={deadline}
-                  onChange={(e) => setDeadline(e.target.value)}
-                  />
-                </FormControl>
-              </Grid>
-
-                <Button type='submit' onClick={handleSubmit}>
-                    Update
-                </Button>
+                    <FormControl>
+                        <inputlabel>Deadline</inputlabel>
+                        <input 
+                        type="datetime-local" 
+                        id="deadline" 
+                        name="deadline"
+                        value={deadline}
+                        onChange={(e) => setDeadline(e.target.value)}
+                        />
+                    </FormControl>
+                    <Button type='submit' onClick={handleSubmitDeadline}>
+                        Set Deadline
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
   )

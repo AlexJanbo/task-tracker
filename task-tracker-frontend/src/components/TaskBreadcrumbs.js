@@ -17,7 +17,7 @@ function handleButton(e) {
 
 export default function TaskBreadcrumbs(props) {
 
-    console.log(props)
+    // console.log(props)
 
   return (
     <div role="presentation" onClick={handleClick} style={{ marginTop: "10%"}}>
