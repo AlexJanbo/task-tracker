@@ -4,14 +4,14 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import SingleTaskCard from '../../components/SingleTaskCard'
-import TaskHistory from '../../components/TaskHistory'
+import TaskHistoryTable from '../../components/TaskHistoryTable'
 import TaskAttachments from '../../components/TaskAttachments'
 import CommentForm from '../../components/CommentForm'
 import CommentTable from '../../components/CommentTable'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import SideDrawer from '../../components/SideDrawer'
-import { getComments, reset } from '../../features/comments/commentSlice'
-import { getTasks } from '../../features/tasks/taskSlice'
+import { getComments } from '../../features/comments/commentSlice'
+import { getIndividualTask, getTasks, reset} from '../../features/tasks/taskSlice'
 import TaskBreadcrumbs from '../../components/TaskBreadcrumbs'
 
 export const SingleTask = ({ match }) => {
@@ -33,7 +33,8 @@ export const SingleTask = ({ match }) => {
           }
 
         dispatch(getComments())
-        dispatch(getTasks())
+        dispatch(getIndividualTask(taskId))
+        dispatch(reset())
 
 
 
@@ -44,27 +45,27 @@ export const SingleTask = ({ match }) => {
 
     if(isLoading) {
         return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
-      }
+    }
 
+    console.log(tasks)
 
-
-    let Task;
-    tasks?.map(task => {
-        if(task._id === taskId) {
-            Task = task
-        }   
-        return Task
-    })
+    // let Task;
+    // tasks?.map(task => {
+    //     if(task._id === taskId) {
+    //         Task = task
+    //     }   
+    //     return Task
+    // })
     // console.log(Task)
 
 
-    if(!Task) {
-        return (
-            <Grid>
-                <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
-            </Grid>
-        )
-    }
+    // if(!Task) {
+    //     return (
+    //         <Grid>
+    //             <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
+    //         </Grid>
+    //     )
+    // }
 
     return (
         <>  
@@ -73,16 +74,15 @@ export const SingleTask = ({ match }) => {
                 <Stack direction="row" spacing={1} justifyContent="space-between" >
                     <SideDrawer />
                     <Stack flex={3} direction="column" spacing={4} justifyContent="start" >
-                        <TaskBreadcrumbs id={Task._id} />
-                        <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} deadline={Task.deadline} created={Task.createdAt}/>
-                        {/* <TaskHistory /> */}
-                        <CommentTable id={Task._id}/>
+                        <TaskBreadcrumbs id={tasks._id} />
+                        <SingleTaskCard id={tasks._id} title={tasks.title} description={tasks.description} priority={tasks.priority} status={tasks.status} deadline={tasks.deadline} created={tasks.createdAt}/>
+                        <CommentTable id={tasks._id}/>
                     </Stack>
                     <Stack flex={3} direction="column" spacing={4} justifyContent="space-between" >
-                        <CommentForm id={Task._id} />
+                        <CommentForm id={tasks._id} />
                     </Stack>
                 </Stack>
-            </Box>
+            </Box> 
             {/* <Box container bgcolor={"#fafafa"} height={"100vh"} sx={{ display: {xs: "block"}}}>
                 <Stack direction="row" >
                     <SideDrawer flex={1} />

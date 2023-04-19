@@ -34,6 +34,19 @@ const getTasks = async (token) => {
     return response.data
 }
 
+// Get Individual Task
+const getIndividualTask = async (taskId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.get(API_URL + taskId, config)
+
+    return response.data
+}
+
 // Update a task
 const updateTask = async (taskData, token) => {
     const config = {
@@ -148,6 +161,7 @@ const getUrgentTasks = async (token) => {
 const taskService = {
     createTask,
     getTasks,
+    getIndividualTask,
     updateTask,
     updateTaskTitle,
     updateTaskDescription,

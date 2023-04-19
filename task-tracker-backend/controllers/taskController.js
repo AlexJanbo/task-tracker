@@ -17,6 +17,23 @@ const readTasks = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc        Read Single Task
+// @route       GET /api/tasks/:id
+// @access      Private
+const getIndividualTask = asyncHandler(async (req, res) => {
+    try {
+        console.log("reached")
+        const taskId = req.params.id
+        console.log(taskId)
+        const task = await Task.findOne({ _id:  taskId})
+        console.log(task)
+        res.status(200).json(task)
+    } catch (error) {
+        // res.status(404).json({ message: error.message })
+    }
+})
+
+
 // @desc        Create Task
 // @route       POST /api/tasks
 // @access      Private
@@ -405,6 +422,7 @@ const getUrgentTasks = asyncHandler(async (req, res) => {
 
 module.exports = {
     readTasks,
+    getIndividualTask,
     createTask,
     updateTask,
     updateTaskTitle,

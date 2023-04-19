@@ -31,6 +31,17 @@ export const getTasks = createAsyncThunk('tasks/getAll', async (_, thunkAPI) => 
     }
 })
 
+// Get an individual task
+export const getIndividualTask = createAsyncThunk('tasks/getOne', async (taskId, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.getIndividualTask(taskId, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 // Update user task
 export const updateTask = createAsyncThunk('tasks/update', async (taskData, thunkAPI) => {
     try {
@@ -151,6 +162,19 @@ export const taskSlice = createSlice({
                 state.tasks = action.payload
             })
             .addCase(getTasks.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(getIndividualTask.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getIndividualTask.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(getIndividualTask.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

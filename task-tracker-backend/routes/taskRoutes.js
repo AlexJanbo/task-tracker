@@ -1,12 +1,12 @@
 const express = require('express')
-const { readTasks, createTask, updateTask, deleteTask, getUrgentTasks, updateTaskTitle, updateTaskDescription, updateTaskPriority, updateTaskStatus, updateTaskDeadline } = require('../controllers/taskController')
+const { readTasks, createTask, updateTask, deleteTask, getUrgentTasks, updateTaskTitle, updateTaskDescription, updateTaskPriority, updateTaskStatus, updateTaskDeadline, getIndividualTask } = require('../controllers/taskController')
 
 const router = express.Router()
 
 const { protect } = require('../middleware/authenticationMiddleware')
 
 router.route('/').post(protect, createTask).get(protect, readTasks)
-router.route('/:id').put(protect, updateTask).delete(protect, deleteTask)
+router.route('/:id').get(protect, getIndividualTask).put(protect, updateTask).delete(protect, deleteTask)
 router.route('/:id/update-task-title').put(protect, updateTaskTitle)
 router.route('/:id/update-task-description').put(protect, updateTaskDescription)
 router.route('/:id/update-task-priority').put(protect, updateTaskPriority)
