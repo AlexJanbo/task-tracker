@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const { ObjectId } = mongoose.Schema.Types
 
+
+
 const taskSchema = mongoose.Schema(
     {
         user: {
@@ -22,7 +24,8 @@ const taskSchema = mongoose.Schema(
         },
         status: {
             type: String,
-            required: [true, 'Please add a status']
+            required: [true, 'Please add a status'],
+            default: "Created"
         },
         deadline: {
             type: Date
