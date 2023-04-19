@@ -25,7 +25,7 @@ function Dashboard() {
         Navigate('/')
         }
 
-        dispatch(getUrgentTasks())
+        // dispatch(getUrgentTasks())
 
 
         return () => {
@@ -47,7 +47,7 @@ function Dashboard() {
         <LoggedInNavbar />
         <Box container bgcolor={"#fafafa"} height={"100%"} >
             <SideDrawer />
-            <DashboardPanel urgentTasks={tasks}/>
+            {/* <DashboardPanel urgentTasks={tasks}/> */}
         </Box>
   </>
   )

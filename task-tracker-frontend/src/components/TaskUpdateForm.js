@@ -24,32 +24,6 @@ function TaskUpdateForm(props) {
     const [ deadline, setDeadline ] = useState(props.deadline)
 
 
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-        if(!deadline) {
-            dispatch(updateTask({taskId, title, description, priority, status}))
-            dispatch(reset())
-            navigate('/tasks')
-        }
-
-        const now = new Date().getTime()
-        const selectedDeadline = new Date(deadline).getTime()
-    
-
-        if( selectedDeadline <= now ) {
-            alert('Please select a some time in the future.')
-            return
-        }
-
-        if( selectedDeadline > now ) {
-            dispatch(updateTask({taskId, title, description, priority, status, deadline}))
-            dispatch(reset())
-            navigate('/tasks')
-        }
-    }
-
     const handleSubmitTitle = (e) => {
         e.preventDefault()
 
@@ -67,7 +41,6 @@ function TaskUpdateForm(props) {
         }
 
         dispatch(updateTaskTitle({taskId, title}))
-        dispatch(reset())
         window.location.reload()
     }
 

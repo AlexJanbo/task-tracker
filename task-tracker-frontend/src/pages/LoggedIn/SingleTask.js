@@ -16,8 +16,8 @@ import TaskBreadcrumbs from '../../components/TaskBreadcrumbs'
 
 export const SingleTask = ({ match }) => {
 
-    const { user } = useSelector((state) => state.auth)
     const { taskId } = useParams()
+    const { user } = useSelector((state) => state.auth)
     const { tasks, isLoading, isError, message } = useSelector((state) => state.tasks) 
 
     const dispatch = useDispatch()
@@ -34,7 +34,6 @@ export const SingleTask = ({ match }) => {
 
         dispatch(getComments())
         dispatch(getIndividualTask(taskId))
-        dispatch(reset())
 
 
 
@@ -47,25 +46,6 @@ export const SingleTask = ({ match }) => {
         return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
     }
 
-    console.log(tasks)
-
-    // let Task;
-    // tasks?.map(task => {
-    //     if(task._id === taskId) {
-    //         Task = task
-    //     }   
-    //     return Task
-    // })
-    // console.log(Task)
-
-
-    // if(!Task) {
-    //     return (
-    //         <Grid>
-    //             <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
-    //         </Grid>
-    //     )
-    // }
 
     return (
         <>  
@@ -74,27 +54,14 @@ export const SingleTask = ({ match }) => {
                 <Stack direction="row" spacing={1} justifyContent="space-between" >
                     <SideDrawer />
                     <Stack flex={3} direction="column" spacing={4} justifyContent="start" >
-                        <TaskBreadcrumbs id={tasks._id} />
-                        <SingleTaskCard id={tasks._id} title={tasks.title} description={tasks.description} priority={tasks.priority} status={tasks.status} deadline={tasks.deadline} created={tasks.createdAt}/>
-                        <CommentTable id={tasks._id}/>
-                    </Stack>
-                    <Stack flex={3} direction="column" spacing={4} justifyContent="space-between" >
-                        <CommentForm id={tasks._id} />
+                        {tasks.task && <TaskBreadcrumbs id={tasks.task._id} />}
+                        {tasks.task && <SingleTaskCard id={tasks.task._id} title={tasks.task.title} description={tasks.task.description} priority={tasks.task.priority} status={tasks.task.status} deadline={tasks.task.deadline} created={tasks.task.createdAt}/>}
+                        {tasks.task && <CommentForm id={tasks.task._id} /> }
+                        {tasks.task && <CommentTable id={tasks.task._id}/>}
+                        {tasks.event && <TaskHistoryTable events={tasks.event} />}
                     </Stack>
                 </Stack>
             </Box> 
-            {/* <Box container bgcolor={"#fafafa"} height={"100vh"} sx={{ display: {xs: "block"}}}>
-                <Stack direction="row" >
-                    <SideDrawer flex={1} />
-                    <Stack flex={3} direction="column" spacing={4} justifyContent="start" >
-                        <SingleTaskCard id={Task._id} title={Task.title} description={Task.description} priority={Task.priority} status={Task.status} />
-                        <CommentTable id={Task._id}/>
-                        <CommentForm id={Task._id} />
-                        <TaskHistory />
-                    </Stack>
-                </Stack>
-
-            </Box> */}
         </>
     )
 }

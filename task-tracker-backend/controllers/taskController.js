@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler')
 
 const Task = require('../models/taskModel')
 const User = require('../models/userModel')
-const { createTaskEvent } = require('./taskEventController')
+const { createTaskEvent, getTaskHistoryById } = require('./taskEventController')
 
 
 // @desc        Read Tasks
@@ -22,12 +22,27 @@ const readTasks = asyncHandler(async (req, res) => {
 // @access      Private
 const getIndividualTask = asyncHandler(async (req, res) => {
     try {
-        console.log("reached")
+        
+        // Get the task id from the input parameters
         const taskId = req.params.id
-        console.log(taskId)
+
+        // Find the task from the database
         const task = await Task.findOne({ _id:  taskId})
-        console.log(task)
-        res.status(200).json(task)
+
+        // Get task event history
+        const event = await getTaskHistoryById(taskId)
+
+        // Since I want to send back both the task information and task event history to the front end
+        // I can combine them into a response object and send that back instead
+        let response = {
+            task: task,
+            event: event
+        }
+        
+        // Send back success message and response object to front end
+        res.status(200).json(response)
+
+
     } catch (error) {
         // res.status(404).json({ message: error.message })
     }
@@ -120,6 +135,9 @@ const updateTaskTitle = asyncHandler(async (req, res) => {
         // Search the database for the task
         const task = await Task.findById(req.params.id)
 
+        // Save old title for event sourcing
+        const oldTitle = task.title
+
         // Make sure we have task and user
         if(!task) {
             res.status(400)
@@ -150,7 +168,8 @@ const updateTaskTitle = asyncHandler(async (req, res) => {
 
         //Create a Task_Title_Updated event
         await createTaskEvent('task-title-updated', task._id, req.user.id, {
-            ...updatedTask
+            oldValue: oldTitle,
+            newValue: updatedTask.title
         })
 
         // Respond to front end with success message and the task
@@ -172,6 +191,9 @@ const updateTaskDescription = asyncHandler(async (req, res) => {
 
         // Search the database for the task
         const task = await Task.findById(req.params.id)
+
+        // Save old description for event sourcing
+        const oldDescription = task.description
 
         // Make sure we have task and user
         if(!task) {
@@ -203,7 +225,8 @@ const updateTaskDescription = asyncHandler(async (req, res) => {
 
         //Create a Task_Description_Updated event
         await createTaskEvent('task-description-updated', task._id, req.user.id, {
-            ...updatedTask
+            oldValue: oldDescription,
+            newValue: updatedTask.description
         })
 
         // Respond to front end with success message and the task
@@ -224,6 +247,9 @@ const updateTaskPriority = asyncHandler(async (req, res) => {
         
         // Search the database for the task
         const task = await Task.findById(req.params.id)
+
+        // Save old priority for event sourcing
+        const oldPriority = task.priority
         
         // Make sure we have task and user
         if(!task) {
@@ -254,7 +280,8 @@ const updateTaskPriority = asyncHandler(async (req, res) => {
         
         //Create a Task_Priority_Updated event
         await createTaskEvent('task-priority-updated', task._id, req.user.id, {
-            ...updatedTask
+            oldValue: oldPriority,
+            newValue: updatedTask.priority
         })
         
         // Respond to front end with success message and the task
@@ -278,6 +305,9 @@ const updateTaskStatus = asyncHandler(async (req, res) => {
         
         // Search the database for the task
         const task = await Task.findById(req.params.id)
+
+        // Save old status for event sourcing
+        const oldStatus = task.status
         
         // Make sure we have task and user
         if(!task) {
@@ -308,7 +338,8 @@ const updateTaskStatus = asyncHandler(async (req, res) => {
         
         //Create a Task_Status_Updated event
         await createTaskEvent('task-status-updated', task._id, req.user.id, {
-            ...updatedTask
+            oldValue: oldStatus,
+            newValue: updatedTask.status
         })
         
         // Respond to front end with success message and the task
@@ -329,6 +360,9 @@ const updateTaskDeadline = asyncHandler(async (req, res) => {
 
         // Search the database for the task
         const task = await Task.findById(req.params.id)
+
+        // Save old deadline for event sourcing
+        const oldDeadline = task.deadline
         
         // Make sure we have task and user
         if(!task) {
@@ -359,7 +393,8 @@ const updateTaskDeadline = asyncHandler(async (req, res) => {
         
         //Create a Task_Description_Updated event
         await createTaskEvent('task-deadline-updated', task._id, req.user.id, {
-            ...updatedTask
+            oldValue: oldDeadline,
+            newValue: updatedTask.deadline
         })
         
         // Respond to front end with success message and the task

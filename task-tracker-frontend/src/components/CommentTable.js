@@ -37,7 +37,6 @@ function CommentTable( id ) {
             hour: 'numeric',
             minute: 'numeric',
             hour12: true,
-            timeZoneName: 'short'
         })
         return formattedDate
     }
