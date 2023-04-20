@@ -7,6 +7,7 @@ const TaskEventTypes = {
     Task_Description_Updated: 'task-description-updated',
     Task_Priority_Updated: 'task-priority-updated',
     Task_Status_Updated: 'task-status-updated',
+    Task_Type_Updated: 'task-type-updated',
     Task_Deadline_Updated: 'task-deadline-updated',
     Task_Deleted: 'test-deleted'
 }

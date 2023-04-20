@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, FormControl, useTheme, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Select, Stack, TextField, Typography } from '@mui/material'
-import { reset, updateTask, updateTaskDeadline, updateTaskDescription, updateTaskPriority, updateTaskStatus, updateTaskTitle } from '../features/tasks/taskSlice'
+import { reset, updateTask, updateTaskDeadline, updateTaskDescription, updateTaskPriority, updateTaskStatus, updateTaskTitle, updateTaskType } from '../features/tasks/taskSlice'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -21,6 +21,7 @@ function TaskUpdateForm(props) {
     const [ description, setDescription ] = useState(props.description)
     const [ priority, setPriority ] = useState(props.priority)
     const [ status, setStatus ] = useState(props.status)
+    const [ type, setType ] = useState(props.type)
     const [ deadline, setDeadline ] = useState(props.deadline)
 
 
@@ -87,6 +88,19 @@ function TaskUpdateForm(props) {
         }
 
         dispatch(updateTaskStatus({taskId, status}))
+        dispatch(reset())
+        window.location.reload()
+    }
+
+    const handleSubmitType = (e) => {
+        e.preventDefault()
+        
+        if(!type) {
+            alert("No status")
+            return
+        }
+
+        dispatch(updateTaskType({taskId, type}))
         dispatch(reset())
         window.location.reload()
     }
@@ -194,6 +208,27 @@ function TaskUpdateForm(props) {
                         </Button>
                     </Grid>          
                 </Stack>
+                <Grid item>
+                    <InputLabel id="type-select-label">Status</InputLabel>
+                    <Select
+                        style={{backgroundColor: theme.palette.background.default}}
+                        labelId="type-select-label"
+                        id="type-simple-select"
+                        value={type}
+                        label="Type"
+                        onChange={(e) => setType(e.target.value)}
+                    >
+                        <MenuItem value="Feature">Feature</MenuItem>
+                        <MenuItem value="Refactor">Refactor</MenuItem>
+                        <MenuItem value="Bug Fix">Bug Fix</MenuItem>
+                        <MenuItem value="Testing">Testing</MenuItem>
+                        <MenuItem value="Documentation">Documentation</MenuItem>
+                        <MenuItem value="Misc">Misc</MenuItem>
+                    </Select>
+                    <Button type='submit' onClick={handleSubmitType}>
+                        Set Type
+                    </Button>
+                </Grid> 
                 <Grid item>
                     <FormControl>
                         <inputlabel>Deadline</inputlabel>

@@ -36,7 +36,21 @@ const getTaskHistoryById = asyncHandler(async (taskId) => {
 
   });
 
+const deleteTaskHistoryById = asyncHandler(async (taskId) => {
+
+  try {
+     
+    // Search the database for the task history
+    const taskHistory = await TaskEvent.deleteMany({ taskId: taskId})
+    
+    
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+})
+
   module.exports = {
     createTaskEvent,
     getTaskHistoryById,
+    deleteTaskHistoryById,
   }

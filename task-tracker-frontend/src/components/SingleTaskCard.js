@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { deleteTask } from '../features/tasks/taskSlice'
 import { useTheme } from '@mui/material'
 
-function SingleTaskCard({ id, title, description, priority, status, deadline, created }) {
+function SingleTaskCard({ id, title, description, priority, status, type, deadline, created }) {
     
     const theme = useTheme()
     const dispatch = useDispatch()
@@ -53,6 +53,11 @@ function SingleTaskCard({ id, title, description, priority, status, deadline, cr
                 <Grid item xs={6}>
                     <Typography variant="body2" color="textSecondary" component="p">
                     Priority: {priority}
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                    Type: {type}
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>

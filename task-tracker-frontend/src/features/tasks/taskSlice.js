@@ -97,6 +97,17 @@ export const updateTaskStatus = createAsyncThunk('tasks/updateStatus', async (ta
     }
 })
 
+// Update user task type
+export const updateTaskType = createAsyncThunk('tasks/updateType', async (taskData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.updateTaskType(taskData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 // Update user task deadline
 export const updateTaskDeadline = createAsyncThunk('tasks/updateDeadline', async (taskData, thunkAPI) => {
     try {
@@ -240,6 +251,19 @@ export const taskSlice = createSlice({
                 state.tasks = action.payload
             })
             .addCase(updateTaskStatus.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateTaskType.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateTaskType.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(updateTaskType.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

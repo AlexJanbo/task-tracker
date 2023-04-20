@@ -51,7 +51,7 @@ function EditTask( {match} ) {
                 <Grid container>
                     <Grid item style={{ marginLeft: "15%", marginTop: "4%"}}>
                         {tasks.task && <TaskUpdateBreadcrumbs id={tasks.task._id} />}
-                        {tasks.task && <TaskUpdateForm taskId={tasks.task._id} title={tasks.task.title} description={tasks.task.description} priority={tasks.task.priority} status={tasks.task.status} deadline={tasks.task.deadline} />}
+                        {tasks.task && <TaskUpdateForm taskId={tasks.task._id} title={tasks.task.title} description={tasks.task.description} priority={tasks.task.priority} status={tasks.task.status} type={tasks.task.type} deadline={tasks.task.deadline} />}
                     </Grid>
                 </Grid>
             </Box>

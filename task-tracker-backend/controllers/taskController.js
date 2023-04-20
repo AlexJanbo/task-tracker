@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler')
 
 const Task = require('../models/taskModel')
 const User = require('../models/userModel')
-const { createTaskEvent, getTaskHistoryById } = require('./taskEventController')
+const { createTaskEvent, getTaskHistoryById, deleteTaskHistoryById } = require('./taskEventController')
 
 
 // @desc        Read Tasks
@@ -56,7 +56,7 @@ const createTask = asyncHandler(async (req, res) => {
     try {
 
         // Validate the input data
-        if(!req.body.title || !req.body.description || !req.body.priority || !req.body.status || req.body.type) {
+        if(!req.body.title || !req.body.description || !req.body.priority || !req.body.status || !req.body.type) {
             console.log('no body text')
             res.status(400)
             throw new Error('Please fill out all fields!')
@@ -353,6 +353,62 @@ const updateTaskStatus = asyncHandler(async (req, res) => {
 })
 
 
+// @desc        Update Task Type
+// @route       PUT /api/tasks/:id/update-task-type
+// @access      Private
+const updateTaskType = asyncHandler(async (req, res) => {
+    
+    try {
+        
+        // Search the database for the task
+        const task = await Task.findById(req.params.id)
+
+        // Save old status for event sourcing
+        const oldType = task.type
+        
+        // Make sure we have task and user
+        if(!task) {
+            res.status(400)
+            throw new Error("Task not found")
+        }
+        if(!req.user) {
+            res.status(401)
+            throw new Error('User not found')
+        }
+        // Check if task belongs to user
+        if(task.user.toString() !== req.user.id){
+            res.status(401)
+            throw new Error('User not authorized')
+        } 
+        
+        // Validate the input
+        if(!req.body.type) {
+            console.log('no type')
+            res.status(400)
+            throw new Error('Please include the status!')
+        }
+        
+        // Update the task with input
+        const updatedTask = await Task.findByIdAndUpdate(req.params.id, {
+            type: req.body.type,
+        }, {new: true})
+        
+        //Create a Task_Type_Updated event
+        await createTaskEvent('task-type-updated', task._id, req.user.id, {
+            oldValue: oldType,
+            newValue: updatedTask.type
+        })
+        
+        // Respond to front end with success message and the task
+        res.status(200).json(updatedTask)
+    } catch (error) {
+        
+        // Catch and display any error
+        res.status(404).json({ message: error.message })
+    }
+})
+
+
 // @desc        Update Task Deadline
 // @route       PUT /api/tasks/:id/update-task-deadline
 // @access      Private
@@ -435,9 +491,7 @@ const deleteTask = asyncHandler(async (req, res) => {
         await task.remove()
 
         //Create a Task_Deleted_Updated event
-        await createTaskEvent('task-deleted', task._id, req.user.id, {
-            ...updatedTask
-        })
+        await deleteTaskHistoryById(task._id)
 
         // Respond to front end with success message and the id of deleted task
         res.status(200).json({ id: req.params.id })
@@ -465,6 +519,7 @@ module.exports = {
     updateTaskDescription,
     updateTaskPriority,
     updateTaskStatus,
+    updateTaskType,
     updateTaskDeadline,
     deleteTask,
     getUrgentTasks,

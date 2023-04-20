@@ -117,6 +117,20 @@ const updateTaskStatus = async (taskData, token) => {
     return response.data
 }
 
+// Update a task type
+const updateTaskType = async (taskData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + taskData.taskId + "/update-task-type", taskData , config)
+    console.log(response)
+
+    return response.data
+}
+
 // Update a task deadline
 const updateTaskDeadline = async (taskData, token) => {
     const config = {
@@ -167,6 +181,7 @@ const taskService = {
     updateTaskDescription,
     updateTaskPriority,
     updateTaskStatus,
+    updateTaskType,
     updateTaskDeadline,
     deleteTask,
     getUrgentTasks,
