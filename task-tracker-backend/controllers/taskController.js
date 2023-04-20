@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler')
 
 const Task = require('../models/taskModel')
 const User = require('../models/userModel')
+const TaskEvent = require('../models/taskEventModel')
 const { createTaskEvent, getTaskHistoryById, deleteTaskHistoryById } = require('./taskEventController')
 
 
@@ -500,14 +501,47 @@ const deleteTask = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc        Get Urgent Tasks
+// @route       PUT /api/tasks/:id/get-urgent-tasks
+// @access      Private
 const getUrgentTasks = asyncHandler(async (req, res) => {
     try {
-        const tasks = await Task.find({ user: req.user.id, status: {$ne: 'Completed'}, deadline: { $exists: true}}).sort({ deadline: -1}).limit(3)
+        console.log(req.body)
+        const tasks = await Task.find({ 
+            user: req.user.id,
+            priority: "High",
+            status: { $ne: "completed" }
+        }).sort({ deadline: -1}).limit(3)
+        console.log(tasks)
         res.status(200).json(tasks)
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
 })
+
+// @desc        Get Completed Tasks
+// @route       PUT /api/tasks/:id/get-completed-tasks
+// @access      Private
+const getCompletedTasks = asyncHandler(async (req, res) => {
+    try {
+        // console.log("ping")
+        // console.log(req.body)
+
+        const { userId } = req.body
+        
+        const completedTasks = await TaskEvent.find({ 
+            userId: userId,
+            eventType: "task-status-updated",
+            "data.newValue": "Completed"
+          })
+        .sort({ timestamp: -1 }).exec();
+        
+        res.status(200).json(completedTasks)
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+})
+
 
 
 module.exports = {
@@ -523,4 +557,5 @@ module.exports = {
     updateTaskDeadline,
     deleteTask,
     getUrgentTasks,
+    getCompletedTasks,
 }

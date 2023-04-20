@@ -159,14 +159,27 @@ const deleteTask = async (taskId, token) => {
 }
 
 // Get urgent tasks
-const getUrgentTasks = async (token) => {
+const getUrgentTasks = async (userId, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         },
     }
 
-    const response = await axios.get(API_URL + 'get-urgent-tasks', config)
+    const response = await axios.put(API_URL + userId + '/get-urgent-tasks', userId, config)
+
+    return response.data
+}
+
+// Get completed tasks
+const getCompletedTasks = async (userId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + userId + '/get-completed-tasks', userId, config)
 
     return response.data
 }
@@ -185,6 +198,7 @@ const taskService = {
     updateTaskDeadline,
     deleteTask,
     getUrgentTasks,
+    getCompletedTasks,
 }
 
 export default taskService

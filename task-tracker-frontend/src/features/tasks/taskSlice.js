@@ -6,7 +6,7 @@ const initialState = {
     isError: false,
     isSuccess: false,
     isLoading: false,
-    message: ""
+    message: "",
 }
 
 // Create new task
@@ -131,15 +131,27 @@ export const deleteTask = createAsyncThunk('tasks/delete', async (id, thunkAPI) 
 })
 
 // Get urgent tasks
-export const getUrgentTasks = createAsyncThunk('tasks/getUrgent', async (_, thunkAPI) => {
+export const getUrgentTasks = createAsyncThunk('tasks/getUrgent', async (userId, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await taskService.getUrgentTasks(token)
+        return await taskService.getUrgentTasks(userId, token)
     } catch (error) {
         const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
     }
 })
+
+// Get completed tasks
+export const getCompletedTasks = createAsyncThunk('tasks/getCompleted', async (userId, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.getCompletedTasks(userId, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 
 
  
@@ -303,6 +315,19 @@ export const taskSlice = createSlice({
                 state.tasks = action.payload
             })
             .addCase(getUrgentTasks.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(getCompletedTasks.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getCompletedTasks.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(getCompletedTasks.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
