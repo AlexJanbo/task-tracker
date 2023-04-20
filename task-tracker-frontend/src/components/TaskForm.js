@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Box, Button, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography, useTheme } from '@mui/material'
+import { Box, Button, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField, Typography, useTheme } from '@mui/material'
 import { createTask } from '../features/tasks/taskSlice'
 
 
@@ -13,6 +13,7 @@ function TaskForm() {
     const [ title, setTitle ] = useState('')
     const [ description, setDescription ] = useState('')
     const [ priority, setPriority ] = useState('Low')
+    const [ type, setType ] = useState('Feature')
     const status = "Created"
 
 
@@ -21,10 +22,11 @@ function TaskForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(createTask({title, description, priority, status}))
+        dispatch(createTask({title, description, priority, status, type}))
         setTitle('')
         setDescription('')
         setPriority('Low')
+        setType('')
     }
 
 
@@ -72,6 +74,24 @@ function TaskForm() {
                     <FormControlLabel value="High" control={<Radio />} label="High" />
                   </RadioGroup>
                 </FormControl>
+              </Grid>
+              <Grid item>
+                <InputLabel id="type-select-label">Type</InputLabel>
+                <Select
+                    style={{backgroundColor: theme.palette.background.default}}
+                    labelId="type-select-label"
+                    id="type-simple-select"
+                    value={type}
+                    label="Type"
+                    onChange={(e) => setType(e.target.value)}
+                >
+                    <MenuItem value="Feature">Feature</MenuItem>
+                    <MenuItem value="Refactor">Refactor</MenuItem>
+                    <MenuItem value="Bug Fix">Bug Fix</MenuItem>
+                    <MenuItem value="Testing">Testing</MenuItem>
+                    <MenuItem value="Documentation">Documentation</MenuItem>
+                    <MenuItem value="Misc">Misc</MenuItem>
+                </Select>
               </Grid>
               <Button  type='submit' onClick={handleSubmit}>
                   Create Task

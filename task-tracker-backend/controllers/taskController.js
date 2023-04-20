@@ -56,7 +56,7 @@ const createTask = asyncHandler(async (req, res) => {
     try {
 
         // Validate the input data
-        if(!req.body.title || !req.body.description || !req.body.priority || !req.body.status) {
+        if(!req.body.title || !req.body.description || !req.body.priority || !req.body.status || req.body.type) {
             console.log('no body text')
             res.status(400)
             throw new Error('Please fill out all fields!')
@@ -67,6 +67,7 @@ const createTask = asyncHandler(async (req, res) => {
             title: req.body.title,
             description: req.body.description,
             priority: req.body.priority,
+            type: req.body.type,
             user: req.user.id
         })
 
