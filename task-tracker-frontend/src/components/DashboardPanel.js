@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 function DashboardPanel(props) {
 
-    let urgentTasksArray = [...props.urgentTasks]
-    console.log(urgentTasksArray)
+  let urgentTasksArray = [...props.urgentTasks]
+  console.log(urgentTasksArray)
 
   return (
     <>

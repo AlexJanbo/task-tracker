@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, CircularProgress, Divider, Grid, Typography} from '@mui/material'
+import { Box, Button, CircularProgress, Divider, Grid, Stack, Typography} from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { getCompletedTasks, getUrgentTasks, reset } from '../../features/tasks/taskSlice'
 import SideDrawer from '../../components/SideDrawer'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
 import DashboardPanel from '../../components/DashboardPanel'
+import DoughnutChart from '../../components/DoughnutChart'
+import BarChart from '../../components/BarChart'
+
+
 
 
 function Dashboard() {
@@ -16,6 +20,7 @@ function Dashboard() {
     const { tasks, isLoading, isError, message } = useSelector((state) => state.tasks) 
     const [ userId, setUserId ] = useState(user.id)
     console.log(userId)
+
 
     console.log(tasks)
 
@@ -30,8 +35,8 @@ function Dashboard() {
         }
 
 
-        dispatch(getUrgentTasks({userId}))
-        // dispatch(getCompletedTasks({userId}))
+        // dispatch(getUrgentTasks({userId}))
+        dispatch(getCompletedTasks({userId}))
 
 
         return () => {
@@ -52,8 +57,14 @@ function Dashboard() {
     <>
         <LoggedInNavbar />
         <Box container bgcolor={"#fafafa"} height={"100%"} >
+          <Stack direction="row" spacing={4} justifyContent="space-between" >
             <SideDrawer />
-            <DashboardPanel urgentTasks={tasks}/>
+
+              {/* <DoughnutChart /> */}
+              <BarChart /> 
+            
+          </Stack>
+            {/* <DashboardPanel urgentTasks={tasks}/> */}
         </Box>
   </>
   )
