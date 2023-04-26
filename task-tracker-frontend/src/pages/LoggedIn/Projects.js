@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Stack } from '@mui/material'
+import { Box, CircularProgress, Grid, Stack, useTheme } from '@mui/material'
 import { Container } from '@mui/system'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +12,8 @@ import SideDrawer from '../../components/SideDrawer'
 import { getProjects, reset } from '../../features/projects/projectSlice'
 
 function Projects() {
+
+  const theme = useTheme()
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -50,7 +52,7 @@ function Projects() {
   return (
     <>
       <LoggedInNavbar />
-      <Box container bgcolor={"#fafafa"} height={"100%"}>
+      <Box container bgcolor={theme.palette.background.default} height={"100vh"}>
         <Stack direction="row" spacing={4} justifyContent="space-between" >
           <SideDrawer /> 
           <ProjectFormModal />

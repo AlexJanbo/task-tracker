@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Stack } from '@mui/material'
+import { Box, CircularProgress, Stack, useTheme } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -8,6 +8,8 @@ import ManageRolesTable from '../../components/ManageRolesTable'
 import { getAllUsers, reset } from '../../features/auth/authSlice'
 
 function ManageRoles() {
+
+  const theme = useTheme()
   
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -50,7 +52,7 @@ function ManageRoles() {
     return (
     <>
       <LoggedInNavbar />
-      <Box container bgcolor={"#fafafa"} sx={{ flex: 1}}>
+      <Box container bgcolor={theme.palette.background.default} height={"100vh"}>
         <Stack direction="row" spacing={4} margin={5} justifyContent="space-between" >
           <SideDrawer />
           <ManageRolesTable users={allUsersArray}/>

@@ -1,9 +1,11 @@
-import { Box, Button, Grid, Stack, Typography } from '@mui/material'
+import { Box, Button, Grid, Stack, Typography, useTheme } from '@mui/material'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeProfilePicture, reset } from '../features/auth/authSlice'
 
 function UserProfilePicture() {
+
+    const theme = useTheme()
 
   const { user } = useSelector((state) => state.auth)
   console.log(user)
@@ -44,7 +46,7 @@ function UserProfilePicture() {
   return (
     <>
         <Box style={{ alignContent: "center"}}>
-            <Stack spacing={2} direction="column" sx={{ height: "100vh", marginTop: "4rem"}} >
+            <Stack spacing={2} direction="column" sx={{ backgroundColor: theme.palette.background.paper , height: "60vh", marginTop: "4rem"}} >
                 <img src={user.image} alt="Profile" display="block" width="400px" height="400px" />
                 <label>Choose profile picture</label>
                 <input onChange={handleImage} type="file" id="ImageUpload" name="image" label="Image"/>

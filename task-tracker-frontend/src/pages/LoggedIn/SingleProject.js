@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Stack } from '@mui/material'
+import { Box, CircularProgress, Grid, Stack, useTheme } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -13,6 +13,8 @@ import { getProject, getProjects, reset } from '../../features/projects/projectS
 import ProjectBreadcrumbs from '../../components/ProjectBreadcrumbs'
 
 function SingleProject({ match }) {
+
+  const theme = useTheme()
 
     const { projectId } = useParams()
     // const { projects, isLoading, isError, message } = useSelector((state) => state.projects)
@@ -66,7 +68,7 @@ function SingleProject({ match }) {
     return (
         <>
           <LoggedInNavbar />
-          <Box container bgcolor={"#fafafa"} height={"100%"} >
+          <Box container bgcolor={theme.palette.background.default} height={"100vh"}>
             <Stack direction="row" spacing={1} justifyContent="space-between" >
               <SideDrawer/>
                 <Stack flex={3} direction="column" spacing={4} justifyContent="start" >

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Box, CircularProgress, Grid } from '@mui/material'
+import { Box, CircularProgress, Grid, useTheme } from '@mui/material'
 import { reset, getTasks, getIndividualTask } from '../../features/tasks/taskSlice'
 import TaskUpdateForm from '../../components/TaskUpdateForm'
 import LoggedInNavbar from '../../components/LoggedInNavbar'
@@ -10,6 +10,8 @@ import TaskUpdateBreadcrumbs from '../../components/TaskUpdateBreadcrumbs'
 
 
 function EditTask( {match} ) {
+
+    const theme = useTheme()
 
     const { taskId } = useParams()
     const { tasks, isLoading, isError, message } = useSelector((state) => state.tasks) 
@@ -46,7 +48,7 @@ function EditTask( {match} ) {
     return (
         <>  
             <LoggedInNavbar />
-            <Box bgcolor={"#fafafa"} height={"100vh"}>
+            <Box container bgcolor={theme.palette.background.default} height={"100vh"}> 
                 <SideDrawer />    
                 <Grid container>
                     <Grid item style={{ marginLeft: "15%", marginTop: "4%"}}>

@@ -39,7 +39,7 @@ export default function ManageRolesTable(props) {
   
     return (
     <>
-        <TableContainer  component={Paper} sx={{ maxWidth: "80vw"}} style={{ marginTop: "4%"}}>
+        <TableContainer  component={Paper} sx={{ maxWidth: "80vw"}} style={{ marginTop: "4%", backgroundColor: theme.palette.background.paper}}>
             <Table aria-label="simple table">
             <TableHead style={{ backgroundColor: theme.palette.primary.main}}>
                 <TableRow >
@@ -58,12 +58,13 @@ export default function ManageRolesTable(props) {
                 <TableRow
                     key={user._id}
                     sx={{'&:last-child td, &:last-child th': { border: 0 } }}
+                    
                 >
-                    <TableCell >{user.firstName}</TableCell>
-                    <TableCell >{user.lastName}</TableCell>
-                    <TableCell >{user.username}</TableCell>
-                    <TableCell >{user.email}</TableCell>
-                    <TableCell >{formatDate(user.createdAt)}</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>{user.firstName}</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>{user.lastName}</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>{user.username}</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>{user.email}</TableCell>
+                    <TableCell style={{ color: theme.palette.text.primary}}>{formatDate(user.createdAt)}</TableCell>
                     <TableCell >
                         <UpdateRolesMenu user={user} />
                     </TableCell>

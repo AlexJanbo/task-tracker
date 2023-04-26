@@ -32,13 +32,13 @@ function ProjectTable() {
       <Grid style={{ marginLeft: "5%", marginRight: "5%", marginTop: "7%", backgroundColor: theme.palette.primary.main, height: "4rem", border: "2px solid black", borderRadius: "1rem" }}>
           <Typography variant="h3" style={{paddingTop: ".2rem", textAlign: "center", color: theme.palette.text.primary}}>My Projects!</Typography>
       </Grid>
-      <TableContainer  component={Paper}>
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow sx={{height: "2.5rem"}}>
-              <TableCell sx={{ minWidth: '20%'}}>Title</TableCell>
-              <TableCell sx={{ maxWidth: '60%'}}>Description</TableCell>
-              <TableCell sx={{ minWidth: '20%%'}}></TableCell>
+      <TableContainer  component={Paper} style={{ backgroundColor: theme.palette.background.paper}}>
+        <Table aria-label="simple table" >
+          <TableHead >
+            <TableRow  sx={{height: "2.5rem"}}>
+              <TableCell style={{ color: theme.palette.text.primary}}>Title</TableCell>
+              <TableCell style={{ color: theme.palette.text.primary}}>Description</TableCell>
+              <TableCell ></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -49,9 +49,9 @@ function ProjectTable() {
                 key={project._id}
                 sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{project.title}</TableCell>
-                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}}>{project.description}</TableCell>
-                <TableCell sx={{paddingleft: "3", paddingRight: "3", width: "10%", paddingBottom: '0', paddingTop: "0"}} justfiyContent="center">
+                <TableCell style={{ color: theme.palette.text.primary}}>{project.title}</TableCell>
+                <TableCell style={{ color: theme.palette.text.primary}}>{project.description}</TableCell>
+                <TableCell style={{ color: theme.palette.text.primary}}>
                   <Link to={`/projects/${project._id}/`}>
                     <Button>
                       View

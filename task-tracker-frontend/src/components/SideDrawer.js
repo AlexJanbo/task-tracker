@@ -76,16 +76,17 @@ const list = {
 
     return (
       <>
-        <Box flex={1} p={2} sx={{ display: { xs: "block" }}}>
+        <Box flex={1} p={2}  sx={{ display: { xs: "block" }}}>
           <Drawer
             variant="permanent"
             sx={{
               flexShrink: 1,
               flexGrow: 1,
               [`& .MuiDrawer-paper`]: { boxSizing: 'border-box' },
-          }}>
+            }}
+          >
           <Toolbar />
-          <Box sx={{ overflow: 'auto' }} >
+          <Box sx={{ overflow: 'auto' }}   >
             <List>
               <Link to={list.dashboard.link} style={{ textDecoration: 'none' }}>
                 <ListItem key={list.dashboard.text} disablePadding>

@@ -21,11 +21,11 @@ import { lightTheme, darkTheme} from './theme'
 
 export default function App() {
     
-    const [isDarkMode, setIsDarkMode] = useState(false)
-    
+    const [darkMode, setDarkMode] = useState(true)
+
     return(
         <>
-            <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+            <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
                 <Router>
                     <Routes>
                         <Route path='/' element={<Homepage />}/>    
@@ -35,7 +35,7 @@ export default function App() {
                         <Route path='/manage-roles' element={<ManageRoles />}/>
                         <Route path='/projects' element={<Projects />} />
                         <Route path='/tasks' element={<Tasks />} />
-                        <Route path='/user-profile' element={<UserProfile />} />
+                        <Route path='/user-profile' element={<UserProfile check={darkMode} change={()=>setDarkMode(!darkMode)} />} />
                         <Route exact path='/tasks/:taskId' element={<SingleTask />}/>
                         <Route exact path='/projects/:projectId' element={<SingleProject />}/>
                         <Route exact path='/edit-task/:taskId' element={<EditTask />} />

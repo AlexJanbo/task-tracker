@@ -35,8 +35,8 @@ function TaskTable() {
   return (
     <>
       <Box flex={5} p={1} m={2} style={{ marginTop: "5%" }} sx={{ display: {lg: "block" } }}>
-        <TableContainer component={Paper} style={{ backgroundColor: theme.palette.background.default}}>
-          <Table aria-label="simple table">
+        <TableContainer component={Paper} style={{ backgroundColor: theme.palette.background.paper}}>
+          <Table aria-label="simple table" >
             <TableHead>
               <TableRow sx={{height: "2.5rem", backgroundColor: theme.palette.primary.main }}>
                 <TableCell sx={{color: theme.palette.text.primary, fontWeight: "bold", fontSize: "20px"}}>Task Title</TableCell>
@@ -71,7 +71,7 @@ function TaskTable() {
                 <TableCell sx={{}}></TableCell>
               </TableRow>
             </TableHead>
-            <TableBody style={{backgroundColor: "white"}}>
+            <TableBody >
               {taskArray
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((task, index) => (
@@ -80,13 +80,13 @@ function TaskTable() {
                   
                   sx={{ height: "4.5rem", '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.title}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.description}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.type}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.priority}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.status == "Completed" ? <CheckBoxIcon color="success" /> : <Typography>{task.status}</Typography>}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{task.deadline ? new Date(task.deadline).toLocaleDateString('en-US') : "No deadline"}</TableCell>
-                  <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
+                  <TableCell style={{ color: theme.palette.text.primary}}>{task.title}</TableCell>
+                  <TableCell style={{ color: theme.palette.text.primary}}>{task.description}</TableCell>
+                  <TableCell style={{ color: theme.palette.text.primary}}>{task.type}</TableCell>
+                  <TableCell style={{ color: theme.palette.text.primary}}>{task.priority}</TableCell>
+                  <TableCell style={{ color: theme.palette.text.primary}}>{task.status == "Completed" ? <CheckBoxIcon color="success" /> : <Typography>{task.status}</Typography>}</TableCell>
+                  <TableCell style={{ color: theme.palette.text.primary}}>{task.deadline ? new Date(task.deadline).toLocaleDateString('en-US') : "No deadline"}</TableCell>
+                  <TableCell style={{ color: theme.palette.text.primary}}>{new Date(task.createdAt).toLocaleDateString('en-US')}</TableCell>
                   
                   <TableCell sx={{paddingleft: "3", paddingRight: "3", paddingBottom: '0', paddingTop: "0"}}>
                     {/* <Link to={`/editTask/${task._id}/`}>
@@ -112,7 +112,6 @@ function TaskTable() {
               )}
             </TableBody>
           </Table>
-        </TableContainer>
         <TablePagination 
           rowsPerPageOptions={[5, 10]}
           component="div"
@@ -122,6 +121,7 @@ function TaskTable() {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
+        </TableContainer>
       </Box>
     </>
   )

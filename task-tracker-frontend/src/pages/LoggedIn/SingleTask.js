@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Stack } from '@mui/material'
+import { Box, CircularProgress, Grid, Stack, useTheme } from '@mui/material'
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,6 +15,8 @@ import { getIndividualTask, getTasks, reset} from '../../features/tasks/taskSlic
 import TaskBreadcrumbs from '../../components/TaskBreadcrumbs'
 
 export const SingleTask = ({ match }) => {
+
+    const theme = useTheme()
 
     const { taskId } = useParams()
     const { user } = useSelector((state) => state.auth)
@@ -50,7 +52,7 @@ export const SingleTask = ({ match }) => {
     return (
         <>  
             <LoggedInNavbar />
-            <Box container bgcolor={"#fafafa"} height={"100%"} >
+            <Box container bgcolor={theme.palette.background.default} height={"100vh"}>
                 <Stack direction="row" spacing={1} justifyContent="space-between" >
                     <SideDrawer />
                     <Stack flex={3} direction="column" spacing={4} justifyContent="start" >

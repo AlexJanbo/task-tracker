@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Grid, TextField, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Grid, TextField, Typography, useTheme } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -9,6 +9,8 @@ import { getProject, reset, updateProject } from '../../features/projects/projec
 import EditProjectBreadcrumbs from '../../components/EditProjectBreadcrumbs'
 
 function EditProject( {match} ) {
+    
+    const theme = useTheme()
   
     const { projectId } = useParams()
     // console.log("projectId from useParams: " + projectId)
@@ -58,9 +60,9 @@ function EditProject( {match} ) {
 
   
     return (
-    <>
+        <>
         <LoggedInNavbar />
-        <Box container bgcolor={"#fafafa"} height={"100vh"} >
+        <Box container bgcolor={theme.palette.background.default} height={"100vh"}> 
             <SideDrawer />
             <Grid container>
                 <Grid item style={{ marginLeft: "15%", marginTop: "4%"}}>

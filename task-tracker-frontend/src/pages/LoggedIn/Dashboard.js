@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, CircularProgress, Divider, Grid, Stack, Typography} from '@mui/material'
+import { Box, Button, CircularProgress, Divider, Grid, Stack, Typography, useTheme} from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { getCompletedTasks, getUrgentTasks, reset } from '../../features/tasks/taskSlice'
@@ -14,6 +14,8 @@ import BarChart from '../../components/BarChart'
 
 function Dashboard() {
 
+  const theme = useTheme()
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { user } = useSelector((state) => state.auth)
@@ -26,7 +28,7 @@ function Dashboard() {
 
 
     useEffect(() => {
-        if(isError) {
+      if(isError) {
         console.log(message)
         }
 
@@ -40,23 +42,23 @@ function Dashboard() {
 
 
         return () => {
-        dispatch(reset())
+          dispatch(reset())
         }
     }, [])
 
     // if(isLoading) {
-    //   return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
+      //   return <CircularProgress sx={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}/>
     // }
     
     // const highTask = tasks.filter((task) => {
-    //     return task.priority === "High"
+      //     return task.priority === "High"
     // })
     // console.log(highTask)
 
   return(
     <>
         <LoggedInNavbar />
-        <Box container bgcolor={"#fafafa"} height={"100%"} >
+        <Box container bgcolor={theme.palette.background.default} height={"100vh"}>
           <Stack direction="row" spacing={4} justifyContent="space-between" >
             <SideDrawer />
 
