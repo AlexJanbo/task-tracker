@@ -91,7 +91,6 @@ const loginUser = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
     try {
         const user = await User.findById(req.user.id)
-        console.log(req.body)
         if(!user) {
             res.status(400)
             throw new Error("User not found")
@@ -108,11 +107,13 @@ const updateUser = asyncHandler(async (req, res) => {
             email: req.body.email,
         }, {new: true})
         res.status(200).json({
+            _id: updatedUser.id,
             username: updatedUser.username,
             firstName: updatedUser.firstName,
             lastName: updatedUser.lastName,
             email: updatedUser.email,
             user: req.user.id,
+            role: updatedUser.role,
             image: req.user.image,
             token: generateToken(user._id)
         })
@@ -120,6 +121,167 @@ const updateUser = asyncHandler(async (req, res) => {
         res.status(404).json({ message: error.message })
     }
     
+})
+
+// @desc        Update User Username
+// @route       PUT /api/user/id
+// @access      Private
+const updateUserUsername = asyncHandler(async (req, res) => {
+    try {
+
+        const user = await User.findById(req.user.id)
+        const { username } = req.body
+
+        if(!user) {
+            res.status(400)
+            throw new Error("User not found")
+        }
+
+        const usernameExists = await User.findOne({username})
+        if(usernameExists) {
+            res.status(400)
+            throw new Error('Username already in use')
+        }
+
+        if(!username) {
+            console.log('no username')
+            res.status(400)
+            throw new Error('Please fill out all fields!')
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(req.user.id, {
+            username: req.body.username,
+        }, {new: true})
+
+        res.status(200).json({
+            _id: updatedUser.id,
+            username: updatedUser.username,
+            firstName: updatedUser.firstName,
+            lastName: updatedUser.lastName,
+            email: updatedUser.email,
+            user: req.user.id,
+            role: updatedUser.role,
+            image: req.user.image,
+            token: generateToken(user._id)
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+})
+
+// @desc        Update User First Name
+// @route       PUT /api/user/id
+// @access      Private
+const updateUserFirstName = asyncHandler(async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id)
+        const { firstName } = req.body
+
+        if(!user) {
+            res.status(400)
+            throw new Error("User not found")
+        }
+        if(!firstName) {
+            console.log('no first name')
+            res.status(400)
+            throw new Error('Please fill out all fields!')
+        }
+        const updatedUser = await User.findByIdAndUpdate(req.user.id, {
+            firstName: req.body.firstName,
+        }, {new: true})
+        res.status(200).json({
+            _id: updatedUser.id,
+            username: updatedUser.username,
+            firstName: updatedUser.firstName,
+            lastName: updatedUser.lastName,
+            email: updatedUser.email,
+            user: req.user.id,
+            role: updatedUser.role,
+            image: req.user.image,
+            token: generateToken(user._id)
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+})
+
+// @desc        Update User Last Name
+// @route       PUT /api/user/id
+// @access      Private
+const updateUserLastName = asyncHandler(async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id)
+        const { lastName } = req.body
+
+        if(!user) {
+            res.status(400)
+            throw new Error("User not found")
+        }
+        if(!lastName) {
+            console.log('no last name')
+            res.status(400)
+            throw new Error('Please fill out all fields!')
+        }
+        const updatedUser = await User.findByIdAndUpdate(req.user.id, {
+            lastName: req.body.lastName,
+        }, {new: true})
+        res.status(200).json({
+            _id: updatedUser.id,
+            username: updatedUser.username,
+            firstName: updatedUser.firstName,
+            lastName: updatedUser.lastName,
+            email: updatedUser.email,
+            user: req.user.id,
+            role: updatedUser.role,
+            image: req.user.image,
+            token: generateToken(user._id)
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+})
+
+// @desc        Update User Email
+// @route       PUT /api/user/id
+// @access      Private
+const updateUserEmail = asyncHandler(async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id)
+        const { email } = req.body
+
+        if(!user) {
+            res.status(400)
+            throw new Error("User not found")
+        }
+
+        const userEmailExists = await User.findOne({email})
+        if(userEmailExists) {
+            res.status(400)
+            throw new Error('Email already in use')
+        }
+
+        if(!email) {
+            console.log('email')
+            res.status(400)
+            throw new Error('Please fill out all fields!')
+        }
+        const updatedUser = await User.findByIdAndUpdate(req.user.id, {
+            email: req.body.email,
+        }, {new: true})
+        res.status(200).json({
+            _id: updatedUser.id,
+            username: updatedUser.username,
+            firstName: updatedUser.firstName,
+            lastName: updatedUser.lastName,
+            email: updatedUser.email,
+            user: req.user.id,
+            role: updatedUser.role,
+            image: req.user.image,
+            token: generateToken(user._id)
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
 })
 
 // @desc        Change Password
@@ -293,6 +455,10 @@ module.exports = {
     registerUser,
     loginUser,
     updateUser,
+    updateUserUsername,
+    updateUserFirstName,
+    updateUserLastName,
+    updateUserEmail,
     changePassword,
     changeProfilePicture,
     getAllUsers,

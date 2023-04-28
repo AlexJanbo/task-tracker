@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { Button, Grid, Stack, TextField, Typography, useTheme } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { reset, updateUser } from '../features/auth/authSlice'
+import { reset, updateUser, updateUserEmail, updateUserFirstName, updateUserLastName, updateUserUsername } from '../features/auth/authSlice'
 
 function UserUpdateForm() {
 
     const theme = useTheme()
 
     const { user } = useSelector(state => state.auth)
+    const userId = user.id
     console.log(user)
 
     const dispatch = useDispatch()
@@ -25,6 +26,34 @@ function UserUpdateForm() {
         dispatch(updateUser({ username, firstName, lastName, email }))
         dispatch(reset())
         // window.location.reload()
+    }
+
+    const handleSubmitUsername = (e) => {
+        e.preventDefault()
+
+        dispatch(updateUserUsername({userId, username}))
+        dispatch(reset())
+    }
+
+    const handleSubmitFirstName = (e) => {
+        e.preventDefault()
+
+        dispatch(updateUserFirstName({userId, firstName}))
+        dispatch(reset())
+    }
+
+    const handleSubmitLastName = (e) => {
+        e.preventDefault()
+
+        dispatch(updateUserLastName({userId, lastName}))
+        dispatch(reset())
+    }
+
+    const handleSubmitEmail = (e) => {
+        e.preventDefault()
+
+        dispatch(updateUserEmail({userId, email}))
+        dispatch(reset())
     }
     
     return (
@@ -44,6 +73,9 @@ function UserUpdateForm() {
                         onChange={(e) => setUsername(e.target.value)}
                     />
                 </Grid>
+                <Button xs={6} type='submit' onClick={handleSubmitUsername}>
+                        Set Username
+                </Button>
                 <Grid item xs={12}>
                     <TextField
                         style={{ backgroundColor: theme.palette.background.default}}
@@ -55,6 +87,9 @@ function UserUpdateForm() {
                         onChange={(e) => setFirstName(e.target.value)}
                     />
                 </Grid>
+                <Button xs={6} type='submit' onClick={handleSubmitFirstName}>
+                        Set First Name
+                </Button>
                 <Grid item xs={12}>
                     <TextField
                         style={{ backgroundColor: theme.palette.background.default}}
@@ -66,6 +101,9 @@ function UserUpdateForm() {
                         onChange={(e) => setLastName(e.target.value)}
                     />
                 </Grid>
+                <Button xs={6} type='submit' onClick={handleSubmitLastName}>
+                        Set Last Name
+                </Button>
                 <Grid item xs={12}>
                     <TextField
                         style={{ backgroundColor: theme.palette.background.default}}
@@ -77,11 +115,9 @@ function UserUpdateForm() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <Button type='submit' onClick={handleSubmit}>
-                        Update!
-                    </Button>
-                </Grid>
+                <Button xs={6} type='submit' onClick={handleSubmitEmail}>
+                        Set Email
+                </Button>
             </Grid>
         </Grid>
     )

@@ -43,6 +43,51 @@ export const updateUser = createAsyncThunk('auth/update', async (userData, thunk
     }
 })
 
+// Update user username
+export const updateUserUsername = createAsyncThunk('auth/updateUsername', async (userData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await authService.updateUserUsername(userData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+// Update user first name
+export const updateUserFirstName = createAsyncThunk('auth/updateFirstName', async (userData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await authService.updateUserFirstName(userData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+
+// Update user last name
+export const updateUserLastName = createAsyncThunk('auth/updateLastName', async (userData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await authService.updateUserLastName(userData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+// Update user email
+export const updateUserEmail = createAsyncThunk('auth/updateEmail', async (userData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await authService.updateUserEmail(userData, token)
+    } catch (error) {
+        const message = (error.response && error.reponse.data && error.reponse.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 // Update user password
 export const changePassword = createAsyncThunk('auth/changePassword', async (userData, thunkAPI) => {
     try {
@@ -153,6 +198,58 @@ export const authSlice = createSlice({
                 state.user = action.payload
             })
             .addCase(updateUser.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateUserUsername.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateUserUsername.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.user = action.payload
+            })
+            .addCase(updateUserUsername.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateUserFirstName.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateUserFirstName.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.user = action.payload
+            })
+            .addCase(updateUserFirstName.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateUserLastName.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateUserLastName.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.user = action.payload
+            })
+            .addCase(updateUserLastName.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateUserEmail.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateUserEmail.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.user = action.payload
+            })
+            .addCase(updateUserEmail.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

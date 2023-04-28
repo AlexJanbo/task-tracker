@@ -45,6 +45,74 @@ const updateUser = async (userData, token) => {
     return response.data
 }
 
+// Update user username
+const updateUserUsername = async (userData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + userData.userId + "/update-user-username", userData , config)
+    // console.log(response)
+    if(response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data))
+    }
+
+    return response.data
+}
+
+// Update user first name
+const updateUserFirstName = async (userData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + userData.userId + "/update-user-firstName", userData , config)
+    // console.log(response)
+    if(response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data))
+    }
+
+    return response.data
+}
+
+// Update user last name
+const updateUserLastName = async (userData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + userData.userId + "/update-user-lastName", userData , config)
+    // console.log(response)
+    if(response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data))
+    }
+
+    return response.data
+}
+
+// Update user email
+const updateUserEmail = async (userData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    }
+
+    const response = await axios.put(API_URL + userData.userId + "/update-user-email", userData , config)
+    // console.log(response)
+    if(response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data))
+    }
+
+    return response.data
+}
+
 // Change user password
 const changePassword = async (userData, token) => {
     const config = {
@@ -130,6 +198,10 @@ const authService = {
     logout,
     login,
     updateUser,
+    updateUserUsername,
+    updateUserFirstName,
+    updateUserLastName,
+    updateUserEmail,
     changePassword,
     changeProfilePicture,
     getAllUsers,
